@@ -1,0 +1,455 @@
+# -*- coding: utf-8 -*-
+# Data: Cvičný TEST F (úlohy 1–16). Zdroj: Matematika - Zelený.
+# SVG bez apostrofů a zpětných lomítek (viz návod §9).
+
+# ---------- SVG obrázky (bez apostrofů a zpětných lomítek) ----------
+
+SVG8 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 420" font-family="sans-serif">
+<polygon points="110,150 360,150 360,350 110,350" fill="#eef2ec" stroke="#000" stroke-width="2"/>
+<polygon points="110,150 185,95 435,95 360,150" fill="#f6f8f4" stroke="#000" stroke-width="2"/>
+<polygon points="360,150 435,95 435,295 360,350" fill="#e2e8de" stroke="#000" stroke-width="2"/>
+<line x1="110" y1="350" x2="185" y2="295" stroke="#000" stroke-width="1.2" stroke-dasharray="5 5"/>
+<line x1="185" y1="295" x2="435" y2="295" stroke="#000" stroke-width="1.2" stroke-dasharray="5 5"/>
+<line x1="185" y1="295" x2="185" y2="95" stroke="#000" stroke-width="1.2" stroke-dasharray="5 5"/>
+<line x1="185" y1="95" x2="360" y2="350" stroke="#000" stroke-width="2.4"/>
+<text x="298" y="205" font-size="18" font-style="italic">25 cm</text>
+<text x="58" y="255" font-size="18">15 cm</text>
+<text x="235" y="374" font-size="18" font-style="italic">a</text>
+<text x="406" y="240" font-size="18" font-style="italic">b</text>
+<rect x="340" y="378" width="128" height="30" fill="none" stroke="#000" stroke-width="1"/>
+<text x="350" y="398" font-size="15">a : b = 4 : 3</text>
+</svg>"""
+
+SVG9 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 380" font-family="sans-serif">
+<line x1="60" y1="230" x2="400" y2="230" stroke="#000" stroke-width="2.5"/>
+<line x1="60" y1="221" x2="60" y2="239" stroke="#000" stroke-width="2.5"/>
+<line x1="400" y1="221" x2="400" y2="239" stroke="#000" stroke-width="2.5"/>
+<line x1="340" y1="70" x2="340" y2="330" stroke="#000" stroke-width="2.5"/>
+<line x1="331" y1="70" x2="349" y2="70" stroke="#000" stroke-width="2.5"/>
+<line x1="331" y1="330" x2="349" y2="330" stroke="#000" stroke-width="2.5"/>
+<text x="40" y="236" font-size="20" font-weight="bold" font-style="italic">A</text>
+<text x="408" y="224" font-size="20" font-weight="bold" font-style="italic">B</text>
+<text x="352" y="64" font-size="20" font-weight="bold" font-style="italic">C</text>
+<text x="352" y="348" font-size="20" font-weight="bold" font-style="italic">D</text>
+</svg>"""
+
+SVG10 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" font-family="sans-serif">
+<line x1="130" y1="90" x2="330" y2="270" stroke="#000" stroke-width="2.5"/>
+<line x1="125" y1="96" x2="135" y2="84" stroke="#000" stroke-width="2.5"/>
+<line x1="325" y1="276" x2="335" y2="264" stroke="#000" stroke-width="2.5"/>
+<text x="106" y="84" font-size="20" font-weight="bold" font-style="italic">A</text>
+<text x="340" y="288" font-size="20" font-weight="bold" font-style="italic">C</text>
+</svg>"""
+
+SVG13 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" font-family="sans-serif">
+<circle cx="200" cy="200" r="150" fill="#ffffff" stroke="#000" stroke-width="4"/>
+<text x="200" y="81" font-size="20" text-anchor="middle">12</text>
+<text x="262" y="98" font-size="20" text-anchor="middle">1</text>
+<text x="308" y="144" font-size="20" text-anchor="middle">2</text>
+<text x="325" y="206" font-size="20" text-anchor="middle">3</text>
+<text x="308" y="268" font-size="20" text-anchor="middle">4</text>
+<text x="262" y="314" font-size="20" text-anchor="middle">5</text>
+<text x="200" y="331" font-size="20" text-anchor="middle">6</text>
+<text x="138" y="314" font-size="20" text-anchor="middle">7</text>
+<text x="92" y="268" font-size="20" text-anchor="middle">8</text>
+<text x="75" y="206" font-size="20" text-anchor="middle">9</text>
+<text x="92" y="144" font-size="20" text-anchor="middle">10</text>
+<text x="138" y="98" font-size="20" text-anchor="middle">11</text>
+<line x1="200" y1="200" x2="145" y2="135" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+<line x1="200" y1="200" x2="96" y2="260" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+<circle cx="200" cy="200" r="7" fill="#000"/>
+</svg>"""
+
+SVG14 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 400" font-family="sans-serif">
+<polygon points="260,110 110,250 410,250" fill="#c9c9c9" stroke="#000" stroke-width="2.5"/>
+<line x1="130" y1="250" x2="130" y2="231" stroke="#000" stroke-width="1"/>
+<line x1="155" y1="250" x2="155" y2="208" stroke="#000" stroke-width="1"/>
+<line x1="180" y1="250" x2="180" y2="185" stroke="#000" stroke-width="1"/>
+<line x1="205" y1="250" x2="205" y2="161" stroke="#000" stroke-width="1"/>
+<line x1="230" y1="250" x2="230" y2="138" stroke="#000" stroke-width="1"/>
+<line x1="255" y1="250" x2="255" y2="115" stroke="#000" stroke-width="1"/>
+<line x1="280" y1="250" x2="280" y2="129" stroke="#000" stroke-width="1"/>
+<line x1="305" y1="250" x2="305" y2="152" stroke="#000" stroke-width="1"/>
+<line x1="330" y1="250" x2="330" y2="175" stroke="#000" stroke-width="1"/>
+<line x1="355" y1="250" x2="355" y2="199" stroke="#000" stroke-width="1"/>
+<line x1="380" y1="250" x2="380" y2="222" stroke="#000" stroke-width="1"/>
+<rect x="110" y="250" width="300" height="110" fill="#ffffff" stroke="#000" stroke-width="2.5"/>
+<line x1="440" y1="110" x2="440" y2="250" stroke="#000" stroke-width="1.5"/>
+<polygon points="436,120 444,120 440,110" fill="#000"/>
+<polygon points="436,240 444,240 440,250" fill="#000"/>
+<text x="452" y="186" font-size="18">5 m</text>
+<line x1="110" y1="382" x2="410" y2="382" stroke="#000" stroke-width="1.5"/>
+<polygon points="120,378 120,386 110,382" fill="#000"/>
+<polygon points="400,378 400,386 410,382" fill="#000"/>
+<text x="243" y="376" font-size="18">10 m</text>
+</svg>"""
+
+SVG16 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 320" font-family="sans-serif">
+<polygon points="210,128 224,114 284,114 270,128" fill="#d0d0d0" stroke="#000" stroke-width="1.2"/>
+<rect x="210" y="128" width="60" height="60" fill="#efefef" stroke="#000" stroke-width="1.6"/>
+<polygon points="150,188 164,174 224,174 210,188" fill="#d0d0d0" stroke="#000" stroke-width="1.2"/>
+<rect x="150" y="188" width="60" height="60" fill="#efefef" stroke="#000" stroke-width="1.6"/>
+<polygon points="270,188 284,174 344,174 330,188" fill="#d0d0d0" stroke="#000" stroke-width="1.2"/>
+<rect x="270" y="188" width="60" height="60" fill="#efefef" stroke="#000" stroke-width="1.6"/>
+<polygon points="90,248 104,234 164,234 150,248" fill="#d0d0d0" stroke="#000" stroke-width="1.2"/>
+<rect x="90" y="248" width="60" height="60" fill="#efefef" stroke="#000" stroke-width="1.6"/>
+<polygon points="150,248 164,234 224,234 210,248" fill="#d0d0d0" stroke="#000" stroke-width="1.2"/>
+<rect x="150" y="248" width="60" height="60" fill="#efefef" stroke="#000" stroke-width="1.6"/>
+<rect x="270" y="248" width="60" height="60" fill="#efefef" stroke="#000" stroke-width="1.6"/>
+<polygon points="330,248 344,234 404,234 390,248" fill="#d0d0d0" stroke="#000" stroke-width="1.2"/>
+<rect x="330" y="248" width="60" height="60" fill="#efefef" stroke="#000" stroke-width="1.6"/>
+</svg>"""
+
+# ---------- Úlohy ----------
+
+CODES_BASE = ['zs2', 'r9']
+
+PROBLEMS = [
+    # ---- úloha 1 (jedna otázka) ----
+    {
+        'name': 'Zelený F1 – kolikrát větší',
+        'zad': ['Vypočtěte, kolikrát větší je číslo $235$ než polovina jeho osminy.'],
+        'opts': None, 'ln': 1,
+        'sol': ['Osmina čísla je $\\frac{235}{8}$, její polovina $\\frac{235}{16}$. Podíl $235 : \\frac{235}{16} = 16$.'],
+        'ans': '16krát',
+        'pts': 1, 'mins': 2, 'diff': '2',
+        'codes': CODES_BASE + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    # ---- úloha 2 (2.1, 2.2 izolované "Vypočtěte" -> 2 samostatné úlohy) ----
+    {
+        'name': 'Zelený F2.1 – závorka a zlomek',
+        'zad': ['Vypočtěte: $\\left(64 : \\frac{1}{2} - 16 : 0{,}16\\right)\\cdot \\frac{1}{14} =$'],
+        'opts': None, 'ln': 1,
+        'sol': ['$64 : \\frac{1}{2} = 128$, $16 : 0{,}16 = 100$. Pak $(128-100)\\cdot \\frac{1}{14} = 28\\cdot \\frac{1}{14} = 2$.'],
+        'ans': '$2$',
+        'pts': 1, 'mins': 3, 'diff': '2',
+        'codes': CODES_BASE + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    {
+        'name': 'Zelený F2.2 – pořadí operací',
+        'zad': ['Vypočtěte: $(-7)\\cdot 0{,}3 - 0{,}7\\cdot (6-3) : (-1) =$'],
+        'opts': None, 'ln': 1,
+        'sol': ['$(-7)\\cdot 0{,}3 = -2{,}1$; $0{,}7\\cdot (6-3):(-1) = 2{,}1:(-1) = -2{,}1$. Celkem $-2{,}1-(-2{,}1) = 0$.'],
+        'ans': '$0$',
+        'pts': 1, 'mins': 2, 'diff': '2',
+        'codes': CODES_BASE + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    # ---- úloha 3 (3.1, 3.2 izolované -> 2 samostatné úlohy; výsledek se jmenovatelem 72) ----
+    {
+        'name': 'Zelený F3.1 – zlomek se jmenovatelem 72',
+        'zad': ['Vypočtěte a výsledek zapište zlomkem se jmenovatelem $72$:', '$-\\frac{7}{12} + 2{,}5 - \\frac{5}{8} : 0{,}6 =$'],
+        'opts': None, 'ln': 2,
+        'sol': ['$\\frac{5}{8} : 0{,}6 = \\frac{5}{8}\\cdot \\frac{5}{3} = \\frac{25}{24}$. Pak $-\\frac{7}{12} + \\frac{5}{2} - \\frac{25}{24} = \\frac{-14+60-25}{24} = \\frac{21}{24} = \\frac{63}{72}$.'],
+        'ans': '$\\frac{63}{72}$',
+        'pts': 1, 'mins': 3, 'diff': '3',
+        'codes': CODES_BASE + ['zlomky', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    {
+        'name': 'Zelený F3.2 – složený zlomek se jmenovatelem 72',
+        'zad': ['Vypočtěte a výsledek zapište zlomkem se jmenovatelem $72$:', '$\\frac{1\\frac{1}{5} - \\frac{7}{9}}{1\\frac{1}{10} - \\frac{7}{15}} =$'],
+        'opts': None, 'ln': 2,
+        'sol': ['Čitatel $\\frac{6}{5} - \\frac{7}{9} = \\frac{19}{45}$, jmenovatel $\\frac{11}{10} - \\frac{7}{15} = \\frac{19}{30}$. Podíl $\\frac{19}{45} : \\frac{19}{30} = \\frac{30}{45} = \\frac{2}{3} = \\frac{48}{72}$.'],
+        'ans': '$\\frac{48}{72}$',
+        'pts': 1, 'mins': 4, 'diff': '3',
+        'codes': CODES_BASE + ['zlomky', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    # ---- úloha 4 (4.1, 4.2 izolované -> 2 samostatné úlohy) ----
+    {
+        'name': 'Zelený F4.1 – zjednodušení výrazu (zlomky)',
+        'zad': ['Zjednodušte výraz: $\\left(\\frac{3-x}{3x} - \\frac{5-3x}{5x}\\right)\\cdot 7{,}5x =$'],
+        'opts': None, 'ln': 2,
+        'sol': ['Roznásobíme $7{,}5x$: $\\frac{3-x}{3x}\\cdot 7{,}5x = 2{,}5(3-x)$ a $\\frac{5-3x}{5x}\\cdot 7{,}5x = 1{,}5(5-3x)$. Rozdíl $(7{,}5-2{,}5x)-(7{,}5-4{,}5x) = 2x$.'],
+        'ans': '$2x$',
+        'pts': 2, 'mins': 4, 'diff': '3',
+        'codes': CODES_BASE + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    {
+        'name': 'Zelený F4.2 – zjednodušení výrazu (mocnina)',
+        'zad': ['Zjednodušte výraz: $3 + (1+2a)^2 - (1+a)\\cdot 4a =$'],
+        'opts': None, 'ln': 2,
+        'sol': ['$(1+2a)^2 = 1+4a+4a^2$, $(1+a)\\cdot 4a = 4a+4a^2$. Dosazením $3+1+4a+4a^2-4a-4a^2 = 4$.'],
+        'ans': '$4$',
+        'pts': 2, 'mins': 3, 'diff': '3',
+        'codes': CODES_BASE + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    # ---- úloha 5 (5.1, 5.2 izolované rovnice -> 2 samostatné úlohy) ----
+    {
+        'name': 'Zelený F5.1 – lineární rovnice',
+        'zad': ['Řešte rovnici: $\\frac{4b+4}{5} - \\frac{5b}{2} + 1 = -(2b-3) : 10$'],
+        'opts': None, 'ln': 2,
+        'sol': ['Vynásobíme $10$: $2(4b+4)-25b+10 = -(2b-3)$, tj. $-17b+18 = -2b+3$. Odtud $-15b = -15$, $b = 1$.'],
+        'ans': '$b=1$',
+        'pts': 2, 'mins': 4, 'diff': '3',
+        'codes': CODES_BASE + ['linearni-rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    {
+        'name': 'Zelený F5.2 – rovnice s odmocninou',
+        'zad': ['Řešte rovnici: $\\frac{2x-2}{\\sqrt{3}} + \\sqrt{3}\\cdot (x+2) = \\frac{1}{\\sqrt{3}}\\cdot (5-3x)$'],
+        'opts': None, 'ln': 3,
+        'sol': ['Vynásobíme $\\sqrt{3}$: $(2x-2)+3(x+2) = 5-3x$, tj. $5x+4 = 5-3x$. Odtud $8x = 1$, $x = \\frac{1}{8}$.'],
+        'ans': '$x=\\frac{1}{8}$',
+        'pts': 2, 'mins': 5, 'diff': '4',
+        'codes': CODES_BASE + ['linearni-rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    # ---- úloha 6 (výchozí text; 6.1+6.2 společný kontext -> jedna úloha) ----
+    {
+        'name': 'Zelený F6 – středověké jednotky délky',
+        'zad': [
+            'Středověké jednotky délky byly často poněkud zvláštního původu. Např. $1$ hon byl odvozen od $60$ otočení kolečka pluhu, přičemž délka $1$ honu se rovnala $5$ provazcům po $42$ loktech pražských. Délka $1$ sáhu pak byla odvozena od délky rozpažení panovníka a ve vrcholném středověku se do něj vešlo „tré loktů pražských". Délka $1$ pražského lokte nám zůstala věrně zachována, neboť „jeden loket" je zazděn na průčelí pražské novoměstské radnice jako etalon a činí zhruba $60$ cm.',
+            '6.1 Vypočtěte, jak velký průměr mělo kolečko zmíněného středověkého pluhu. Výsledek zaokrouhlete na cm.',
+            '6.2 Vypočtěte, kolik hektarů měly polnosti tvaru obdélníku o rozměrech 100 × 300 sáhů. Počet hektarů zaokrouhlete na jednotky.',
+        ],
+        'opts': None, 'ln': 4,
+        'sol': [
+            '6.1 $1$ hon $= 5\\cdot 42 = 210$ loktů $= 210\\cdot 0{,}6 = 126$ m a odpovídá $60$ otáčkám, takže obvod kolečka je $126:60 = 2{,}1$ m. Průměr $d = \\frac{2{,}1}{\\pi} \\approx \\frac{2{,}1}{3{,}14} \\approx 0{,}67$ m $= 67$ cm.',
+            '6.2 $1$ sáh $= 3$ lokty $= 1{,}8$ m. Rozměry $100 \\times 300$ sáhů $= 180 \\times 540$ m, obsah $180\\cdot 540 = 97\\,200$ m² $= 9{,}72$ ha $\\approx 10$ ha.',
+        ],
+        'ans': '6.1: $67$ cm; 6.2: $10$ hektarů',
+        'pts': 4, 'mins': 8, 'diff': '4',
+        'codes': CODES_BASE + ['planimetrie', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot'],
+    },
+    # ---- úloha 7 (7.1,7.2,7.3 izolované "Vypočtěte" -> 3 samostatné úlohy) ----
+    {
+        'name': 'Zelený F7.1 – šestina úhlu',
+        'zad': ["Vypočtěte, jak velká je jedna šestina úhlu o velikosti 123° 12'."],
+        'opts': None, 'ln': 1,
+        'sol': ["$123°\\,12' = 123\\cdot 60 + 12 = 7392'$. Šestina: $7392' : 6 = 1232' = 20°\\,32'$."],
+        'ans': "20° 32'",
+        'pts': 1, 'mins': 2, 'diff': '2',
+        'codes': CODES_BASE + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    {
+        'name': 'Zelený F7.2 – obvod dlážděné místnosti',
+        'zad': ['Vypočtěte obvod čtvercové místnosti vydlážděné $625$ čtvercovými dlaždicemi o hraně $20$ cm.'],
+        'opts': None, 'ln': 2,
+        'sol': ['$625 = 25^2$, strana místnosti má $25$ dlaždic po $20$ cm, tj. $25\\cdot 20 = 500$ cm $= 5$ m. Obvod $4\\cdot 5 = 20$ m.'],
+        'ans': '$20$ metrů',
+        'pts': 1, 'mins': 3, 'diff': '2',
+        'codes': CODES_BASE + ['planimetrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot'],
+    },
+    {
+        'name': 'Zelený F7.3 – hmotnost smrkového dřeva',
+        'zad': ['Vypočtěte hmotnost $1$ m³ smrkového dřeva, jestliže kláda volně plovoucí ve vodě vyčnívá nad její hladinu čtvrtinou svého objemu. Hmotnost jednoho litru vody je $1000$ gramů.'],
+        'opts': None, 'ln': 2,
+        'sol': ['Kláda plave, nad hladinou je $\\frac{1}{4}$ objemu, ponořeny jsou $\\frac{3}{4}$. Vztlak se rovná tíze, proto hustota dřeva $= \\frac{3}{4}\\cdot 1000 = 750$ kg/m³. Hmotnost $1$ m³ je tedy $750$ kg.'],
+        'ans': '$750$ kg',
+        'pts': 1, 'mins': 4, 'diff': '3',
+        'codes': CODES_BASE + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'fyzika'],
+    },
+    # ---- úloha 8 (výchozí obrázek a text; 8.1+8.2 společný kontext) ----
+    {
+        'name': 'Zelený F8 – krabička tvaru kvádru',
+        'zad': [
+            'Na obrázku je zobrazena krabička tvaru kvádru. Nejdelší tyčka, kterou je možné do prázdné krabičky vložit tak, aby se krabička dala zavřít, má délku $25$ cm. Výška krabičky je $15$ cm a délka a šířka její podstavy jsou v poměru $4:3$.',
+            '8.1 Vypočtěte rozměry podstavy krabičky.',
+            '8.2 Vypočtěte maximální počet těchto krabiček, který se vejde do krabice o vnitřních rozměrech 60 × 60 × 90 cm.',
+        ],
+        'opts': None, 'ln': 4,
+        'svg': SVG8, 'fn': 'krabicka-kvadr.svg',
+        'alt': 'Kvádr s vyznačenou tělesovou úhlopříčkou 25 cm, výškou 15 cm a stranami podstavy a, b v poměru 4:3.',
+        'cap': 'Krabička tvaru kvádru s tělesovou úhlopříčkou',
+        'sol': [
+            '8.1 Tělesová úhlopříčka kvádru je $25$ cm, výška $15$ cm, takže úhlopříčka podstavy je $\\sqrt{25^2-15^2} = \\sqrt{400} = 20$ cm. Při poměru stran $4:3$ platí $\\sqrt{(4k)^2+(3k)^2} = 5k = 20$, tedy $k = 4$. Rozměry podstavy jsou $16$ cm a $12$ cm.',
+            '8.2 Krabička má rozměry 16 × 12 × 15 cm. Do krabice 60 × 60 × 90 cm se vejde $5$ krabiček po $12$ cm ($60:12=5$), $4$ krabičky po $15$ cm ($60:15=4$) a $5$ krabiček po $16$ cm ($90:16$ je $5$ celých). Celkem $5\\cdot 4\\cdot 5 = 100$ krabiček.',
+        ],
+        'ans': '8.1: 16 cm × 12 cm; 8.2: 100 ks',
+        'pts': 5, 'mins': 8, 'diff': '4',
+        'codes': CODES_BASE + ['stereometrie', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot'],
+    },
+    # ---- úloha 9 (konstrukce – množina bodů) ----
+    {
+        'name': 'Zelený F9 – množina bodů u kolmých úseček',
+        'zad': [
+            'V rovině jsou vzájemně kolmé úsečky $AB$ o délce $10$ cm a $CD$ o délce $8$ cm.',
+            'Vyznačte množinu bodů, které nejsou vzdáleny zároveň od úseček $AB$ a $CD$ více než $2$ cm.',
+        ],
+        'opts': None, 'ln': 0,
+        'svg': SVG9, 'fn': 'kolme-usecky.svg',
+        'alt': 'Dvě vzájemně kolmé úsečky: vodorovná AB délky 10 cm a svislá CD délky 8 cm, které se protínají.',
+        'cap': 'Výchozí obrázek k úloze 9',
+        'sol': [
+            'Množina bodů do vzdálenosti $2$ cm od úsečky je pás široký $4$ cm (s půlkruhy na koncích). Hledáme body ležící současně v pásu okolo $AB$ i v pásu okolo $CD$. V okolí průsečíku obou úseček je průnikem těchto pásů čtverec o straně $4$ cm (viz obrázek v klíči).',
+        ],
+        'ans': 'Zvýrazněný čtverec o straně $4$ cm (a jeho vnitřek) v okolí průsečíku úseček — průnik pásů širokých $4$ cm okolo úseček $AB$ a $CD$ (viz obrázek v klíči).',
+        'pts': 2, 'mins': 6, 'diff': '3',
+        'codes': CODES_BASE + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    # ---- úloha 10 (konstrukce – kosočtverec) ----
+    {
+        'name': 'Zelený F10 – konstrukce kosočtverce',
+        'zad': [
+            'V rovině je dána úsečka $AC$.',
+            'Sestrojte kosočtverec $ABCD$, jehož délka strany je $6$ cm.',
+        ],
+        'opts': None, 'ln': 0,
+        'svg': SVG10, 'fn': 'usecka-AC.svg',
+        'alt': 'Úsečka AC zadaná v rovině, nakloněná zleva shora doprava dolů.',
+        'cap': 'Výchozí obrázek k úloze 10',
+        'sol': [
+            'Úsečka $AC$ je úhlopříčka kosočtverce. Vrcholy $B$ a $D$ leží na ose úsečky $AC$. Sestrojíme kružnice se středy $A$ a $C$ o poloměru $6$ cm; jejich průsečíky jsou vrcholy $B$ a $D$. Spojením bodů $A$, $B$, $C$, $D$ vznikne kosočtverec se stranou $6$ cm.',
+        ],
+        'ans': 'Kosočtverec $ABCD$ s úhlopříčkou $AC$; vrcholy $B$ a $D$ jsou průsečíky kružnic se středy $A$ a $C$ o poloměru $6$ cm (viz obrázek v klíči).',
+        'pts': 2, 'mins': 5, 'diff': '2',
+        'codes': CODES_BASE + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+    # ---- úloha 11 (výchozí text; 11.1–11.3 Ano/Ne společný kontext) ----
+    {
+        'name': 'Zelený F11 – učitelský sbor (Ano/Ne)',
+        'zad': [
+            'Tři čtvrtiny učitelského sboru naší školy tvoří ženy. Třetina učitelek a polovina učitelů umí anglicky, německy hovoří šestina učitelek a čtvrtina učitelů. Polovina učitelů (mužů) nehovoří ani jedním z těchto jazyků.',
+            'Rozhodněte na základě výchozího textu o každém z následujících tvrzení 11.1–11.3, zda může platit (A), či nikoli (N).',
+            '11.1 Na naší škole máme celkem $36$ učitelů a učitelek.',
+            '11.2 Mezi anglicky mluvícími členy učitelského sboru je dvakrát víc žen než mužů.',
+            '11.3 Žádná z učitelek nehovoří oběma jazyky.',
+        ],
+        'opts': None, 'ln': 0,
+        'sol': [
+            'Aby byly počty (třetina a šestina učitelek, polovina a čtvrtina učitelů) celá čísla, musí být celkový počet násobkem $16$.',
+            '11.1 Pro $36$ by bylo $27$ učitelek, jejich šestina $4{,}5$ není celé číslo — nemůže platit (Ne).',
+            '11.2 Anglicky mluví $\\frac{1}{3}$ učitelek a $\\frac{1}{2}$ učitelů, tj. při počtech $12k$ učitelek a $4k$ učitelů je to $4k$ žen a $2k$ mužů, tedy dvakrát víc žen (Ano).',
+            '11.3 Anglicky mluví $\\frac{1}{3}$ a německy $\\frac{1}{6}$ učitelek; jejich součet je $\\frac{1}{2}$ učitelek, skupiny se tedy nemusí překrývat a žádná učitelka nemusí mluvit oběma jazyky (Ano).',
+        ],
+        'ans': '11.1: Ne; 11.2: Ano; 11.3: Ano',
+        'pts': 3, 'mins': 7, 'diff': '4',
+        'codes': CODES_BASE + ['zlomky', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot'],
+    },
+    # ---- úloha 12 (výběr z možností; výchozí text) ----
+    {
+        'name': 'Zelený F12 – plnění bazénu trubkou',
+        'zad': [
+            'Trubkou o průměru $2$ cm protéká voda rychlostí $10$ m/s. $\\pi = 3{,}14$.',
+            'Za jak dlouho naplní prázdný bazén o objemu $62{,}8$ m³?',
+        ],
+        'opts': ['A) 1.23:20 hod.', 'B) 3.33:33 hod.', 'C) 5.20:20 hod.', 'D) 5.33:20 hod.', 'E) jiný výsledek'],
+        'ln': 0,
+        'sol': ['Průřez trubky $S = \\pi r^2 = 3{,}14\\cdot 0{,}01^2 = 0{,}000314$ m². Průtok $Q = S\\cdot v = 0{,}000314\\cdot 10 = 0{,}00314$ m³/s. Čas $t = \\frac{62{,}8}{0{,}00314} = 20\\,000$ s $= 5$ h $33$ min $20$ s.'],
+        'ans': 'D) 5.33:20 hod.',
+        'pts': 2, 'mins': 6, 'diff': '3',
+        'codes': CODES_BASE + ['planimetrie', 'modelovani', 'slovni', 'bez-kalkulacky', 'fyzika'],
+    },
+    # ---- úloha 13 (výběr z možností + obrázek hodin) ----
+    {
+        'name': 'Zelený F13 – úhly ručiček hodin',
+        'zad': [
+            'Na obrázku jsou hodiny.',
+            'Jak velké úhly mezi sebou svírají minutová a hodinová ručička hodin v momentě, kdy ukazují za pět minut tři čtvrtě na jedenáct?',
+        ],
+        'opts': ['A) 60° a 120°', 'B) 80° a 100°', 'C) 80° a 280°', 'D) 82° a 278°', 'E) jiný výsledek'],
+        'ln': 0,
+        'svg': SVG13, 'fn': 'hodiny.svg',
+        'alt': 'Ciferník hodin s minutovou ručičkou u osmičky a hodinovou ručičkou mezi desítkou a jedenáctkou.',
+        'cap': 'Schematický nákres hodin',
+        'sol': ['„Za pět minut tři čtvrtě na jedenáct" je čas $10{:}40$. Minutová ručička ukazuje na osmičku, tj. $40\\cdot 6^\\circ = 240^\\circ$ od dvanáctky. Hodinová ručička odpovídá $10$ h $40$ min, tj. $10\\cdot 30^\\circ + 40\\cdot 0{,}5^\\circ = 320^\\circ$. Menší úhel je $320^\\circ - 240^\\circ = 80^\\circ$, druhý $360^\\circ - 80^\\circ = 280^\\circ$.'],
+        'ans': 'C) 80° a 280°',
+        'pts': 2, 'mins': 4, 'diff': '3',
+        'codes': CODES_BASE + ['planimetrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot'],
+    },
+    # ---- úloha 14 (výběr z možností + obrázek štítu) ----
+    {
+        'name': 'Zelený F14 – pobití štítu prkny',
+        'zad': [
+            'Výška štítu stodoly, vyznačeného na obrázku šedým podkresem, je $5$ metrů a jeho šířka $10$ metrů. Štít je pobit prkny o tloušťce $25$ mm.',
+            'Kolika m³ prken byl pobit štít?',
+        ],
+        'opts': ['A) 0,625 m³', 'B) 0,750 m³', 'C) 1,350 m³', 'D) 0,925 m³', 'E) jiný výsledek'],
+        'ln': 0,
+        'svg': SVG14, 'fn': 'stit-stodoly.svg',
+        'alt': 'Štít stodoly tvaru trojúhelníku o výšce 5 m a šířce 10 m nad obdélníkovou stěnou, plocha štítu je vyšrafována svislými prkny.',
+        'cap': 'Štít stodoly',
+        'sol': ['Štít je trojúhelník o obsahu $S = \\frac{1}{2}\\cdot 10\\cdot 5 = 25$ m². Tloušťka prken je $25$ mm $= 0{,}025$ m. Objem prken $V = 25\\cdot 0{,}025 = 0{,}625$ m³.'],
+        'ans': 'A) 0,625 m³',
+        'pts': 2, 'mins': 4, 'diff': '2',
+        'codes': CODES_BASE + ['stereometrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot'],
+    },
+    # ---- úloha 15 (přiřazování 15.1–15.3 -> A–F; společná nabídka) ----
+    {
+        'name': 'Zelený F15 – procenta (přiřazování)',
+        'zad': [
+            'Přiřaďte ke každé úloze (15.1–15.3) odpovídající výsledek (A–F).',
+            '15.1 Přijímačky z češtiny neudělal každý pátý uchazeč, z matematiky propadl každý čtvrtý. Desetina uchazečů neuspěla v obou předmětech. Kolik $\\%$ uchazečů složilo obě zkoušky úspěšně?',
+            '15.2 Kdyby Strana smutných občanů v letošních volbách získala o $200$ hlasů víc, mohla vyhrát volby se ziskem $50\\,\\%$ hlasů. Takhle se musela spokojit jen se $40\\,\\%$ hlasů. Kolik $\\%$ z celkem $5$ tisíc oprávněných voličů v obci přišlo letos k volbám?',
+            '15.3 Proti loňsku jsme museli při sklizni snížit rychlost kombajnu v průměru o třetinu. O kolik $\\%$ se prodloužila délka sklizně?',
+        ],
+        'opts': ['A) 33,3 %', 'B) 40,0 %', 'C) 45,0 %', 'D) 50,0 %', 'E) 65,0 %', 'F) jiný výsledek'],
+        'ln': 0,
+        'sol': [
+            '15.1 Neuspěl z ČJ $\\frac{1}{5} = 20\\,\\%$, z M $\\frac{1}{4} = 25\\,\\%$, v obou $\\frac{1}{10} = 10\\,\\%$. Aspoň v jednom neuspělo $20+25-10 = 35\\,\\%$, obě zkoušky složilo $100-35 = 65\\,\\%$ → E.',
+            '15.2 Nechť přišlo $V$ voličů; strana má $40\\,\\%$, tj. $0{,}4V$. Kdyby o $200$ víc, měla by $50\\,\\%$: $0{,}4V+200 = 0{,}5V$, odtud $V = 2000$. To je $\\frac{2000}{5000} = 40\\,\\%$ → B.',
+            '15.3 Rychlost klesla na $\\frac{2}{3}$, čas je nepřímo úměrný, vzrostl tedy na $\\frac{3}{2}$, tj. o $50\\,\\%$ → D.',
+        ],
+        'ans': '15.1: E (65,0 %); 15.2: B (40,0 %); 15.3: D (50,0 %)',
+        'pts': 6, 'mins': 9, 'diff': '4',
+        'codes': CODES_BASE + ['procenta', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot'],
+    },
+    # ---- úloha 16 (výchozí text a obrázek; 16.1–16.3 společný kontext) ----
+    {
+        'name': 'Zelený F16 – pyramida z kostek',
+        'zad': [
+            'Pyramida z kostek se zdá být v poměrně havarijním stavu. V jejím plášti chybí spousta kostek.',
+            '16.1 Určete minimální počet kostek, které chybí k tomu, aby plášť pyramidy byl kompletní.',
+            '16.2 Určete minimální počet kostek, které chybí k tomu, aby pyramida včetně jejího vnitřku byla kompletní (tj. že pyramida nebude dutá).',
+            '16.3 Vypočtěte, kolik kostek bude potřeba k sestavení obdobné pyramidy o $10$ patrech tak, aby pyramida byla plná.',
+        ],
+        'opts': None, 'ln': 4,
+        'svg': SVG16, 'fn': 'pyramida-kostky.svg',
+        'alt': 'Stupňovitá pyramida složená z krychlových kostek, v jejím plášti chybí několik kostek.',
+        'cap': 'Schematický nákres pyramidy z kostek',
+        'sol': [
+            '16.1 Doplněním chybějících kostek ve viditelném plášti pyramidy zjistíme, že chybí $11$ kostek.',
+            '16.2 Aby byla pyramida plná i uvnitř (nedutá), je třeba doplnit celkem $25$ kostek.',
+            '16.3 Plná pyramida má v jednotlivých patrech čtvercové vrstvy $1^2, 2^2, \\ldots, 10^2$ kostek. Celkem $1^2+2^2+\\cdots+10^2 = \\frac{10\\cdot 11\\cdot 21}{6} = 385$ kostek.',
+        ],
+        'ans': '16.1: $11$; 16.2: $25$; 16.3: $385$',
+        'pts': 6, 'mins': 9, 'diff': '4',
+        'codes': CODES_BASE + ['posloupnosti', 'argumentace', 'pocetni', 'bez-kalkulacky', 'bez-kontextu'],
+    },
+]
+
+if __name__ == '__main__':
+    import os, sys, json, re
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen
+
+    # --- validace: párové $, neprázdné povinné, alt u obrázku ---
+    def dollars_ok(s):
+        return s.count('$') % 2 == 0
+    problems_fields = ['name', 'ans']
+    errors = []
+    names = set()
+    for p in PROBLEMS:
+        if p['name'] in names:
+            errors.append('DUPLICITNÍ název: ' + p['name'])
+        names.add(p['name'])
+        texts = [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or [])
+        for t in texts:
+            if not dollars_ok(t):
+                errors.append('Nepárový $ v: ' + t[:70])
+        if p.get('svg') and not p.get('alt'):
+            errors.append('Obrázek bez alt: ' + p['name'])
+        if p.get('svg'):
+            if "'" in p['svg'] or '\\' in p['svg']:
+                errors.append('SVG obsahuje zakázaný znak (apostrof/backslash): ' + p['name'])
+        # JSON musí být platný (mirror Apex builderů)
+        for label, obj in (('content', gen.py_content_json(p)),
+                           ('solution', gen.py_solution_json(p)),
+                           ('answer', gen.py_answer_json(p))):
+            try:
+                json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e:
+                errors.append(f'Neplatný JSON ({label}) v {p["name"]}: {e}')
+    if errors:
+        print('CHYBY:')
+        for e in errors:
+            print('  -', e)
+        sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'úloh')
+
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    written = gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-zeleny-testF'))
+    total = 0
+    for path, sz, k in written:
+        total += k
+        flag = 'OK' if sz < 9000 else 'PŘES 9KB!'
+        print(f'{os.path.basename(path)}: {sz} B, {k} úloh [{flag}]')
+    print('Celkem úloh:', total)
