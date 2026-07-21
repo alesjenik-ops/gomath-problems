@@ -1,0 +1,56 @@
+String SRC   = 'CERMAT – Ilustrační test 2020, matematika 9 (čtyřleté obory)';
+String STYPE = 'CERMAT';
+
+public class C {
+  Map<String,Id> tx; Set<String> have; String src; String stype; public Integer created=0;
+  C(Map<String,Id> tx, Set<String> have, String src, String stype){this.tx=tx;this.have=have;this.src=src;this.stype=stype;}
+  Id sv(String t,String fn,String s){ContentVersion cv=new ContentVersion(Title=t,PathOnClient=fn,VersionData=Blob.valueOf(s),Origin='H');insert cv;return [SELECT ContentDocumentId FROM ContentVersion WHERE Id=:cv.Id].ContentDocumentId;}
+  void lk(Id d,Id r){try{insert new ContentDocumentLink(ContentDocumentId=d,LinkedEntityId=r,ShareType='V',Visibility='AllUsers');}catch(Exception e){insert new ContentDocumentLink(ContentDocumentId=d,LinkedEntityId=r,ShareType='V',Visibility='InternalUsers');}}
+  String para(String t){return '{"type":"paragraph","text":'+JSON.serialize(t)+'}';}
+  String content(List<String> zad, Id d, String alt, String cap, List<String> opts, Integer ln){
+    String s='{"schemaVersion":1,"blocks":[';
+    for(Integer i=0;i<zad.size();i++){if(i>0)s+=',';s+=para(zad[i]);}
+    if(d!=null){s+=',{"type":"image","contentDocumentId":"'+d+'","alt":'+JSON.serialize(alt)+',"caption":'+JSON.serialize(cap)+',"widthPercent":75,"align":"center"}';}
+    if(opts!=null && !opts.isEmpty()){s+=',{"type":"list","items":[';for(Integer i=0;i<opts.size();i++){if(i>0)s+=',';s+=JSON.serialize(opts[i]);}s+=']}';}
+    if(ln!=null && ln>0){s+=',{"type":"answerSpace","lines":'+ln+'}';}
+    s+=']}';return s;
+  }
+  String solution(List<String> ps){String s='{"schemaVersion":1,"blocks":[';for(Integer i=0;i<ps.size();i++){if(i>0)s+=',';s+=para(ps[i]);}s+=']}';return s;}
+  void add(String name,List<String> zad,List<String> opts,Integer ln,String svg,String fn,String alt,String cap,List<String> solp,String ans,Decimal pts,Decimal mins,String diff,List<String> codes,String ccode,Integer yr){
+    if(have.contains(name))return;
+    Id d=(svg!=null)?sv(name,fn,svg):null;
+    Math_Problem__c mp=new Math_Problem__c(Name=name,Status__c='Publikováno',Visibility__c='Organizace',Language__c='cs',Current_Version_Number__c=1);insert mp;
+    String cj=content(zad,d,alt,cap,opts,ln); String sj=solution(solp);
+    String aj=JSON.serialize(new Map<String,Object>{'type'=>'Text','value'=>ans});
+    Problem_Version__c pub=new Problem_Version__c(Problem__c=mp.Id,Version_Number__c=1,Is_Published__c=true,Published_At__c=Datetime.now(),Title__c=name,Content_JSON__c=cj,Solution_JSON__c=sj,Answer_JSON__c=aj,Answer_Type__c='Text',Points__c=pts,Expected_Time_Min__c=mins,Difficulty__c=diff,Source__c=src,Source_Type__c=stype,License__c='Jiná',CERMAT_Code__c=ccode,Source_Year__c=yr,Search_Text__c=GoMathContent.buildSearchText(name,cj,sj,null));
+    insert pub;
+    List<Problem_Taxon__c> ls=new List<Problem_Taxon__c>();
+    for(String code:codes){Id ti=tx.get(code);if(ti==null)continue;ls.add(new Problem_Taxon__c(Problem_Version__c=pub.Id,Taxon__c=ti,Unique_Key__c=pub.Id+'_'+ti));}
+    if(!ls.isEmpty())insert ls;
+    if(d!=null)lk(d,mp.Id);
+    created++;
+  }
+}
+Map<String,Id> tx=new Map<String,Id>();
+for(Taxon__c t:[SELECT Id,Code__c FROM Taxon__c])tx.put(t.Code__c,t.Id);
+Set<String> have=new Set<String>();
+for(Math_Problem__c p:[SELECT Name FROM Math_Problem__c])have.add(p.Name);
+C c=new C(tx,have,SRC,STYPE);
+
+c.add(
+  'CERMAT 2020 M9I · úloha 16',
+  new List<String>{'Obdélníková mozaika z bílých a šedých čtverců se tvoří podle následujících pravidel: počet sloupců v obdélníku je o $1$ větší než počet řad; šedý obdélník obklopují bílé čtverce pouze v jedné vrstvě (viz obrázek — mozaiky se $4$ sloupci a $3$ řadami, s $5$ sloupci a $4$ řadami atd.).','16.1 Vypočtěte, kolik šedých čtverců je v mozaice, která obsahuje celkem $12$ řad.','16.2 Vypočtěte, kolik šedých čtverců je v mozaice, která má $70$ bílých čtverců.','16.3 Vypočtěte, kolik bílých čtverců je v mozaice, která má celkem $380$ čtverců (šedých i bílých).'},
+  null,
+  null,
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 485 148"><path d="M4 143L481 143L481 144L4 144Z" style="fill:#000000"/><path d="M45 27L68 27L68 49L45 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M68 27L91 27L91 49L68 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M45 49L68 49L68 72L45 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M68 49L91 49L91 72L68 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M45 4L68 4L68 27L45 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M68 4L91 4L91 27L68 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M91 4L113 4L113 27L91 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M23 4L45 4L45 27L23 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M23 49L45 49L45 72L23 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M23 27L45 27L45 49L23 49Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M91 49L113 49L113 72L91 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M91 27L113 27L113 49L91 49Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M439 39L464 39L464 68L439 68Z" style="fill:#ffffff"/><path d="M44 82L92 82L92 111L44 111Z" style="fill:#ffffff"/><path d="M174 105L223 105L223 134L174 134Z" style="fill:#ffffff"/><path d="M164 27L187 27L187 49L164 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M187 27L210 27L210 49L187 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M164 72L187 72L187 95L164 95Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M187 72L210 72L210 95L187 95Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M164 4L187 4L187 27L164 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M187 4L210 4L210 27L187 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M232 4L255 4L255 27L232 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M142 4L164 4L164 27L142 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M142 72L164 72L164 95L142 95Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M142 27L164 27L164 49L142 49Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M232 72L255 72L255 95L232 95Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M232 27L255 27L255 49L232 49Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M164 49L187 49L187 72L164 72Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M187 49L210 49L210 72L187 72Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M142 49L164 49L164 72L142 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M232 49L255 49L255 72L232 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M210 27L232 27L232 49L210 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M210 72L232 72L232 95L210 95Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M210 4L232 4L232 27L210 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M210 49L232 49L232 72L210 72Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M306 27L329 27L329 49L306 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M329 27L351 27L351 49L329 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M306 95L329 95L329 117L306 117Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M329 95L351 95L351 117L329 117Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M306 4L329 4L329 27L306 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M329 4L351 4L351 27L329 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M397 4L419 4L419 27L397 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M283 4L306 4L306 27L283 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M283 95L306 95L306 117L283 117Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M283 27L306 27L306 49L283 49Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M397 95L419 95L419 117L397 117Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M397 27L419 27L419 49L397 49Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M306 49L329 49L329 72L306 72Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M329 49L351 49L351 72L329 72Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M283 49L306 49L306 72L283 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M397 49L419 49L419 72L397 72Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M351 27L374 27L374 49L351 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M351 95L374 95L374 117L351 117Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M351 4L374 4L374 27L351 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M351 49L374 49L374 72L351 72Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M306 72L329 72L329 95L306 95Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M329 72L351 72L351 95L329 95Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M283 72L306 72L306 95L283 95Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M397 72L419 72L419 95L397 95Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M351 72L374 72L374 95L351 95Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M374 27L397 27L397 49L374 49Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M374 95L397 95L397 117L374 117Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M374 4L397 4L397 27L374 27Z" style="fill:#ffffff;stroke:#000000;stroke-width:2"/><path d="M374 49L397 49L397 72L374 72Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><path d="M374 72L397 72L397 95L374 95Z" style="fill:#a6a6a6;stroke:#000000;stroke-width:2"/><text x="454" y="67" font-size="24" fill="#000" text-anchor="middle" font-family="sans-serif">…</text><text x="68" y="96" font-size="12" fill="#000" text-anchor="middle" font-family="sans-serif">4 sloupce</text><text x="61" y="110" font-size="12" fill="#000" text-anchor="middle" font-family="sans-serif">3 řady</text><text x="198" y="118" font-size="12" fill="#000" text-anchor="middle" font-family="sans-serif">5 sloupců</text><text x="191" y="133" font-size="12" fill="#000" text-anchor="middle" font-family="sans-serif">4 řady</text></svg>',
+  'obr.svg',
+  'Tři mozaiky tvaru obdélníku ze šedých a bílých čtverců: 4 sloupce a 3 řady, 5 sloupců a 4 řady, 6 sloupců a 5 řad, s naznačením pokračování.',
+  '',
+  new List<String>{'Má-li mozaika $r$ řad, má $r+1$ sloupců. Šedý obdélník uvnitř má rozměry $(r-1)\\times(r-2)$, tedy šedých čtverců je $(r-1)(r-2)$. Bílých je $r(r+1)-(r-1)(r-2)=4r-2$.','16.1: $r=12$: šedých $(12-1)(12-2)=11\\cdot10=110$.','16.2: $4r-2=70\\Rightarrow r=18$: šedých $(18-1)(18-2)=17\\cdot16=272$.','16.3: $r(r+1)=380\\Rightarrow r=19$; bílých $4\\cdot19-2=74$.'},
+  '16.1: $110$ šedých čtverců; 16.2: $272$ šedých čtverců; 16.3: $74$ bílých čtverců',
+  4, 7, '4',
+  new List<String>{'zs2','r9','posloupnosti','algebra','vypocet','slovni','bez-kalkulacky'},
+  'M9PID20C0T01', 2020
+);
+
+System.debug('Vytvořeno úloh: '+c.created);
