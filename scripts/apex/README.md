@@ -8,7 +8,8 @@ podle návodu *„Návod: generování Apex skriptu pro import úloh"*.
 
 Zdroj: <https://prijimacky.cermat.cz/menu/testova-zadani-k-procvicovani/testova-zadani-v-pdf/ctyrlete-obory-matematika>
 
-Každý test má soubory `import-cermat-<KÓD_TESTU>-castN.apex` (např. `M9B-2026`).
+Každý test má soubory `import-cermat-<TEST>-castN.apex` (např. `M9B-2026`).
+**Zpracován celý dostupný český archiv 2015–2026** (matematika 9, čtyřleté obory).
 
 | Test | Termín | Kód testu | Úloh |
 |---|---|---|---|
@@ -20,21 +21,55 @@ Každý test má soubory `import-cermat-<KÓD_TESTU>-castN.apex` (např. `M9B-20
 | **M9B 2025** | 2. řádný | M9PBD25C0T02 | 16 |
 | **M9C 2025** | 1. náhradní | M9PCD25C0T03 | 16 |
 | **M9D 2025** | 2. náhradní | M9PDD25C0T04 | 16 |
+| **M9A 2024** | 1. řádný | M9PAD24C0T01 | 16 |
+| **M9B 2024** | 2. řádný | M9PBD24C0T02 | 16 |
 | **M9C 2024** | 1. náhradní | M9PCD24C0T03 | 16 |
 | **M9D 2024** | 2. náhradní | M9PDD24C0T04 | 16 |
+| **M9A 2023** | 1. řádný | M9PAD23C0T01 | 16 |
+| **M9B 2023** | 2. řádný | M9PBD23C0T02 | 16 |
+| **M9C 2023** | náhradní | M9PCD23C0T03 | 16 |
+| **M9D 2023** | druhý náhradní | M9PDD23C0T04 | 16 |
+| **M9A 2022** | 1. řádný | M9PAD22C0T01 | 16 |
+| **M9B 2022** | 2. řádný | M9PBD22C0T02 | 16 |
+| **M9C 2022** | náhradní | M9PCD22C0T03 | 16 |
+| **M9D 2022** | druhý náhradní | M9PDD22C0T04 | 16 |
+| **M9A 2021** | 1. řádný | M9PAD21C0T01 | 16 |
+| **M9B 2021** | 2. řádný | M9PBD21C0T02 | 16 |
+| **M9C 2021** | náhradní | M9PCD21C0T03 | 16 |
+| **M9D 2021** | druhý náhradní | M9PDD21C0T04 | 16 |
+| **M9A 2020** | řádný (jediný, COVID) | M9PAD20C0T01 | 16 |
+| **M9A 2019** | 1. řádný | M9PAD19C0T01 | 16 |
+| **M9B 2019** | 2. řádný | M9PBD19C0T02 | 16 |
+| **M9B 2017** | 2. řádný | M9PBD17C0T02 | 16 |
+| **M9A 2015** | řádný | M9PZD15C0T01 | 17 |
+| **M9I 2021** | ilustrační test | M9PID21C0T01 | 16 |
+| **M9I 2020** | ilustrační test | M9PID20C0T01 | 16 |
+| **M9I 2019** | ilustrační test | M9PID19C0T01 | 16 |
+| **M9I 2018** | ilustrační test | M9PID18C0T01 | 16 |
 
-Celkem **144 úloh** (kompletní testy včetně geometrie, konstrukcí, grafů a tabulek).
+Celkem **32 testů / 513 úloh** (kompletní testy včetně geometrie, konstrukcí,
+grafů a tabulek). Odpovědi každé úlohy jsou ověřené proti oficiálnímu *Klíči
+správných řešení* daného testu.
 
-**Zbývá:** M9A/M9B 2024 (řádné termíny – skenované PDF) a ročníky 2015–2023.
-U skenovaných testů se zadání přepisuje z vykreslených stránek (pomalejší).
+### Co v archivu chybí a proč
 
-### Poznámka k obrázkům u starších testů
+- **M9A 2017, M9A/M9B 2018, 2016 (řádné termíny):** CERMAT k nim na webu
+  nezveřejnil český klíč správných řešení. Bez oficiálního klíče nelze odpovědi
+  spolehlivě ověřit, proto tyto testy nejsou zahrnuty (zadání by šla přepsat, ale
+  správnost odpovědí by nebyla garantovaná). Ilustrační testy 2018–2021 klíč mají,
+  a jsou proto zpracované.
+- **Ukrajinské a polské překlady** novějších ročníků jsou vynechány záměrně
+  (import je pouze český).
 
-PDF od roku 2024 níže mají část obrázků jako **rastr** (ne vektor). Takové
-grafy/nákresy nejdou vložit jako kompaktní SVG pod limit velikosti; v těch
-případech jsou potřebná data (procenta, úhly) uvedena přímo v textu zadání
-i řešení, takže úloha zůstává řešitelná. Konstrukční a vektorové obrázky
-se extrahují jako SVG jako u novějších ročníků.
+### Poznámka k obrázkům a starším PDF
+
+Část obrázků (grafy, perspektivní 3D náčrty, rastrové ikony) nejde vyříznout jako
+čisté vektorové SVG. V takových případech jsou potřebná data (hodnoty grafu, úhly,
+rozměry, tabulky) uvedena přímo v textu zadání i řešení, takže úloha zůstává plně
+řešitelná; konstrukční a vektorové obrázky se extrahují jako SVG. U některých
+starších testů (2015, 2017, 2018 ilustrační) mají popisky ve fontu privátní/řídicí
+znaky, které by rozbily XML – tyto popisky se z SVG odstraní (nebo přemapují na
+správný Unicode) a jejich obsah je popsán v textu.
 
 ## Jak spustit
 
@@ -79,9 +114,10 @@ popis konstrukce (typ *Konstrukce nebo důkaz* v jednotném textovém formátu).
 ## Velikost souborů
 
 Návod doporučuje držet skripty pod ~9 KB. Textové úlohy jsou seskupené do sdílených
-částí; úlohy s velkým obrázkem (graf, hranol) mají vlastní část, která může být
-~9–11 KB. To je pod skutečným limitem anonymního Apexu (řádově > 100 KB), takže
-spuštění projde; ~9 KB v návodu je bezpečná rezerva, ne tvrdý limit.
+částí; úloha s velkým obrázkem (síť tělesa, hustá mřížka, věž se schodišti) má vlastní
+část, která může být ~11–13 KB. To je hluboko pod skutečným limitem anonymního Apexu
+(řádově > 100 KB), takže spuštění projde; ~9 KB v návodu je bezpečná rezerva, ne tvrdý
+limit.
 
 ## Regenerace / další ročníky (`generator/`)
 
@@ -90,13 +126,14 @@ spuštění projde; ~9 KB v návodu je bezpečná rezerva, ne tvrdý limit.
 
 ```
 generator/
-  fig.py              # PDF region → kompaktní čisté SVG (vektory + popisky)
-  gen.py              # kostra + validace + rozdělení do -castN.apex
-  build_M9B_2026.py   # data testu B (2. řádný 2026)
-  build_M9C_2026.py   # data testu C (1. náhradní 2026)
-  build_M9D_2026.py   # data testu D (2. náhradní 2026)
+  fig.py                # PDF region → kompaktní čisté SVG (vektory + popisky)
+  gen.py                # kostra + validace + rozdělení do -castN.apex
+  build_M9<X>_<rok>.py  # data jednoho testu (jeden soubor na test)
 ```
 
-Spouští se z kořene repozitáře (potřebuje `pymupdf`, `cairosvg` a stažené PDF
-v `work/pdf/`), např. `python3 scripts/apex/generator/build_M9B_2026.py`.
+Pro každý test existuje jeden `build_…py` (např. `build_M9B_2026.py`,
+`build_M9A_2015.py`, `build_M9I_2019.py`). Spouští se z kořene repozitáře
+(potřebuje `pymupdf`, `cairosvg` a stažené PDF v `work/pdf/`), např.
+`python3 scripts/apex/generator/build_M9B_2026.py`. Skript ověří párování `$…$`,
+platnost JSON, rozdělí výstup do částí a přepíše odpovídající `import-cermat-…apex`.
 Odpovědi jsou ověřené proti oficiálnímu *Klíči správných řešení* (KSR) daného testu.
