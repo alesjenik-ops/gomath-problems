@@ -149,14 +149,74 @@ def _add_call(p, ccode, yr):
     )
 
 
+DOCID_PLACEHOLDER = "__DOCID__"
+
+
+def _content_json_final(p):
+    """Content JSON matching the Apex content() builder: real alt/caption,
+    image contentDocumentId as a replaceable placeholder."""
+    blocks = [_para(t) for t in p["zad"]]
+    if p.get("svg"):
+        blocks.append({"type": "image", "contentDocumentId": DOCID_PLACEHOLDER,
+                       "alt": p["alt"], "caption": p.get("cap", ""),
+                       "widthPercent": 75, "align": "center"})
+    if p.get("opts"):
+        blocks.append({"type": "list", "items": list(p["opts"])})
+    if p.get("ln"):
+        blocks.append({"type": "answerSpace", "lines": p["ln"]})
+    return {"schemaVersion": 1, "blocks": blocks}
+
+
+def _json_record(p, src, ccode, yr):
+    """One problem as a data record the Batch importer consumes.
+    contentJson/solutionJson/answerJson are pre-baked final JSON strings."""
+    rec = {
+        "name": p["name"],
+        "src": src,
+        "ccode": ccode,
+        "year": yr,
+        "points": p["pts"],
+        "minutes": p["mins"],
+        "difficulty": p["diff"],
+        "answerJson": json.dumps({"type": "Text", "value": p["ans"]}, ensure_ascii=False),
+        "contentJson": json.dumps(_content_json_final(p), ensure_ascii=False),
+        "solutionJson": json.dumps(_solution_json(p.get("solp", [])), ensure_ascii=False),
+        "taxonCodes": list(p["codes"]),
+        "figure": None,
+    }
+    if p.get("svg"):
+        rec["figure"] = {
+            "svg": p["svg"],
+            "filename": p.get("fn", "obr.svg"),
+            "alt": p["alt"],
+            "caption": p.get("cap", ""),
+        }
+    return rec
+
+
+def write_json(problems, src, ccode, yr, out_prefix):
+    """Write scripts/apex/data/<basename>.json for the Batch importer."""
+    import os as _os
+    base = _os.path.basename(out_prefix)
+    data_dir = _os.path.join(_os.path.dirname(out_prefix), "data")
+    _os.makedirs(data_dir, exist_ok=True)
+    path = _os.path.join(data_dir, base + ".json")
+    recs = [_json_record(p, src, ccode, yr) for p in problems]
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(recs, fh, ensure_ascii=False, separators=(",", ":"))
+    return path
+
+
 def emit(problems, src, ccode, yr, out_prefix, budget=8900):
-    """Validate all problems, then write out_prefix-castN.apex files < budget."""
+    """Validate all problems, then write out_prefix-castN.apex files < budget
+    plus a data/<basename>.json file for the Batch importer."""
     import glob as _glob
     import os as _os
     for old in _glob.glob(out_prefix + "*.apex"):
         _os.remove(old)
     for p in problems:
         validate(p)
+    write_json(problems, src, ccode, yr, out_prefix)
     def blen(s):
         return len(s.encode("utf-8"))
 
