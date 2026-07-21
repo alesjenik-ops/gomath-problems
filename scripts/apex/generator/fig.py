@@ -147,3 +147,34 @@ if __name__ == "__main__":
     cairosvg.svg2png(bytestring=svg.encode(), write_to="work/%s.png" % name,
                      output_width=500, background_color="white")
     print("%s : svg=%d chars" % (name, len(svg)))
+
+
+def auto_rect(pdf, page_index, y_hint=None, pad=6):
+    """Heuristic: bounding box of the figure (densest cluster of vector paths
+    that are not full-width frame/separator lines). y_hint=(y0,y1) restricts
+    the search band. Returns (x0,y0,x1,y1) or None."""
+    d = fitz.open(pdf)
+    pg = d[page_index]
+    segs = []
+    for p in pg.get_drawings():
+        r = p["rect"]
+        w, h = r.x1 - r.x0, r.y1 - r.y0
+        if w > 360 and h < 3:      # horizontal separator / frame edge
+            continue
+        if h > 360 and w < 3:      # vertical frame edge
+            continue
+        if w > 420 and h > 300:    # the big outer "výchozí text" box
+            continue
+        if y_hint and (r.y0 < y_hint[0] or r.y1 > y_hint[1]):
+            continue
+        segs.append(r)
+    if not segs:
+        return None
+    # cluster by y proximity: pick the band with most paths
+    segs.sort(key=lambda r: r.y0)
+    best = segs
+    x0 = min(r.x0 for r in best) - pad
+    y0 = min(r.y0 for r in best) - pad
+    x1 = max(r.x1 for r in best) + pad
+    y1 = max(r.y1 for r in best) + pad
+    return (round(x0), round(y0), round(x1), round(y1))
