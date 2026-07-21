@@ -126,6 +126,35 @@ Nastavení (jednorázově):
 > `sf org logout --target-org gomath`. Samotné `.apex` soubory nic citlivého
 > neobsahují, veřejné být můžou.
 
+### D) Batch Apex, který si data stáhne z GitHubu (jen prohlížeč, bez CLI)
+
+Když nejde nic instalovat ani přihlásit CLI, tohle je nejjednodušší cesta: jedna
+Apex třída (`salesforce/CermatImportBatch.cls`), která si přes HTTP callout sama
+stáhne data z **veřejného** GitHub repa (`data/*.json`) a založí úlohy po dávkách
+(každý test = jedna dávka ve vlastní transakci → žádné governor limity). Idempotentní.
+
+Data si třída bere z konkrétního commitu (URL v konstantě `BASE` obsahuje SHA), takže
+běh je neměnný. Vše jde udělat v prohlížeči:
+
+1. **Remote Site Setting** – Setup → *Remote Site Settings* → **New**:
+   - Name: `GitHub_Raw`, URL: `https://raw.githubusercontent.com`, Active. Ulož.
+   (Bez tohohle Salesforce callout na GitHub nepustí.)
+2. **Vlož třídu** – Developer Console → *File → New → Apex Class* → jméno
+   `CermatImportBatch` → přepiš tělo obsahem `salesforce/CermatImportBatch.cls` →
+   **Ctrl/Cmd+S** (uloží a zkompiluje).
+3. **Spusť** – Developer Console → *Debug → Open Execute Anonymous Window* → vlož:
+   ```apex
+   Database.executeBatch(new CermatImportBatch(), 1);
+   ```
+   (nebo obsah `salesforce/run-batch.apex`). `scope` **musí** být `1`.
+4. Průběh sleduj v *Setup → Apex Jobs*; výsledek (kolik vytvořeno / přeskočeno /
+   chyby) je v debug logu v `finish()`.
+
+Předpoklad je stejný jako u ostatních cest: v orgu už proběhl `seed-taxonomy.apex`
+(kvůli `Taxon__c.Code__c`) a existuje třída `GoMathContent` (na `buildSearchText`).
+Kdo má Salesforce CLI, může třídu i Remote Site nasadit z `salesforce/` přes
+`sf project deploy start`.
+
 ### C) Ručně přes Workbench (bez CLI)
 
 1. **Workbench → utilities → Apex Execute.**
