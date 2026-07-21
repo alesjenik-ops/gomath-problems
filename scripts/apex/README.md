@@ -73,15 +73,40 @@ správný Unicode) a jejich obsah je popsán v textu.
 
 ## Jak spustit
 
+Nejdřív musí být v orgu **jednou** spuštěný `seed-taxonomy.apex` (naplní fasety
+a taxony), jinak se úlohy založí bez taxonomie. Pořadí testů ani částí nehraje roli
+a všechny části jsou **idempotentní** – úloha, jejíž `Name` už existuje, se přeskočí,
+takže se dají spouštět opakovaně bez duplicit.
+
+Každý soubor `…-castN.apex` je **samostatný anonymní Apex** (má vlastní třídu `C`).
+Nelze je proto slepit do jednoho běhu – spouští se jeden po druhém.
+
+### A) Všechno najednou přes Salesforce CLI (doporučeno)
+
+Nejjednodušší způsob, jak dostat celý archiv do orgu jedním příkazem:
+
+```bash
+# 1) jednorázové přihlášení do orgu (otevře prohlížeč)
+sf org login web --alias gomath
+
+# 2) jednou taxonomie (máte-li seed soubor po ruce)
+sf apex run --file cesta/k/seed-taxonomy.apex --target-org gomath
+
+# 3) všech 200 částí najednou
+scripts/apex/run-all.sh gomath
+```
+
+`run-all.sh` projede všechny soubory `import-cermat-*.apex`, každý spustí jako
+anonymní Apex (`sf apex run`, případně starší `sfdx force:apex:execute`), vypisuje
+průběh `[i/200]` a na konci shrne případné chyby. Protože je vše idempotentní, dá se
+skript po opravě klidně spustit znovu. (Salesforce CLI: <https://developer.salesforce.com/tools/salesforcecli>.)
+
+### B) Ručně přes Workbench (bez CLI)
+
 1. **Workbench → utilities → Apex Execute.**
 2. Vlož obsah jednoho souboru `…-castN.apex` a klikni **Execute**.
 3. V logu zkontroluj `System.debug('Vytvořeno úloh: …')`.
-4. Opakuj pro **všechny části** daného testu (cast1, cast2, …). Části jsou nezávislé
-   a **idempotentní** – úloha, jejíž `Name` už existuje, se přeskočí, takže se dají
-   spouštět opakovaně bez duplicit.
-
-Pořadí testů ani částí nehraje roli. Nejdřív musí být v orgu jednou spuštěný
-`seed-taxonomy.apex` (naplní fasety a taxony), jinak se úlohy založí bez taxonomie.
+4. Opakuj pro **všechny části** daného testu (cast1, cast2, …).
 
 ## Co skript nastavuje
 
