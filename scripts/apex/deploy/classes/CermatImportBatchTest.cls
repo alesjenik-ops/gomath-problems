@@ -38,7 +38,10 @@ private class CermatImportBatchTest {
 
         Test.setMock(HttpCalloutMock.class, new GitHubMock(rec));
         Test.startTest();
-        Database.executeBatch(new CermatImportBatch(), 1);
+        // V testu musí batch proběhnout jako JEDNA dávka (jinak Salesforce hlásí
+        // "No more than one executeBatch ..."). Velký scope = všechny soubory
+        // v jedné dávce. Ostrý běh používá scope 1 (viz run-batch.apex).
+        Database.executeBatch(new CermatImportBatch(), 2000);
         Test.stopTest();
 
         System.assertEquals(1,
