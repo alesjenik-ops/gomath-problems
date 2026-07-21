@@ -8,16 +8,33 @@ podle návodu *„Návod: generování Apex skriptu pro import úloh"*.
 
 Zdroj: <https://prijimacky.cermat.cz/menu/testova-zadani-k-procvicovani/testova-zadani-v-pdf/ctyrlete-obory-matematika>
 
-| Test | Termín | Kód testu | Úloh | Souborů |
-|---|---|---|---|---|
-| **M9A 2026** | 1. řádný | M9PAD26C0T01 | — | *už naimportováno dříve (přeskočeno)* |
-| **M9B 2026** | 2. řádný | M9PBD26C0T02 | 16 | `import-cermat-M9B-2026-cast1..8.apex` |
-| **M9C 2026** | 1. náhradní | M9PCD26C0T03 | 16 | `import-cermat-M9C-2026-cast1..9.apex` |
-| **M9D 2026** | 2. náhradní | M9PDD26C0T04 | 16 | `import-cermat-M9D-2026-cast1..9.apex` |
+Každý test má soubory `import-cermat-<KÓD_TESTU>-castN.apex` (např. `M9B-2026`).
 
-Celkem **48 úloh** (kompletní testy včetně geometrie, konstrukcí, grafů a tabulek).
-Starší ročníky (2025, 2024, … 2015) jsou připravené ke zpracování stejnou cestou –
-viz `generator/`.
+| Test | Termín | Kód testu | Úloh |
+|---|---|---|---|
+| **M9A 2026** | 1. řádný | M9PAD26C0T01 | *už naimportováno dříve (přeskočeno)* |
+| **M9B 2026** | 2. řádný | M9PBD26C0T02 | 16 |
+| **M9C 2026** | 1. náhradní | M9PCD26C0T03 | 16 |
+| **M9D 2026** | 2. náhradní | M9PDD26C0T04 | 16 |
+| **M9A 2025** | 1. řádný | M9PAD25C0T01 | 16 |
+| **M9B 2025** | 2. řádný | M9PBD25C0T02 | 16 |
+| **M9C 2025** | 1. náhradní | M9PCD25C0T03 | 16 |
+| **M9D 2025** | 2. náhradní | M9PDD25C0T04 | 16 |
+| **M9C 2024** | 1. náhradní | M9PCD24C0T03 | 16 |
+| **M9D 2024** | 2. náhradní | M9PDD24C0T04 | 16 |
+
+Celkem **144 úloh** (kompletní testy včetně geometrie, konstrukcí, grafů a tabulek).
+
+**Zbývá:** M9A/M9B 2024 (řádné termíny – skenované PDF) a ročníky 2015–2023.
+U skenovaných testů se zadání přepisuje z vykreslených stránek (pomalejší).
+
+### Poznámka k obrázkům u starších testů
+
+PDF od roku 2024 níže mají část obrázků jako **rastr** (ne vektor). Takové
+grafy/nákresy nejdou vložit jako kompaktní SVG pod limit velikosti; v těch
+případech jsou potřebná data (procenta, úhly) uvedena přímo v textu zadání
+i řešení, takže úloha zůstává řešitelná. Konstrukční a vektorové obrázky
+se extrahují jako SVG jako u novějších ročníků.
 
 ## Jak spustit
 
