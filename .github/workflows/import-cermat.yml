@@ -1,0 +1,61 @@
+name: Import CERMAT úloh do Salesforce
+
+# Spouští se POUZE ručně (tlačítko "Run workflow" na záložce Actions),
+# takže nikdy nesjede sám. Připojí se k tomuto repu (checkout = má apexy),
+# přihlásí se do Salesforce orgu přes secret a spustí všechny importy.
+on:
+  workflow_dispatch:
+    inputs:
+      seed_taxonomy:
+        description: "Spustit nejdřív seed-taxonomy.apex? (musí ležet v repu na zadané cestě)"
+        type: boolean
+        default: false
+      seed_path:
+        description: "Cesta k seed-taxonomy.apex v repu (jen když je výše zaškrtnuto)"
+        type: string
+        default: "scripts/apex/seed-taxonomy.apex"
+
+# Zabrání dvěma souběžným importům do stejného orgu.
+concurrency:
+  group: import-cermat
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repozitáře (stáhne apexy)
+        uses: actions/checkout@v4
+
+      - name: Instalace Salesforce CLI
+        run: npm install --global @salesforce/cli
+
+      - name: Přihlášení do Salesforce orgu
+        # Potřebuje repo secret SFDX_AUTH_URL (viz návod dole v README).
+        env:
+          SFDX_AUTH_URL: ${{ secrets.SFDX_AUTH_URL }}
+        run: |
+          if [ -z "$SFDX_AUTH_URL" ]; then
+            echo "::error::Chybí secret SFDX_AUTH_URL. Nastav ho v Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          printf '%s' "$SFDX_AUTH_URL" > ./AUTH_URL.txt
+          sf org login sfdx-url --sfdx-url-file ./AUTH_URL.txt --alias target --set-default
+          rm -f ./AUTH_URL.txt
+          sf org display --target-org target
+
+      - name: (volitelně) Seed taxonomie
+        if: ${{ inputs.seed_taxonomy }}
+        run: |
+          if [ -f "${{ inputs.seed_path }}" ]; then
+            sf apex run --file "${{ inputs.seed_path }}" --target-org target
+          else
+            echo "::warning::Seed soubor ${{ inputs.seed_path }} v repu není, přeskočeno."
+          fi
+
+      - name: Import všech částí (200 souborů)
+        run: bash scripts/apex/run-all.sh target
+
+      - name: Úklid přihlášení
+        if: always()
+        run: sf org logout --target-org target --no-prompt || true

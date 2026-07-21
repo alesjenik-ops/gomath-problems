@@ -101,7 +101,32 @@ anonymní Apex (`sf apex run`, případně starší `sfdx force:apex:execute`), 
 průběh `[i/200]` a na konci shrne případné chyby. Protože je vše idempotentní, dá se
 skript po opravě klidně spustit znovu. (Salesforce CLI: <https://developer.salesforce.com/tools/salesforcecli>.)
 
-### B) Ručně přes Workbench (bez CLI)
+### B) Automaticky z GitHubu (GitHub Actions)
+
+V repu je workflow `.github/workflows/import-cermat.yml`, který se sám připojí
+k repu (stáhne apexy), přihlásí se do orgu a spustí import – **spouští se ručně
+tlačítkem**, nikdy nesjede sám.
+
+Nastavení (jednorázově):
+
+1. Získej přihlašovací URL svého orgu lokálně:
+   ```bash
+   sf org login web --alias gomath
+   sf org display --target-org gomath --verbose --json
+   ```
+   Zkopíruj hodnotu `sfdxAuthUrl` (začíná `force://…`).
+2. Na GitHubu: **Settings → Secrets and variables → Actions → New repository secret**,
+   jméno **`SFDX_AUTH_URL`**, hodnota = to zkopírované `force://…`.
+3. **Actions → „Import CERMAT úloh do Salesforce" → Run workflow.** (Volitelně
+   zaškrtni seed taxonomie, je-li `seed-taxonomy.apex` v repu.)
+
+> ⚠️ **Repo je veřejné.** `SFDX_AUTH_URL` je přihlašovací tajemství k tvému orgu –
+> **nikdy ho nedávej do souboru ani commitu**, jen do *Actions Secrets* (ty se
+> v logu ani forkům nezobrazí). Kdyby přesto uniklo, hned zneplatni:
+> `sf org logout --target-org gomath`. Samotné `.apex` soubory nic citlivého
+> neobsahují, veřejné být můžou.
+
+### C) Ručně přes Workbench (bez CLI)
 
 1. **Workbench → utilities → Apex Execute.**
 2. Vlož obsah jednoho souboru `…-castN.apex` a klikni **Execute**.
