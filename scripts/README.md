@@ -79,15 +79,20 @@ je odpověď spojena středníkem.
 
 ## Obsah — CERMAT (jednotná přijímací zkouška, osmileté obory, MATEMATIKA 5)
 
-Ročník **2026**, varianty **A–D**, celkem **65 GoMath úloh** v **29 souborech**
-(`scripts/apex/cermat/`). Zdroj: `prijimacky.cermat.cz`.
+Ročníky **2026 a 2025**, varianty **A–D** (osmileté obory, 5. ročník),
+celkem **130 GoMath úloh** v **60 souborech** (`scripts/apex/cermat/`).
+Zdroj: `prijimacky.cermat.cz`.
 
-| Test | kód (CERMAT_Code__c) | termín | úloh | soubory |
-|---|---|---|---|---|
-| M5A 2026 | M5PAD26C0T01 | 1. řádný | 16 | `import-cermat-M5A-2026-cast1..6.apex` |
-| M5B 2026 | M5PBD26C0T02 | 2. řádný | 15 | `import-cermat-M5B-2026-cast1..7.apex` |
-| M5C 2026 | M5PCD26C0T03 | 1. náhradní | 17 | `import-cermat-M5C-2026-cast1..9.apex` |
-| M5D 2026 | M5PDD26C0T04 | 2. náhradní | 17 | `import-cermat-M5D-2026-cast1..7.apex` |
+| Test | kód (CERMAT_Code__c) | termín | úloh |
+|---|---|---|---|
+| M5A 2026 | M5PAD26C0T01 | 1. řádný | 16 |
+| M5B 2026 | M5PBD26C0T02 | 2. řádný | 15 |
+| M5C 2026 | M5PCD26C0T03 | 1. náhradní | 17 |
+| M5D 2026 | M5PDD26C0T04 | 2. náhradní | 17 |
+| M5A 2025 | M5PAD25C0T01 | 1. řádný | 16 |
+| M5B 2025 | M5PBD25C0T02 | 2. řádný | 17 |
+| M5C 2025 | M5PCD25C0T03 | 1. náhradní | 15 |
+| M5D 2025 | M5PDD25C0T04 | 2. náhradní | 17 |
 
 Generátor `scripts/generator/gen_cermat.py` navíc nastavuje CERMAT pole:
 `Source_Type__c = 'CERMAT'`, `CERMAT_Code__c = <kód testu>`, `Source_Year__c = <rok>`,
