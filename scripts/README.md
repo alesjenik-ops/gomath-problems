@@ -80,12 +80,13 @@ je odpověď spojena středníkem.
 ## Obsah — CERMAT (jednotná přijímací zkouška)
 
 Zdroj: `prijimacky.cermat.cz`. Soubory v `scripts/apex/cermat/`.
-Celkem **1374 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T01–T04):
+Celkem **1430 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T01–T04):
 - **2026** a **2025**: viz tabulky níže (M5 130, M7 137, M9 čtyřleté 163, M9 nanečisto 42)
 - **2024**: M5 72 + M7 74 + M9 80 = 226 (`import-cermat-M{5,7,9}{A..D}-2024-*`)
 - **2023**: M5 71 + M7 71 + M9 86 = 228 (`import-cermat-M{5,7,9}{A..D}-2023-*`)
 - **2022**: M5 68 + M7 73 + M9 83 = 224 (`import-cermat-M{5,7,9}{A..D}-2022-*`)
 - **2021**: M5 68 + M7 73 + M9 83 = 224 (`import-cermat-M{5,7,9}{A..D}-2021-*`)
+- **2020**: M5 16 + M7 19 + M9 21 = 56 (jen 1 řádný termín „A" kvůli covidu; `import-cermat-M{5,7,9}A-2020-*`)
 
 ### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 
@@ -151,6 +152,6 @@ Regenerace: `python3 scripts/generator/data_cermat_M5A_2026.py` (analogicky B/C/
 do SVG — mají schematickou poznámku a odpověď z klíče; grafy/plánky/mřížky u některých úloh jsou
 schematické (přesné hodnoty z klíče). Konstrukce (7) mají odpověď jako slovní popis.
 
-**Zpracované ročníky:** 2021–2026 (M5/M7/M9, varianty A–D) + M9 nanečisto 2025/2026.
-**Starší ročníky (2015–2020)** jsou na webu CERMATu k dispozici (2020 obvykle jen 1 řádný
-termín kvůli covidu; 2015–2019 často jen 1–2 varianty a některé jsou skenované) — zatím nezpracovány.
+**Zpracované ročníky:** 2020–2026 (2021–2026 varianty A–D; 2020 jen řádný termín „A") + M9 nanečisto 2025/2026.
+**Starší ročníky (2015–2019)** jsou na webu CERMATu k dispozici (často jen 1–2 varianty
+a některé jsou skenované) — zatím nezpracovány.
