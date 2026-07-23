@@ -87,6 +87,7 @@ Celkem **1430 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T0
 - **2022**: M5 68 + M7 73 + M9 83 = 224 (`import-cermat-M{5,7,9}{A..D}-2022-*`)
 - **2021**: M5 68 + M7 73 + M9 83 = 224 (`import-cermat-M{5,7,9}{A..D}-2021-*`)
 - **2020**: M5 16 + M7 19 + M9 21 = 56 (jen 1 řádný termín „A" kvůli covidu; `import-cermat-M{5,7,9}A-2020-*`)
+- **2019**: M5 34 + M7 34 + M9 42 = 110 (1.+2. řádný termín = varianty A/B; `import-cermat-M{5,7,9}{A,B}-2019-*`)
 
 ### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 
@@ -152,6 +153,6 @@ Regenerace: `python3 scripts/generator/data_cermat_M5A_2026.py` (analogicky B/C/
 do SVG — mají schematickou poznámku a odpověď z klíče; grafy/plánky/mřížky u některých úloh jsou
 schematické (přesné hodnoty z klíče). Konstrukce (7) mají odpověď jako slovní popis.
 
-**Zpracované ročníky:** 2020–2026 (2021–2026 varianty A–D; 2020 jen řádný termín „A") + M9 nanečisto 2025/2026.
-**Starší ročníky (2015–2019)** jsou na webu CERMATu k dispozici (často jen 1–2 varianty
+**Zpracované ročníky:** 2019–2026 (2021–2026 varianty A–D; 2019 řádné termíny A/B; 2020 jen „A") + M9 nanečisto 2025/2026.
+**Starší ročníky (2015–2018)** jsou na webu CERMATu k dispozici (často jen 1–2 varianty
 a některé jsou skenované) — zatím nezpracovány.
