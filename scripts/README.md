@@ -1,9 +1,11 @@
 # Apex importy úloh (GoMath)
 
 Generované anonymní Apex skripty pro import cvičných testů do GoMathu
-(dle `importulohapexnavod.md`). Zdroj všech úloh: **Matematika - Zelený**.
+(dle `importulohapexnavod.md`). Dva zdroje:
+- **Matematika - Zelený** — 11 cvičných testů (`scripts/apex/`)
+- **CERMAT – jednotná přijímací zkouška** — testy JPZ (`scripts/apex/cermat/`)
 
-## Obsah
+## Obsah — Matematika - Zelený
 
 **11 cvičných testů** (A, B, C, D, E, F, G, H, J, K, L — písmeno „I" vynecháno),
 celkem **233 GoMath úloh** v **69 souborech** (každý bezpečně < 9 KB).
@@ -72,3 +74,34 @@ je odpověď spojena středníkem.
   - Test K úloha 16 (binární „IQ" hlavolam) — přepsána zjednodušeně, odpovědi z klíče,
   - úlohy typu „poměr stran" (H13/H14, C13, L13) — proporce dopočteny ke správné odpovědi.
 - Duplicitní fotky v repu (3593≈3594, 3655≈3656, 3664≈3665) byly použity jen jednou.
+
+---
+
+## Obsah — CERMAT (jednotná přijímací zkouška, osmileté obory, MATEMATIKA 5)
+
+Ročník **2026**, varianty **A–D**, celkem **65 GoMath úloh** v **29 souborech**
+(`scripts/apex/cermat/`). Zdroj: `prijimacky.cermat.cz`.
+
+| Test | kód (CERMAT_Code__c) | termín | úloh | soubory |
+|---|---|---|---|---|
+| M5A 2026 | M5PAD26C0T01 | 1. řádný | 16 | `import-cermat-M5A-2026-cast1..6.apex` |
+| M5B 2026 | M5PBD26C0T02 | 2. řádný | 15 | `import-cermat-M5B-2026-cast1..7.apex` |
+| M5C 2026 | M5PCD26C0T03 | 1. náhradní | 17 | `import-cermat-M5C-2026-cast1..9.apex` |
+| M5D 2026 | M5PDD26C0T04 | 2. náhradní | 17 | `import-cermat-M5D-2026-cast1..7.apex` |
+
+Generátor `scripts/generator/gen_cermat.py` navíc nastavuje CERMAT pole:
+`Source_Type__c = 'CERMAT'`, `CERMAT_Code__c = <kód testu>`, `Source_Year__c = <rok>`,
+`Source__c = 'CERMAT – jednotná přijímací zkouška'`, `License__c = 'Jiná'`.
+Regenerace: `python3 scripts/generator/data_cermat_M5A_2026.py` (analogicky B/C/D).
+
+**Struktura CERMAT M5:** 14 úloh; 1 (Vypočtěte) a 7 (dvě konstrukce) rozděleny na samostatné
+úlohy, úlohy 2–6 a 8–14 se společným výchozím textem sloučeny. Prefix názvů `CERMAT M5<X> 2026`.
+
+**Předpoklad org:** pole `CERMAT_Code__c` (Text) a `Source_Year__c` (Číslo) musí v orgu existovat
+(dle návodu jsou pro CERMAT úlohy určena); `Source_Year__c` je vkládáno jako číslo (2026).
+
+**Známé nejistoty (k ruční kontrole):** prostorové úlohy s krychličkami (11) nelze věrně přenést
+do SVG — mají schematickou poznámku a odpověď z klíče; grafy/plánky/mřížky u některých úloh jsou
+schematické (přesné hodnoty z klíče). Konstrukce (7) mají odpověď jako slovní popis.
+
+**Starší ročníky (2015–2025, A–D)** jsou na webu CERMATu k dispozici — zatím nezpracovány.
