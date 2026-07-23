@@ -77,11 +77,12 @@ je odpověď spojena středníkem.
 
 ---
 
-## Obsah — CERMAT (jednotná přijímací zkouška, osmileté obory, MATEMATIKA 5)
+## Obsah — CERMAT (jednotná přijímací zkouška)
 
-Ročníky **2026 a 2025**, varianty **A–D** (osmileté obory, 5. ročník),
-celkem **130 GoMath úloh** v **60 souborech** (`scripts/apex/cermat/`).
-Zdroj: `prijimacky.cermat.cz`.
+Zdroj: `prijimacky.cermat.cz`. Soubory v `scripts/apex/cermat/`.
+Celkem **267 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137).
+
+### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 
 | Test | kód (CERMAT_Code__c) | termín | úloh |
 |---|---|---|---|
@@ -93,6 +94,22 @@ Zdroj: `prijimacky.cermat.cz`.
 | M5B 2025 | M5PBD25C0T02 | 2. řádný | 17 |
 | M5C 2025 | M5PCD25C0T03 | 1. náhradní | 15 |
 | M5D 2025 | M5PDD25C0T04 | 2. náhradní | 17 |
+
+### MATEMATIKA 7 (šestileté obory, 7. ročník) — 137 úloh, taxonomie `zs2` + `r7`
+
+| Test | kód (CERMAT_Code__c) | termín | úloh |
+|---|---|---|---|
+| M7A 2026 | M7PAD26C0T01 | 1. řádný | 17 |
+| M7B 2026 | M7PBD26C0T02 | 2. řádný | 17 |
+| M7C 2026 | M7PCD26C0T03 | 1. náhradní | 17 |
+| M7D 2026 | M7PDD26C0T04 | 2. náhradní | 17 |
+| M7A 2025 | M7PAD25C0T01 | 1. řádný | 17 |
+| M7B 2025 | M7PBD25C0T02 | 2. řádný | 17 |
+| M7C 2025 | M7PCD25C0T03 | 1. náhradní | 18 |
+| M7D 2025 | M7PDD25C0T04 | 2. náhradní | 17 |
+
+> Pozn. M7B 2025 úloha 16: v předloze nesrovnalost (rozměr 24 vs 25 cm) mezi zadáním
+> a klíčem — odpovědi z klíče, k ruční kontrole.
 
 Generátor `scripts/generator/gen_cermat.py` navíc nastavuje CERMAT pole:
 `Source_Type__c = 'CERMAT'`, `CERMAT_Code__c = <kód testu>`, `Source_Year__c = <rok>`,

@@ -1,0 +1,345 @@
+# -*- coding: utf-8 -*-
+# CERMAT - Jednotna prijimaci zkouska 2025, MATEMATIKA 7A (sestilete obory, 7. rocnik), 1. radny termin.
+# Kod testu: M7PAD25C0T01. 16 uloh (po rozdeleni izolovanych poduuloh 17 uloh).
+# Zdroj odpovedi: klic spravnych reseni (KSR).
+
+# ---- SVG obrazky (bez ' a \) ----
+
+# uloha 3: dva sipkove diagramy s krouzky (silne ohraniceny = cil)
+SVG3 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 210" font-family="sans-serif">
+<text x="120" y="20" font-size="13" text-anchor="middle" font-weight="bold">3.1</text>
+<circle cx="70" cy="120" r="26" fill="#eee" stroke="#999" stroke-width="1.5"/>
+<circle cx="210" cy="120" r="26" fill="none" stroke="#000" stroke-width="3"/>
+<path d="M92 106 Q140 74 188 106" fill="none" stroke="#000" stroke-width="1.5"/>
+<polygon points="188,106 178,101 181,112" fill="#000"/>
+<text x="140" y="72" font-size="13" text-anchor="middle">+ 80</text>
+<path d="M188 134 Q140 166 92 134" fill="none" stroke="#000" stroke-width="1.5"/>
+<polygon points="92,134 102,129 99,140" fill="#000"/>
+<text x="140" y="178" font-size="13" text-anchor="middle">: 3</text>
+<text x="410" y="20" font-size="13" text-anchor="middle" font-weight="bold">3.2</text>
+<circle cx="410" cy="55" r="23" fill="#eee" stroke="#999" stroke-width="1.5"/>
+<circle cx="345" cy="150" r="23" fill="#eee" stroke="#999" stroke-width="1.5"/>
+<circle cx="475" cy="150" r="23" fill="none" stroke="#000" stroke-width="3"/>
+<path d="M347 128 Q360 78 388 62" fill="none" stroke="#000" stroke-width="1.5"/>
+<polygon points="388,62 377,63 383,72" fill="#000"/>
+<text x="345" y="92" font-size="13" text-anchor="middle">+ 10</text>
+<path d="M432 62 Q460 78 473 128" fill="none" stroke="#000" stroke-width="1.5"/>
+<polygon points="473,128 474,117 465,124" fill="#000"/>
+<text x="478" y="92" font-size="13" text-anchor="middle">&#183; 2</text>
+<path d="M452 156 Q410 182 368 156" fill="none" stroke="#000" stroke-width="1.5"/>
+<polygon points="368,156 378,151 375,162" fill="#000"/>
+<text x="410" y="196" font-size="13" text-anchor="middle">&#8722; 34</text>
+</svg>"""
+
+# uloha 7: petiuhelnik ve tvaru domecku (dva ctverce + rovnoramenny trojuhelnik)
+SVG7 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" font-family="sans-serif">
+<polygon points="30,120 170,120 100,25" fill="#dcdcdc" stroke="#000" stroke-width="1.5"/>
+<rect x="30" y="120" width="140" height="70" fill="#dcdcdc" stroke="#000" stroke-width="1.5"/>
+<line x1="100" y1="120" x2="100" y2="190" stroke="#000" stroke-width="1.5"/>
+</svg>"""
+
+# uloha 8: vychozi obrazek - body B, C, O
+SVG8 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" font-family="sans-serif">
+<rect x="5" y="5" width="470" height="270" fill="none" stroke="#ccc"/>
+<text x="150" y="72" font-size="15">&#215;</text><text x="162" y="72" font-size="15" font-style="italic">B</text>
+<text x="120" y="215" font-size="15">&#215;</text><text x="112" y="232" font-size="15" font-style="italic">C</text>
+<text x="235" y="222" font-size="15">&#215;</text><text x="245" y="238" font-size="15" font-style="italic">O</text>
+</svg>"""
+
+# uloha 9: vychozi obrazek - body E, F, G
+SVG9 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" font-family="sans-serif">
+<rect x="5" y="5" width="470" height="270" fill="none" stroke="#ccc"/>
+<text x="300" y="98" font-size="15">&#215;</text><text x="312" y="98" font-size="15" font-style="italic">G</text>
+<text x="300" y="188" font-size="15">&#215;</text><text x="310" y="204" font-size="15" font-style="italic">F</text>
+<text x="150" y="218" font-size="15">&#215;</text><text x="142" y="234" font-size="15" font-style="italic">E</text>
+</svg>"""
+
+# uloha 10: hraci kostky preklapene po policich - schematicka poznamka
+SVG10 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" font-family="sans-serif">
+<text x="280" y="52" font-size="13" text-anchor="middle">Tri hraci kostky se preklapeji po ctvercovych polich az na sede pole (viz testovy sesit).</text>
+<text x="280" y="82" font-size="11" text-anchor="middle" fill="#666">Prostorove preklapeni kostek nelze verne prenest do SVG; posuzuje se podle originalu.</text>
+</svg>"""
+
+# uloha 14: krychle a teleso tvaru schodiste ze 12 shodnych kvadru (schematicky)
+SVG14 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 190" font-family="sans-serif">
+<polygon points="40,70 120,70 120,150 40,150" fill="#eeeeee" stroke="#000" stroke-width="1.5"/>
+<polygon points="40,70 62,52 142,52 120,70" fill="#f6f6f6" stroke="#000" stroke-width="1.5"/>
+<polygon points="120,70 142,52 142,132 120,150" fill="#e2e2e2" stroke="#000" stroke-width="1.5"/>
+<text x="90" y="175" font-size="12" text-anchor="middle">krychle</text>
+<polygon points="250,150 250,70 292,70 292,100 334,100 334,130 376,130 376,150" fill="#eeeeee" stroke="#000" stroke-width="1.5"/>
+<line x1="250" y1="70" x2="270" y2="56" stroke="#000" stroke-width="1"/>
+<line x1="292" y1="70" x2="312" y2="56" stroke="#000" stroke-width="1"/>
+<text x="315" y="175" font-size="12" text-anchor="middle">schodiste</text>
+</svg>"""
+
+# uloha 15: kruhovy graf (prvni skola) + sloupcovy graf (druha skola)
+SVG15 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 290" font-family="sans-serif">
+<text x="130" y="22" font-size="14" text-anchor="middle" font-weight="bold">Prvni skola</text>
+<path d="M130 150 L130 75 A75 75 0 1 1 79 205 Z" fill="#d8d8d8" stroke="#000"/>
+<path d="M130 150 L79 205 A75 75 0 0 1 59 127 Z" fill="#ffffff" stroke="#000"/>
+<path d="M130 150 L59 127 A75 75 0 0 1 130 75 Z" fill="#555555" stroke="#000"/>
+<text x="155" y="170" font-size="13" text-anchor="middle">62 %</text>
+<text x="82" y="182" font-size="12" text-anchor="middle">18 %</text>
+<line x1="90" y1="54" x2="98" y2="92" stroke="#000" stroke-width="0.8"/>
+<text x="78" y="47" font-size="12" text-anchor="middle">100 zaku</text>
+<text x="440" y="22" font-size="14" text-anchor="middle" font-weight="bold">Druha skola</text>
+<line x1="330" y1="70" x2="330" y2="210" stroke="#000"/>
+<line x1="330" y1="210" x2="525" y2="210" stroke="#000"/>
+<rect x="345" y="80" width="45" height="130" fill="#d8d8d8" stroke="#000"/>
+<text x="367" y="72" font-size="12" text-anchor="middle">270 zaku</text>
+<rect x="410" y="152" width="45" height="58" fill="#ffffff" stroke="#000"/>
+<text x="432" y="145" font-size="12" text-anchor="middle">20 %</text>
+<rect x="475" y="109" width="45" height="101" fill="#555555" stroke="#000"/>
+<text x="497" y="102" font-size="12" text-anchor="middle">35 %</text>
+<rect x="40" y="258" width="12" height="12" fill="#d8d8d8" stroke="#000"/><text x="57" y="268" font-size="11">Nemcina</text>
+<rect x="150" y="258" width="12" height="12" fill="#ffffff" stroke="#000"/><text x="167" y="268" font-size="11">Francouzstina</text>
+<rect x="300" y="258" width="12" height="12" fill="#555555" stroke="#000"/><text x="317" y="268" font-size="11">Spanelstina</text>
+</svg>"""
+
+# uloha 16: obrazec z rad ctvercu (liche rady) a obdelniku (sude rady); sede = kazdy druhy
+SVG16 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" font-family="sans-serif">
+<text x="8" y="29" font-size="11">1. rada</text>
+<text x="8" y="47" font-size="11">2. rada</text>
+<text x="8" y="65" font-size="11">3. rada</text>
+<text x="8" y="83" font-size="11">4. rada</text>
+<text x="8" y="101" font-size="11">5. rada</text>
+<text x="8" y="119" font-size="11">6. rada</text>
+<rect x="80" y="16" width="18" height="18" fill="#fff" stroke="#000"/>
+<rect x="80" y="34" width="36" height="18" fill="#fff" stroke="#000"/>
+<rect x="80" y="52" width="18" height="18" fill="#fff" stroke="#000"/>
+<rect x="98" y="52" width="18" height="18" fill="#bdbdbd" stroke="#000"/>
+<rect x="116" y="52" width="18" height="18" fill="#fff" stroke="#000"/>
+<rect x="80" y="70" width="36" height="18" fill="#fff" stroke="#000"/>
+<rect x="116" y="70" width="36" height="18" fill="#bdbdbd" stroke="#000"/>
+<rect x="80" y="88" width="18" height="18" fill="#fff" stroke="#000"/>
+<rect x="98" y="88" width="18" height="18" fill="#bdbdbd" stroke="#000"/>
+<rect x="116" y="88" width="18" height="18" fill="#fff" stroke="#000"/>
+<rect x="134" y="88" width="18" height="18" fill="#bdbdbd" stroke="#000"/>
+<rect x="152" y="88" width="18" height="18" fill="#fff" stroke="#000"/>
+<rect x="80" y="106" width="36" height="18" fill="#fff" stroke="#000"/>
+<rect x="116" y="106" width="36" height="18" fill="#bdbdbd" stroke="#000"/>
+<rect x="152" y="106" width="36" height="18" fill="#fff" stroke="#000"/>
+<text x="95" y="140" font-size="16" text-anchor="middle">&#8942;</text>
+</svg>"""
+
+B = ['zs2', 'r7']  # 2. stupen ZS, 7. rocnik (sestilete obory)
+
+PROBLEMS = [
+    {'name':'CERMAT M7A 2025 - uloha 1','zad':[
+        'Vecerni ceremonial zacal ve tri ctvrte na sest a starosta ho ukoncil pet minut po pul osme. Presne v polovine ceremonialu zacalo promitani a zabralo petinu celkove doby ceremonialu.',
+        '1.1 Urcete v hodinach a minutach presny cas zacatku promitani.',
+        '1.2 Vypoctete, kolik minut uplynulo od konce promitani do ukonceni ceremonialu.'],
+     'opts':None,'ln':3,
+     'sol':['Ceremonial zacal v 17:45 a skoncil v 19:35, trval tedy 110 minut.',
+            '1.1 Polovina doby je 55 minut; promitani zacalo v 17:45 + 55 min = 18:40.',
+            '1.2 Promitani trvalo petinu doby, tj. 110 : 5 = 22 minut, a skoncilo v 19:02. Do konce ceremonialu (19:35) zbyvalo 33 minut.'],
+     'ans':'1.1: 18:40; 1.2: 33 minut','pts':2,'mins':4,'diff':'3',
+     'codes':B+['aritmetika','vypocet','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 2.1','zad':[
+        'Vypoctete a vysledek zapiste zlomkem v zakladnim tvaru: $1-1:\\frac{3}{5}+\\frac{5}{3}:10=$'],
+     'opts':None,'ln':3,
+     'sol':['$1-\\frac{5}{3}+\\frac{5}{3}\\cdot\\frac{1}{10}=1-\\frac{5}{3}+\\frac{1}{6}=\\frac{6-10+1}{6}=-\\frac{1}{2}$.'],
+     'ans':'$-\\frac{1}{2}$','pts':2,'mins':3,'diff':'3',
+     'codes':B+['aritmetika','vypocet','pocetni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 2.2','zad':[
+        'Vypoctete a vysledek zapiste zlomkem v zakladnim tvaru: $\\frac{5\\cdot\\frac{7}{100}+0{,}01}{\\frac{2}{5}+\\frac{2}{25}}=$'],
+     'opts':None,'ln':3,
+     'sol':['Citatel: $5\\cdot\\frac{7}{100}+0{,}01=\\frac{35}{100}+\\frac{1}{100}=\\frac{36}{100}=\\frac{9}{25}$. Jmenovatel: $\\frac{2}{5}+\\frac{2}{25}=\\frac{12}{25}$. Podil: $\\frac{9}{25}:\\frac{12}{25}=\\frac{9}{12}=\\frac{3}{4}$.'],
+     'ans':'$\\frac{3}{4}$','pts':2,'mins':3,'diff':'3',
+     'codes':B+['aritmetika','vypocet','pocetni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 3','zad':[
+        'V kazdem diagramu se do prazdnych krouzku doplni takova cisla, aby byly vsechny vypocty provedene ve smeru sipek spravne. Pro kazdy diagram urcete cislo, ktere patri do silne ohraniceneho krouzku.'],
+     'opts':None,'ln':2,'svg':SVG3,'fn':'diagramy.svg',
+     'alt':'Dva diagramy s krouzky a sipkami: 3.1 dva krouzky (+ 80 a : 3), 3.2 tri krouzky (+ 10, krat 2, minus 34).',
+     'cap':'Schematicky nakres diagramu 3.1 a 3.2',
+     'sol':['3.1 Oznacme cislo v sedem krouzku $x$. Plati $(x+80):3=x$, tedy $x+80=3x$, $x=40$. V silne ohranicenem krouzku je $40+80=120$.',
+            '3.2 Oznacme sedy krouzek vlevo dole $x$. Postupne: $x+10$ (horni), $(x+10)\\cdot 2$ (silne ohraniceny), po odecteni 34 zpet $x$: $2(x+10)-34=x$, $x=14$. Horni krouzek $24$, silne ohraniceny $24\\cdot 2=48$.'],
+     'ans':'3.1: 120; 3.2: 48','pts':3,'mins':4,'diff':'3',
+     'codes':B+['aritmetika','modelovani','pocetni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 4','zad':[
+        'Sourozenci Adam, Bara a Cyril prispeli na vycvik asistencniho psa. Adam prispel castkou o 300 korun vyssi nez Bara. Pritom tretina Adamova prispevku je stejna jako polovina Barina prispevku a tretina Barina prispevku je stejna jako polovina Cyrilova prispevku.',
+        '4.1 Vypoctete, kolika korunami prispela Bara.',
+        '4.2 Vypoctete, o kolik korun se lisi Barin a Cyriluv prispevek.',
+        '4.3 Vypoctete, kolika korunami prispeli vsichni tri sourozenci dohromady.'],
+     'opts':None,'ln':3,
+     'sol':['Ze vztahu $\\frac{A}{3}=\\frac{B}{2}$ plyne $A=\\frac{3}{2}B$. Zaroven $A=B+300$, tedy $\\frac{3}{2}B=B+300$, $\\frac{1}{2}B=300$, $B=600$ (a $A=900$).',
+            '4.1 Bara prispela 600 korun.',
+            '4.2 Z $\\frac{B}{3}=\\frac{C}{2}$ plyne $C=\\frac{2}{3}B=400$. Rozdil $B-C=600-400=200$ korun.',
+            '4.3 Dohromady $900+600+400=1900$ korun.'],
+     'ans':'4.1: 600 korun; 4.2: o 200 korun; 4.3: 1900 korun','pts':3,'mins':5,'diff':'3',
+     'codes':B+['aritmetika','modelovani','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 5','zad':[
+        'V obchode se za jednotnou cenu prodavaji ruzne figurky. Lida mela presny obnos na nakup 7 figurek po 39 korunach. Figurky vsak byly zdrazeny. Lida proto koupila jen 6 figurek a zbylo ji presne tolik korun, kolik ji chybelo na nakup sedme figurky.',
+        '5.1 Vypoctete, kolik korun zbylo Lide po nakupu 6 figurek.',
+        '5.2 Vypoctete, kolik korun stala jedna figurka po zdrazeni.'],
+     'opts':None,'ln':3,
+     'sol':['Lida mela $7\\cdot 39=273$ korun. Nova cena $c$: po koupi 6 figurek zbylo $273-6c$, coz se rovna tomu, co chybelo na sedmou, tj. $c-(273-6c)$. Rovnice $273-6c=7c-273$ dava $546=13c$, $c=42$.',
+            '5.2 Jedna figurka po zdrazeni stala 42 korun.',
+            '5.1 Zbylo $273-6\\cdot 42=273-252=21$ korun.'],
+     'ans':'5.1: 21 korun; 5.2: 42 korun','pts':3,'mins':5,'diff':'3',
+     'codes':B+['aritmetika','modelovani','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 6','zad':[
+        'Petr, Tonda a Jirka prinesli do klubu sve sbirky karticek s fotbalisty a nektere karticky si vymenili. Tonda vymenil 4 sve karticky za 6 Petrovych a nekolik dalsich svych karticek za 4 Jirkovy. Petr potom vymenil 2 sve karticky za 3 Jirkovy. Pred odchodem dostal kazdy z chlapcu jeste 4 karticky od vedouciho klubu. Petr tak rozsiril svou sbirku na 80 karticek a Jirka mel nakonec o 2 karticky vice nez pri prichodu do klubu.',
+        '6.1 Vypoctete, kolik karticek si do klubu prinesl Petr.',
+        '6.2 Vypoctete, kolik karticek ziskal Jirka od Tondy.',
+        '6.3 Vypoctete, o kolik karticek rozsiril svou sbirku Tonda.'],
+     'opts':None,'ln':3,
+     'sol':['6.1 Petr: vymenou s Tondou $-6+4=-2$, vymenou s Jirkou $-2+3=+1$, od vedouciho $+4$; celkem $+3$. Prinesl tedy $80-3=77$ karticek.',
+            '6.2 Necht Jirka dostal od Tondy $x$ karticek a Tondovi dal 4. S Petrem: $+2-3=-1$. Od vedouciho $+4$. Zmena Jirky: $x-4-1+4=x-1=2$, tedy $x=3$.',
+            '6.3 Tonda: s Petrem $-4+6=+2$, s Jirkou $-3+4=+1$, od vedouciho $+4$; celkem rozsiril sbirku o 7 karticek.'],
+     'ans':'6.1: 77 karticek; 6.2: 3 karticky; 6.3: o 7 karticek','pts':3,'mins':6,'diff':'3',
+     'codes':B+['aritmetika','modelovani','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 7','zad':[
+        'Osove soumerny petiuhelnik ve tvaru domecku se sklada ze dvou ctvercu a rovnoramenneho trojuhelniku. Obvod petiuhelniku je 46 cm. V rovnoramennem trojuhelniku je rameno o 3 cm delsi nez zakladna a vyska na zakladnu je o 1 cm kratsi nez rameno.',
+        '7.1 Vypoctete v cm delku strany ctverce.',
+        '7.2 Vypoctete v cm2 obsah petiuhelniku.'],
+     'opts':None,'ln':4,'svg':SVG7,'fn':'domecek.svg',
+     'alt':'Petiuhelnik ve tvaru domecku: dolni obdelnik rozdeleny na dva ctverce a nahore rovnoramenny trojuhelnik.',
+     'cap':'Schematicky nakres petiuhelniku',
+     'sol':['7.1 Necht strana ctverce je $a$. Zakladna trojuhelniku je horni strana dvou ctvercu, tj. $2a$, rameno je $2a+3$. Obvod petiuhelniku (spodni strana $2a$, dve bocni strany $a$, dve ramena) je $2a+2a+2(2a+3)=8a+6=46$, tedy $a=5$ cm.',
+            '7.2 Obsah dvou ctvercu $2a^2=2\\cdot 25=50$ cm2. Trojuhelnik ma zakladnu $2a=10$ cm a vysku rameno $-1=13-1=12$ cm, obsah $\\frac{10\\cdot 12}{2}=60$ cm2. Celkem $50+60=110$ cm2.'],
+     'ans':'7.1: 5 cm; 7.2: 110 cm2','pts':4,'mins':7,'diff':'3',
+     'codes':B+['planimetrie','vypocet','slovni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 8 (konstrukce)','zad':[
+        'V rovine lezi body $B$, $C$, $O$ (viz obrazek).',
+        'Body $B$, $C$ jsou vrcholy trojuhelniku $ABC$. Poloprimka $BC$ tvori rameno vnitrniho uhlu trojuhelniku $ABC$ pri vrcholu $B$ a primka $BO$ je osa tohoto uhlu. Vrcholy $A$ i $B$ maji stejnou vzdalenost od bodu $O$.',
+        '8.1 Sestrojte obe ramena vnitrniho uhlu trojuhelniku $ABC$ pri vrcholu $B$.',
+        '8.2 Sestrojte vrchol $A$ trojuhelniku $ABC$, oznacte ho pismenem a trojuhelnik narysujte.'],
+     'opts':None,'ln':0,'svg':SVG8,'fn':'body-BCO.svg',
+     'alt':'Body B, C, O v rovine.','cap':'Vychozi obrazek k uloze 8',
+     'sol':['8.1 Jedno rameno uhlu je poloprimka $BC$. Druhe rameno je obrazem poloprimky $BC$ v osove soumernosti podle primky $BO$ (osy uhlu).',
+            '8.2 Vrchol $A$ lezi na druhem rameni a zaroven (protoze $|OA|=|OB|$) na kruznici se stredem $O$ a polomerem $|OB|$. Prusecik urci bod $A$; trojuhelnik $ABC$ narysujeme.'],
+     'ans':'Konstrukce: druhe rameno uhlu pri $B$ je obraz poloprimky $BC$ v osove soumernosti podle primky $BO$; vrchol $A$ je prusecik tohoto ramene s kruznici se stredem $O$ a polomerem $|OB|$ (viz nacrt v klici).',
+     'pts':3,'mins':7,'diff':'3','codes':B+['konstrukce','porozumeni','konstrukcni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 9 (konstrukce)','zad':[
+        'V rovine lezi body $E$, $F$, $G$ (viz obrazek).',
+        'Body $E$, $F$, $G$ jsou vrcholy rovnoramenneho lichobezniku $EFGH$. Sestrojte vrchol $H$ lichobezniku $EFGH$, oznacte ho pismenem a lichobeznik narysujte. Najdete vsechna reseni.'],
+     'opts':None,'ln':0,'svg':SVG9,'fn':'body-EFG.svg',
+     'alt':'Body E, F, G v rovine.','cap':'Vychozi obrazek k uloze 9',
+     'sol':['Rovnoramenny lichobeznik ma jednu dvojici protejsich stran rovnobeznou a obe ramena shodna. Vrchol $H$ doplnime tak, aby $EFGH$ byl rovnoramenny lichobeznik.',
+            'Uloha ma dve reseni $H_1$, $H_2$ (viz nacrt v klici).'],
+     'ans':'Dve reseni ($H_1$, $H_2$): vrchol $H$ doplnime tak, aby $EFGH$ byl rovnoramenny lichobeznik (rovnobezne zakladny, shodna ramena) - viz nacrt v klici.',
+     'pts':3,'mins':7,'diff':'4','codes':B+['konstrukce','porozumeni','konstrukcni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 10','zad':[
+        'Standardni hraci kostka tvaru krychle ma na svych stenach 1 az 6 tecek; soucet tecek na protejsich stenach je vzdy 7. Na obrazku jsou tri takove kostky a kazda stoji na zacatku cesty slozene z nekolika ctvercovych poli. Kostka postupne projde vsemi poli cesty tak, ze se vzdy preklopi kolem sve spodni hrany na sousedni pole, a skonci na sedem poli cesty. (Napriklad prvni kostka se preklopi celkem ctyrikrat; po prvnim preklopeni bude mit na spodni stene 5 tecek.)',
+        'Kazda z kostek prosla celou svou cestu a nyni stoji na sedem poli. Rozhodnete o kazdem z tvrzeni 10.1-10.3, zda je pravdive (A), ci nikoli (N).',
+        '10.1 Prvni kostka ma na spodni stene 3 tecky.',
+        '10.2 Druha kostka ma na spodni stene nejmene tecek ze vsech tri kostek.',
+        '10.3 Treti kostka ma na spodni stene o 1 tecku mene nez prvni kostka.'],
+     'opts':None,'ln':0,'svg':SVG10,'fn':'kostky.svg',
+     'alt':'Tri hraci kostky na zacatku cest z ctvercovych poli (schematicka poznamka).',
+     'cap':'Prostorova uloha - viz testovy sesit',
+     'sol':['Postupnym preklapenim kazde kostky podle obrazku urcime pocet tecek na jeji spodni stene v cili.',
+            '10.1 Prvni kostka nema na spodni stene 3 tecky, tvrzeni je Ne.',
+            '10.2 Druha kostka ma na spodni stene nejmene tecek ze vsech tri kostek, tvrzeni je Ano.',
+            '10.3 Treti kostka nema na spodni stene o 1 tecku mene nez prvni, tvrzeni je Ne.'],
+     'ans':'10.1: Ne; 10.2: Ano; 10.3: Ne','pts':4,'mins':6,'diff':'4',
+     'codes':B+['stereometrie','porozumeni','slovni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 11','zad':[
+        'Vesnici se prohnalo tornado. Po udalosti bylo 40 % vsech domu ve vesnici poskozenych. Zbylych 270 domu vyvazlo beze skod. Nasledne bylo 30 % poskozenych domu urceno k demolici.',
+        'Kolik poskozenych domu bylo urceno k demolici?'],
+     'opts':['A) 36 domu','B) 54 domu','C) 60 domu','D) 81 domu','E) jiny pocet domu'],'ln':0,
+     'sol':['Beze skod zustalo 60 % domu, tj. 270 domu; celkem $270:0{,}6=450$ domu. Poskozenych bylo 40 % ze 450, tj. 180. K demolici bylo urceno 30 % ze 180, tj. $0{,}3\\cdot 180=54$ domu.'],
+     'ans':'B) 54 domu','pts':2,'mins':3,'diff':'2',
+     'codes':B+['procenta','vypocet','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 12','zad':[
+        'Tibor a Matyas jsou na tabore v rovinate oblasti a chystaji se vydat podle mapy ke studance. Tibor ma mapu s meritkem 1 : 50 000 a planovana trasa ma na jeho mape delku 4,2 cm. Na Matyasove mape tato trasa meri 28 mm.',
+        'Jake meritko ma Matyasova mapa?'],
+     'opts':['A) 1 : 28 000','B) 1 : 56 000','C) 1 : 75 000','D) 1 : 140 000','E) jine meritko'],'ln':0,
+     'sol':['Skutecna delka trasy: $4{,}2$ cm $\\cdot 50\\,000=210\\,000$ cm $=2{,}1$ km. Na Matyasove mape $28$ mm $=2{,}8$ cm odpovida $210\\,000$ cm, meritko je $210\\,000:2{,}8=75\\,000$, tj. 1 : 75 000.'],
+     'ans':'C) 1 : 75 000','pts':2,'mins':4,'diff':'3',
+     'codes':B+['aritmetika','vypocet','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 13','zad':[
+        'Tibor a Matyas jsou na tabore v rovinate oblasti a chystaji se vydat podle mapy ke studance. Tibor ma mapu s meritkem 1 : 50 000 a planovana trasa ma na jeho mape delku 4,2 cm. Na Matyasove mape tato trasa meri 28 mm.',
+        'Jaka je skutecna delka planovane trasy?'],
+     'opts':['A) 2,1 km','B) 2,8 km','C) 5,6 km','D) 7,5 km','E) jina delka'],'ln':0,
+     'sol':['Skutecna delka $=4{,}2$ cm $\\cdot 50\\,000=210\\,000$ cm $=2{,}1$ km.'],
+     'ans':'A) 2,1 km','pts':2,'mins':3,'diff':'2',
+     'codes':B+['aritmetika','vypocet','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 14','zad':[
+        'Z 12 shodnych kvadru jsou slepena dve telesa - krychle s hranou delky 9 cm a teleso tvaru schodiste.',
+        'O kolik cm2 se lisi povrch telesa tvaru schodiste a povrch krychle?'],
+     'opts':['A) nelisi se','B) o 27,0 cm2','C) o 40,5 cm2','D) o 81,0 cm2','E) o 108,0 cm2'],'ln':0,
+     'svg':SVG14,'fn':'krychle-schodiste.svg',
+     'alt':'Vlevo krychle slozena z 12 kvadru, vpravo teleso tvaru schodiste ze stejnych kvadru (schematicky).',
+     'cap':'Schematicky nakres krychle a schodiste',
+     'sol':['Krychle ma povrch $6\\cdot 9^2=486$ cm2. Obe telesa jsou slepena z tychz 12 shodnych kvadru, maji tedy stejny objem, ale schodiste ma vice odkrytych sten. Jeho povrch je o $81{,}0$ cm2 vetsi nez povrch krychle (tj. 567 cm2).'],
+     'ans':'D) o 81,0 cm2','pts':2,'mins':5,'diff':'3',
+     'codes':B+['stereometrie','vypocet','slovni','bez-kalkulacky','bez-kontextu']},
+
+    {'name':'CERMAT M7A 2025 - uloha 15','zad':[
+        'Na dvou jazykovych skolach se kazdy zak uci dva cizi jazyky. K anglictine, ktera je povinna pro vsechny, voli zaci jako druhy cizi jazyk nemcinu, francouzstinu, nebo spanelstinu. Grafy ukazuji volbu druheho ciziho jazyka na jednotlivych skolach.',
+        'Priradte ke kazde otazce (15.1-15.3) spravnou odpoved (A-F).',
+        '15.1 O kolik se lisi celkovy pocet zaku na prvni a na druhe skole?',
+        '15.2 Kolik zaku z obou skol dohromady se uci francouzstinu?',
+        '15.3 O kolik zaku vice se na prvni skole uci nemcinu nez francouzstinu?'],
+     'opts':['A) 100 zaku','B) 120 zaku','C) 150 zaku','D) 180 zaku','E) 210 zaku','F) jiny pocet zaku'],'ln':0,
+     'svg':SVG15,'fn':'grafy-jazyky.svg',
+     'alt':'Kruhovy graf prvni skoly (nemcina 62 %, francouzstina 18 %, spanelstina 20 % = 100 zaku) a sloupcovy graf druhe skoly (nemcina 270 zaku = 45 %, francouzstina 20 %, spanelstina 35 %).',
+     'cap':'Volba druheho ciziho jazyka na dvou skolach',
+     'sol':['Prvni skola: spanelstinu (100 zaku) voli 20 % zaku, celkem $100:0{,}2=500$ zaku (nemcina 62 % = 310, francouzstina 18 % = 90). Druha skola: nemcinu (270 zaku) voli 45 %, celkem $270:0{,}45=600$ zaku (francouzstina 20 % = 120, spanelstina 35 % = 210).',
+            '15.1 Rozdil poctu zaku $600-500=100$, tedy A.',
+            '15.2 Francouzstinu se uci $90+120=210$ zaku, tedy E.',
+            '15.3 Na prvni skole $310-90=220$ zaku; takova moznost neni, tedy F.'],
+     'ans':'15.1: A (100 zaku); 15.2: E (210 zaku); 15.3: F (o 220 zaku)','pts':6,'mins':9,'diff':'3',
+     'codes':B+['statistika','vypocet','slovni','bez-kalkulacky','bezny-zivot']},
+
+    {'name':'CERMAT M7A 2025 - uloha 16','zad':[
+        'Obrazec se postupne vytvari pridavanim dalsich rad podle pravidel: liche rady obsahuji pouze ctverce o strane 1 cm; sude rady obsahuji pouze obdelniky s rozmery 1 cm a 2 cm; prvni rada obsahuje jeden ctverec a kazda dalsi rada je vzdy o 1 cm delsi nez predchozi; ve treti a kazde dalsi rade ma kazdy druhy ctyruhelnik sedou barvu, ostatni jsou bile.',
+        '16.1 Urcete nejvyssi poradove cislo rady, ktera obsahuje prave 9 sedych obdelniku.',
+        '16.2 Urcete celkovy pocet bilych ctyruhelniku v casti obrazce obsahujici pouze 29. a 30. radu.',
+        '16.3 Vypoctete pomer obsahu bile plochy ku obsahu sede plochy v casti obrazce obsahujici pouze 50. a 51. radu.'],
+     'opts':None,'ln':4,'svg':SVG16,'fn':'obrazec-rady.svg',
+     'alt':'Obrazec z rad: liche rady ctverce, sude rady obdelniky; od 3. rady je kazdy druhy ctyruhelnik sedy.',
+     'cap':'Prvnich sest rad obrazce (schematicky)',
+     'sol':['Rada s poradovym cislem $n$ je $n$ cm dlouha. Licha rada $n$ obsahuje $n$ ctvercu, suda rada $n$ obsahuje $\\frac{n}{2}$ obdelniku. Sedy je kazdy druhy ctyruhelnik, tj. jejich pocet je cela cast poloviny poctu ctyruhelniku v rade.',
+            '16.1 Suda rada $n$ ma $\\frac{n}{2}$ obdelniku, z nich sedych je cela cast z $\\frac{n}{4}$. Prave 9 sedych obdelniku ma rada 36 i rada 38 (rada 40 jich ma 10). Nejvyssi poradove cislo je 38.',
+            '16.2 Rada 29 (licha): 29 ctvercu, sedych 14, bilych 15. Rada 30 (suda): 15 obdelniku, sedych 7, bilych 8. Celkem bilych $15+8=23$.',
+            '16.3 Rada 50 (suda): 25 obdelniku po 2 cm2, bilych 13 (26 cm2), sedych 12 (24 cm2). Rada 51 (licha): 51 ctvercu po 1 cm2, bilych 26 (26 cm2), sedych 25 (25 cm2). Pomer bila : seda $=(26+26):(24+25)=52:49$.'],
+     'ans':'16.1: 38. rada; 16.2: 23 bilych ctyruhelniku; 16.3: 52 : 49','pts':4,'mins':8,'diff':'4',
+     'codes':B+['posloupnosti','argumentace','pocetni','bez-kalkulacky','bez-kontextu']},
+]
+
+if __name__ == '__main__':
+    import os, sys, json
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_cermat as gen
+    gen.CCODE = 'M7PAD25C0T01'
+    gen.YEAR = 2025
+
+    def dollars_ok(s): return s.count('$') % 2 == 0
+    errors = []; names = set()
+    for p in PROBLEMS:
+        if p['name'] in names: errors.append('DUP nazev: ' + p['name'])
+        names.add(p['name'])
+        for t in [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or []):
+            if not dollars_ok(t): errors.append('Neparovy $: ' + t[:70])
+        if p.get('svg') and ("'" in p['svg'] or '\\' in p['svg']):
+            errors.append('SVG zakazany znak: ' + p['name'])
+        if p.get('svg') and not p.get('alt'): errors.append('Obrazek bez alt: ' + p['name'])
+        for lbl, obj in (('content', gen.py_content_json(p)), ('solution', gen.py_solution_json(p)), ('answer', gen.py_answer_json(p))):
+            try: json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e: errors.append(f'JSON {lbl} {p["name"]}: {e}')
+    if errors:
+        print('CHYBY:'); [print('  -', e) for e in errors]; sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'uloh')
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    tot = 0
+    for path, sz, k in gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-cermat-M7A-2025')):
+        tot += k; print(f'{os.path.basename(path)}: {sz} B, {k} uloh [{"OK" if sz<9000 else "PRES 9KB"}]')
+    print('Celkem uloh:', tot)

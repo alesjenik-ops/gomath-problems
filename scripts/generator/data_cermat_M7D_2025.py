@@ -1,0 +1,349 @@
+# -*- coding: utf-8 -*-
+# CERMAT - Jednotna prijimaci zkouska 2025, MATEMATIKA 7D (sestilete obory, 7. rocnik),
+# 2. nahradni termin. Kod testu: M7PDD25C0T04. 16 uloh (po rozdeleni ulohy 3 -> 17 uloh).
+# Zdroj odpovedi: rozsireny klic spravnych reseni (KSR).
+# Taxonomie: stupen zs2, rocnik r7.
+
+# ---- SVG obrazky (bez ' a \) ----
+
+# uloha 6: vychozi tabulka (dva radky kol, sloupce podle poctu bodu)
+SVG6 = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 425 156" font-family="sans-serif" font-size="11">'
+ '<rect x="10" y="10" width="405" height="136" fill="none" stroke="#000"/>'
+ '<line x1="90" y1="10" x2="90" y2="146" stroke="#000"/>'
+ '<line x1="160" y1="44" x2="160" y2="146" stroke="#000"/>'
+ '<line x1="230" y1="44" x2="230" y2="146" stroke="#000"/>'
+ '<line x1="305" y1="10" x2="305" y2="146" stroke="#000"/>'
+ '<line x1="90" y1="44" x2="305" y2="44" stroke="#000"/>'
+ '<line x1="10" y1="78" x2="415" y2="78" stroke="#000"/>'
+ '<line x1="10" y1="112" x2="415" y2="112" stroke="#000"/>'
+ '<text x="197" y="32" font-size="10" text-anchor="middle">Pocet soutezicich, kteri ziskali</text>'
+ '<text x="125" y="65" text-anchor="middle">8 bodu</text>'
+ '<text x="195" y="65" text-anchor="middle">9 bodu</text>'
+ '<text x="267" y="65" text-anchor="middle">10 bodu</text>'
+ '<text x="360" y="40" font-size="10" text-anchor="middle">Soucet bodu</text>'
+ '<text x="360" y="56" font-size="10" text-anchor="middle">celeho tymu</text>'
+ '<text x="16" y="99" font-size="10">1. kolo</text>'
+ '<text x="195" y="99" text-anchor="middle">5</text>'
+ '<text x="16" y="133" font-size="10">2. kolo</text>'
+ '<text x="360" y="133" text-anchor="middle">95</text>'
+ '</svg>')
+
+# uloha 8: vychozi obrazek - body A, A(prime), M v rovine
+SVG8 = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 340" font-family="sans-serif">'
+ '<rect x="5" y="5" width="490" height="330" fill="none" stroke="#ccc"/>'
+ '<text x="428" y="114" font-size="15">×</text><text x="443" y="118" font-size="15" font-style="italic">M</text>'
+ '<text x="200" y="209" font-size="15">×</text><text x="178" y="213" font-size="15" font-style="italic">A′</text>'
+ '<text x="330" y="304" font-size="15">×</text><text x="316" y="308" font-size="15" font-style="italic">A</text>'
+ '</svg>')
+
+# uloha 9: vychozi obrazek - body L, M a primka p prochazejici bodem M
+SVG9 = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" font-family="sans-serif">'
+ '<rect x="5" y="5" width="490" height="290" fill="none" stroke="#ccc"/>'
+ '<line x1="60" y1="200" x2="450" y2="120" stroke="#000" stroke-width="1.5"/>'
+ '<line x1="396" y1="123" x2="404" y2="137" stroke="#000" stroke-width="1.5"/>'
+ '<text x="394" y="118" font-size="15" font-style="italic">M</text>'
+ '<text x="456" y="122" font-size="15" font-style="italic">p</text>'
+ '<text x="248" y="234" font-size="15">×</text><text x="250" y="250" font-size="15" font-style="italic">L</text>'
+ '</svg>')
+
+# uloha 10: kruznice se stredem S, prumery AB a KL, vyznacene uhly
+SVG10 = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 310" font-family="sans-serif">'
+ '<circle cx="230" cy="150" r="120" fill="none" stroke="#000" stroke-width="1.5"/>'
+ '<line x1="110" y1="150" x2="350" y2="150" stroke="#000" stroke-width="1.5"/>'
+ '<line x1="170" y1="45" x2="290" y2="255" stroke="#000" stroke-width="1.5"/>'
+ '<line x1="170" y1="45" x2="110" y2="150" stroke="#000" stroke-width="1.5"/>'
+ '<line x1="170" y1="45" x2="350" y2="150" stroke="#000" stroke-width="1.5"/>'
+ '<circle cx="230" cy="150" r="2.5" fill="#000"/>'
+ '<text x="92" y="155" font-size="15" font-style="italic">A</text>'
+ '<text x="356" y="153" font-size="15" font-style="italic">B</text>'
+ '<text x="160" y="38" font-size="15" font-style="italic">K</text>'
+ '<text x="294" y="270" font-size="15" font-style="italic">L</text>'
+ '<text x="233" y="167" font-size="14" font-style="italic">S</text>'
+ '<text x="182" y="82" font-size="12">64°</text>'
+ '<text x="126" y="144" font-size="13" font-style="italic">α</text>'
+ '<text x="204" y="142" font-size="13" font-style="italic">δ</text>'
+ '<text x="243" y="143" font-size="13" font-style="italic">γ</text>'
+ '<text x="322" y="143" font-size="13" font-style="italic">β</text>'
+ '</svg>')
+
+# uloha 11: ctverec 14 cm se sestiuhelnikem (dva rovnoramenne lichobezniky), stredova cara
+SVG11 = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" font-family="sans-serif">'
+ '<rect x="40" y="40" width="180" height="180" fill="none" stroke="#999"/>'
+ '<polygon points="92,40 168,40 220,130 168,220 92,220 40,130" fill="none" stroke="#000" stroke-width="1.8"/>'
+ '<line x1="40" y1="130" x2="220" y2="130" stroke="#000" stroke-width="1" stroke-dasharray="4 4"/>'
+ '</svg>')
+
+# uloha 14: skladany (skupinovy) sloupcovy graf Ptaci hodinka (Jonas tmave, Beata svetle)
+def _birds():
+    cats = [('kos', 'cerny', 6, 4), ('brhlik', 'lesni', 4, None),
+            ('sykora', 'konadra', 8, 8), ('cervenka', 'obecna', 2, 0),
+            ('penkava', 'obecna', 4, 6)]
+    x0, y0 = 60, 250; unit = 22; bw = 20
+    s = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" font-family="sans-serif">']
+    s.append(f'<line x1="{x0}" y1="30" x2="{x0}" y2="{y0}" stroke="#000"/><line x1="{x0}" y1="{y0}" x2="500" y2="{y0}" stroke="#000"/>')
+    for v in range(2, 9, 2):
+        y = y0 - v * unit
+        s.append(f'<line x1="{x0}" y1="{y}" x2="470" y2="{y}" stroke="#ccc"/>')
+    s.append(f'<text x="{x0-8}" y="{y0+4}" font-size="11" text-anchor="end">0</text>')
+    s.append('<text x="24" y="150" font-size="12" text-anchor="middle" transform="rotate(-90 24 150)">Nejvyssi pocet jedincu</text>')
+    x = x0 + 30
+    for n1, n2, j, b in cats:
+        hj = j * unit
+        s.append(f'<rect x="{x}" y="{y0-hj}" width="{bw}" height="{hj}" fill="#595959" stroke="#000"/>')
+        xb = x + bw + 2
+        if b is None:
+            s.append(f'<rect x="{xb}" y="{y0-3*unit}" width="{bw}" height="{3*unit}" fill="none" stroke="#000" stroke-dasharray="4 3"/>')
+            s.append(f'<text x="{xb+bw/2}" y="{y0-unit}" font-size="15" text-anchor="middle">?</text>')
+        elif b > 0:
+            hb = b * unit
+            s.append(f'<rect x="{xb}" y="{y0-hb}" width="{bw}" height="{hb}" fill="#d9d9d9" stroke="#000"/>')
+        cx = x + bw
+        s.append(f'<text x="{cx}" y="{y0+16}" font-size="10" text-anchor="middle">{n1}</text>')
+        s.append(f'<text x="{cx}" y="{y0+28}" font-size="10" text-anchor="middle">{n2}</text>')
+        x += 2 * bw + 40
+    s.append('<rect x="512" y="80" width="12" height="12" fill="#595959" stroke="#000"/><text x="530" y="90" font-size="11">Jonas</text>')
+    s.append('<rect x="512" y="100" width="12" height="12" fill="#d9d9d9" stroke="#000"/><text x="530" y="110" font-size="11">Beata</text>')
+    s.append('</svg>')
+    return "".join(s)
+SVG14 = _birds()
+
+# uloha 16: hriste tvaru obdelniku KLMN se stanovisti A, B, C, D a sedym ctvercem
+SVG16 = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" font-family="sans-serif">'
+ '<rect x="222" y="40" width="108" height="108" fill="#d0d0d0" stroke="none"/>'
+ '<rect x="60" y="40" width="270" height="180" fill="none" stroke="#000" stroke-width="1.8"/>'
+ '<line x1="222" y1="40" x2="222" y2="220" stroke="#000" stroke-width="1" stroke-dasharray="5 4"/>'
+ '<line x1="60" y1="148" x2="330" y2="148" stroke="#000" stroke-width="1" stroke-dasharray="5 4"/>'
+ '<circle cx="60" cy="148" r="3" fill="#000"/><circle cx="330" cy="148" r="3" fill="#000"/>'
+ '<text x="46" y="36" font-size="14" font-style="italic">K</text>'
+ '<text x="334" y="36" font-size="14" font-style="italic">N</text>'
+ '<text x="46" y="236" font-size="14" font-style="italic">L</text>'
+ '<text x="334" y="236" font-size="14" font-style="italic">M</text>'
+ '<text x="216" y="34" font-size="14" font-style="italic">A</text>'
+ '<text x="42" y="152" font-size="14" font-style="italic">B</text>'
+ '<text x="214" y="236" font-size="14" font-style="italic">C</text>'
+ '<text x="336" y="152" font-size="14" font-style="italic">D</text>'
+ '</svg>')
+
+B = ['zs2', 'r7']  # 7. rocnik ZS (sestilete obory)
+
+PROBLEMS = [
+    {'name': 'CERMAT M7D 2025 - uloha 1', 'zad': [
+        'Plavec uplave v bazenu rovnomernym tempem $2$ kilometry za $48$ minut.',
+        'Vypoctete, za kolik minut uplave plavec timto tempem celkem $5$ padesatimetrovych bazenu.'],
+     'opts': None, 'ln': 2,
+     'sol': ['$2$ km $=2000$ m; $5$ bazenu po $50$ m je $250$ m. To je $\\frac{250}{2000}=\\frac{1}{8}$ trasy, tedy $48:8=6$ minut.'],
+     'ans': '$6$ minut', 'pts': 1, 'mins': 3, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 2', 'zad': [
+        'Pomer dvou neznamych prirozenych cisel je $4:5$ a dvojnasobky techto dvou cisel se lisi o $6$.',
+        'Urcete obe neznama cisla.'],
+     'opts': None, 'ln': 3,
+     'sol': ['Cisla maji tvar $4k$ a $5k$. Jejich dvojnasobky $8k$ a $10k$ se lisi o $2k=6$, tedy $k=3$. Cisla jsou $12$ a $15$.'],
+     'ans': '$12$; $15$', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 3.1', 'zad': [
+        'Vypoctete a vysledek zapiste zlomkem v zakladnim tvaru:',
+        '$\\left(\\dfrac{7}{5}-\\dfrac{7}{4}\\right):\\left(2-\\dfrac{6}{5}\\cdot\\dfrac{4}{3}\\right)=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Zavorky: $\\dfrac{7}{5}-\\dfrac{7}{4}=-\\dfrac{7}{20}$ a $2-\\dfrac{6}{5}\\cdot\\dfrac{4}{3}=2-\\dfrac{8}{5}=\\dfrac{2}{5}$. Pak $-\\dfrac{7}{20}:\\dfrac{2}{5}=-\\dfrac{7}{20}\\cdot\\dfrac{5}{2}=-\\dfrac{7}{8}$.'],
+     'ans': '$-\\dfrac{7}{8}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 3.2', 'zad': [
+        'Vypoctete a vysledek zapiste zlomkem v zakladnim tvaru:',
+        '$\\dfrac{\\dfrac{8}{7}\\cdot\\left(1+\\dfrac{1}{7}\\right)\\cdot\\dfrac{7}{4}}{5-\\dfrac{9}{5}}=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Citatel: $\\dfrac{8}{7}\\cdot\\dfrac{8}{7}\\cdot\\dfrac{7}{4}=\\dfrac{16}{7}$. Jmenovatel: $5-\\dfrac{9}{5}=\\dfrac{16}{5}$. Pak $\\dfrac{16}{7}:\\dfrac{16}{5}=\\dfrac{5}{7}$.'],
+     'ans': '$\\dfrac{5}{7}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 4', 'zad': [
+        'Martin ma jednobarevne kulicky. Jedna tretina vsech Martinovych kulicek je zlutych, $40\\,\\%$ kulicek je modrych a zbyvajicich $12$ kulicek je cervenych.',
+        '4.1 Urcete pocet vsech Martinovych kulicek.',
+        '4.2 Vyjadrete zlomkem v zakladnim tvaru, jakou cast vsech Martinovych kulicek tvori cervene kulicky.',
+        '4.3 Martin da kamaradce tolik cervenych kulicek, aby polovinu jeho zbylych kulicek tvorily modre kulicky. Urcete, kolik cervenych kulicek da Martin kamaradce.'],
+     'opts': None, 'ln': 4,
+     'sol': ['4.1 Zlute $\\frac{1}{3}$, modre $\\frac{2}{5}$, dohromady $\\frac{5}{15}+\\frac{6}{15}=\\frac{11}{15}$. Cervene tvori zbytek $\\frac{4}{15}$, coz je $12$ kulicek, tedy celkem $12\\cdot\\frac{15}{4}=45$ kulicek.',
+            '4.2 Cervene tvori $\\frac{4}{15}$ vsech kulicek.',
+            '4.3 Modrych je $\\frac{2}{5}\\cdot 45=18$. Po darovani $x$ cervenych zbyde $45-x$ kulicek a plati $\\frac{45-x}{2}=18$, tedy $45-x=36$ a $x=9$.'],
+     'ans': '4.1: $45$ kulicek; 4.2: $\\dfrac{4}{15}$; 4.3: $9$ cervenych kulicek', 'pts': 3, 'mins': 5, 'diff': '3',
+     'codes': B + ['procenta', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 5', 'zad': [
+        'Na odvoz beden ze skladu se pouzivaji dva ruzni roboti A, B. Ve skladu bylo $95$ beden. Bedny nejprve odvazel robot A, a to po $5$ kusech. Jezdil v pravidelnych intervalech a odvezl ze skladu za $2$ hodiny celkem $50$ beden. Pak pokracoval robot B, ktery vozil bedny jen po $3$ kusech, avsak v kratsich pravidelnych intervalech. Odvezl tak ze skladu za $1{,}5$ hodiny zbyvajicich $45$ beden.',
+        '5.1 Vyjadrete v zakladnim tvaru pomer poctu beden odvezenych ze skladu za $1$ hodinu robotem A ku poctu beden odvezenych za $1$ hodinu robotem B.',
+        '5.2 Vyjadrete v zakladnim tvaru pomer poctu jizd robota A za hodinu ku poctu jizd robota B za hodinu.',
+        '5.3 Vypoctete, kolik beden by ze skladu odvezli za $36$ minut oba roboti dohromady pri spolecnem provozu.'],
+     'opts': None, 'ln': 4,
+     'sol': ['Robot A odveze $50:2=25$ beden za hodinu, robot B $45:1{,}5=30$ beden za hodinu.',
+            '5.1 Pomer $25:30=5:6$.',
+            '5.2 Robot A jezdi $25:5=5$ jizd za hodinu, robot B $30:3=10$ jizd za hodinu; pomer $5:10=1:2$.',
+            '5.3 Dohromady $25+30=55$ beden za hodinu. Za $36$ minut ($\\frac{3}{5}$ hodiny) to je $55\\cdot\\frac{3}{5}=33$ beden.'],
+     'ans': '5.1: $5:6$; 5.2: $1:2$; 5.3: $33$ beden', 'pts': 4, 'mins': 6, 'diff': '3',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 6', 'zad': [
+        'Vedomostni souteze, ktera mela dve kola, se zucastnil $10$clenny tym. V kazdem kole ziskali jednotlivi soutezici $8$, $9$, nebo $10$ bodu. Nektere udaje jsou v tabulce.',
+        '6.1 V 1. kole bylo soutezicich, kteri ziskali $8$ bodu, o jednoho mene nez tech, kteri ziskali $10$ bodu. Urcete soucet bodu celeho tymu v 1. kole.',
+        '6.2 Urcete, kolik soutezicich mohlo ve 2. kole ziskat $9$ bodu. Najdete vsechna reseni.'],
+     'opts': None, 'ln': 4, 'svg': SVG6, 'fn': 'tabulka-soutez.svg',
+     'alt': 'Tabulka: 1. kolo ma u 9 bodu hodnotu 5; 2. kolo ma soucet bodu tymu 95.',
+     'cap': 'Vychozi tabulka k uloze 6',
+     'sol': ['6.1 V 1. kole ziskalo $5$ soutezicich $9$ bodu, zbyva $5$ soutezicich. Osmibodovych je o jednoho mene nez desetibodovych: $2$ a $3$. Soucet $2\\cdot 8+5\\cdot 9+3\\cdot 10=16+45+30=91$ bodu.',
+            '6.2 Ve 2. kole je $10$ soutezicich se souctem $95$ bodu. Pro pocty $a$ (8 b.), $b$ (9 b.), $c$ (10 b.) plati $a+b+c=10$ a $8a+9b+10c=95$, odkud $b+2c=15$ a $a=c-5$. Reseni: $c=5,b=5$; $c=6,b=3$; $c=7,b=1$. Devet bodu tak mohlo ziskat $1$, $3$, nebo $5$ soutezicich.'],
+     'ans': '6.1: $91$ bodu; 6.2: $1$ soutezici, $3$ soutezici, nebo $5$ soutezicich', 'pts': 4, 'mins': 7, 'diff': '4',
+     'codes': B + ['aritmetika', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 7', 'zad': [
+        'Povrch male krychle je o $42$ cm$^2$ mensi nez povrch velke krychle. Soucet delek vsech hran velke krychle je $48$ cm.',
+        '7.1 Vypoctete v cm delku hrany velke krychle.',
+        '7.2 Vypoctete v cm$^2$ povrch male krychle.',
+        '7.3 Vypoctete v cm$^3$, o kolik se lisi objem male a velke krychle.'],
+     'opts': None, 'ln': 4,
+     'sol': ['7.1 Krychle ma $12$ hran, delka hrany velke krychle je $48:12=4$ cm.',
+            '7.2 Povrch velke krychle je $6\\cdot 4^2=96$ cm$^2$; povrch male krychle je $96-42=54$ cm$^2$.',
+            '7.3 Z $6a^2=54$ plyne hrana male krychle $a=3$ cm. Objemy $3^3=27$ cm$^3$ a $4^3=64$ cm$^3$ se lisi o $64-27=37$ cm$^3$.'],
+     'ans': '7.1: $4$ cm; 7.2: $54$ cm$^2$; 7.3: o $37$ cm$^3$', 'pts': 4, 'mins': 6, 'diff': '3',
+     'codes': B + ['stereometrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 8 (konstrukce)', 'zad': [
+        'V rovine lezi body $A$, $A^{\\prime}$ a $M$ (viz obrazek). Bod $A$ je vrchol rovnostranneho trojuhelniku $ABC$. Na primce $AM$ lezi vrchol $C$ tohoto trojuhelniku. Bod $A^{\\prime}$ je vrchol trojuhelniku $A^{\\prime}B^{\\prime}C^{\\prime}$, ktery je obrazem trojuhelniku $ABC$ v osove soumernosti s osou $o$. Oba trojuhelniky maji pouze jeden spolecny bod, a to vrchol $C$.',
+        '8.1 Sestrojte osu $o$ a oznacte ji pismenem.',
+        '8.2 Sestrojte vsechny chybejici vrcholy trojuhelniku $ABC$ i $A^{\\prime}B^{\\prime}C^{\\prime}$, oznacte je pismeny a oba trojuhelniky narysujte.'],
+     'opts': None, 'ln': 0, 'svg': SVG8, 'fn': 'body-A-Aprime-M.svg',
+     'alt': 'Tri body oznacene krizky v rovine: M vpravo nahore, A prime vlevo, A dole.',
+     'cap': 'Vychozi obrazek k uloze 8',
+     'sol': ['Osa $o$ je osou usecky $AA^{\\prime}$ (bod $A^{\\prime}$ je obrazem bodu $A$). Vrchol $C$ je jediny spolecny bod obou trojuhelniku, lezi tedy na ose $o$ a zaroven na primce $AM$ - je jejich prusecikem. Trojuhelnik $ABC$ je rovnostranny nad stranou $AC$ (vrchol $B$ dopocteme). Trojuhelnik $A^{\\prime}B^{\\prime}C^{\\prime}$ je obrazem $ABC$ v osove soumernosti podle $o$, pricemz $C^{\\prime}=C$.'],
+     'ans': 'Osa $o$ je osou usecky $AA^{\\prime}$; $C$ je prusecik osy $o$ s primkou $AM$; $ABC$ je rovnostranny nad $AC$ a $A^{\\prime}B^{\\prime}C^{\\prime}$ je jeho obraz v soumernosti podle $o$ (viz obrazek v klici).',
+     'pts': 3, 'mins': 7, 'diff': '4',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 9 (konstrukce)', 'zad': [
+        'V rovine lezi body $L$, $M$ a primka $p$ prochazejici bodem $M$ (viz obrazek). Body $L$, $M$ jsou vrcholy rovnobezniku $KLMN$. Na primce $p$ lezi stred $S$ soumernosti tohoto rovnobezniku. Delka strany $LM$ je stejna jako delka uhlopricky $LN$.',
+        'Sestrojte stred $S$ a vrcholy $K$, $N$ rovnobezniku $KLMN$, oznacte je pismeny a rovnobeznik narysujte. Najdete vsechna reseni.'],
+     'opts': None, 'ln': 0, 'svg': SVG9, 'fn': 'body-LM-primka-p.svg',
+     'alt': 'Primka p stoupajici zleva doprava s bodem M na primce a bodem L pod primkou.',
+     'cap': 'Vychozi obrazek k uloze 9',
+     'sol': ['Stred $S$ je stredem uhlopricek, tedy i stredem usecky $LN$, proto $|LN|=2\\cdot|LS|$. Z podminky $|LM|=|LN|$ plyne $|LS|=\\frac{|LM|}{2}$. Bod $S$ je prusecikem primky $p$ s kruznici se stredem $L$ a polomerem $\\frac{|LM|}{2}$ - obecne dve polohy $S$. Pro kazdou z nich je $N$ obrazem $L$ a $K$ obrazem $M$ ve stredove soumernosti podle $S$. Uloha ma dve reseni.'],
+     'ans': 'Dve reseni: $S$ je prusecik primky $p$ s kruznici $(L; \\tfrac{|LM|}{2})$, $N$ a $K$ jsou obrazy $L$ a $M$ ve stredove soumernosti podle $S$ (viz obrazek v klici).',
+     'pts': 3, 'mins': 7, 'diff': '4',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 10', 'zad': [
+        'Kruznice se stredem $S$ prochazi body $A$, $B$, $K$, $L$. Usecky $AB$ a $KL$ se protinaji v bode $S$. V obrazku jsou vyznaceny velikosti nekterych uhlu (obrazek je pouze ilustrativni, uhly nemerte, ale vypoctete).',
+        'Rozhodnete o kazdem z tvrzeni 10.1-10.3, zda je pravdive (A), ci nikoli (N).',
+        '10.1 $\\alpha>64^{\\circ}$',
+        '10.2 $\\alpha+\\beta>90^{\\circ}$',
+        '10.3 $\\gamma-\\alpha>\\delta$'],
+     'opts': None, 'ln': 0, 'svg': SVG10, 'fn': 'kruznice-prumery.svg',
+     'alt': 'Kruznice se stredem S; prumery AB (vodorovny) a KL; trojuhelnik AKB s vyznacenym uhlem 64 stupnu u vrcholu K a uhly alfa, beta, gama, delta.',
+     'cap': 'Vychozi obrazek k uloze 10',
+     'sol': ['Usecky $AB$ a $KL$ prochazi stredem $S$, jsou to tedy prumery. Trojuhelnik $ASK$ je rovnoramenny ($|SA|=|SK|$), proto $\\alpha=|\\angle AKS|=64^{\\circ}$ (vyznaceny uhel).',
+            '10.1 $\\alpha=64^{\\circ}$, neni tedy vetsi nez $64^{\\circ}$ - N.',
+            '10.2 Nad prumerem $AB$ je uhel $AKB$ pravy (Thaletova veta), tedy $\\alpha+\\beta=90^{\\circ}$, neni vetsi nez $90^{\\circ}$ - N.',
+            '10.3 $\\beta=90^{\\circ}-64^{\\circ}=26^{\\circ}$, $\\delta=|\\angle ASK|=180^{\\circ}-2\\alpha=52^{\\circ}$, $\\gamma=|\\angle KSB|=180^{\\circ}-2\\beta=128^{\\circ}$. Pak $\\gamma-\\alpha=128^{\\circ}-64^{\\circ}=64^{\\circ}>52^{\\circ}=\\delta$ - A.'],
+     'ans': '10.1: N; 10.2: N; 10.3: A', 'pts': 4, 'mins': 6, 'diff': '4',
+     'codes': B + ['planimetrie', 'argumentace', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 11', 'zad': [
+        'Ze ctverce o strane delky $14$ cm odstrihneme ctyri pravouhle trojuhelniky (viz obrazek). Vznikne tak sestiuhelnik, ktery se sklada ze dvou ruznych rovnoramennych lichobezniku. Oba tyto lichobezniky maji kratsi zakladnu delky $6$ cm.',
+        'Jaky je obsah sestiuhelniku?'],
+     'opts': ['A) $112$ cm$^2$', 'B) $120$ cm$^2$', 'C) $140$ cm$^2$', 'D) $154$ cm$^2$', 'E) vice nez $154$ cm$^2$'],
+     'ln': 0, 'svg': SVG11, 'fn': 'ctverec-sestiuhelnik.svg',
+     'alt': 'Ctverec o strane 14 cm se vepsanym sestiuhelnikem slozenym ze dvou rovnoramennych lichobezniku, ve stredu vodorovna carkovana usecka.',
+     'cap': 'Sestiuhelnik vznikly odstrizenim ctyr trojuhelniku',
+     'sol': ['Sestiuhelnik se sklada ze dvou lichobezniku se spolecnou delsi zakladnou (stredni prickou) delky $14$ cm, kratsi zakladnou $6$ cm a vyskou $7$ cm. Kazdy ma obsah $\\frac{14+6}{2}\\cdot 7=70$ cm$^2$, dohromady $2\\cdot 70=140$ cm$^2$.'],
+     'ans': 'C) $140$ cm$^2$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 12', 'zad': [
+        'Podlaha chodby ma tvar obdelniku, sirka chodby je $3$ m. Cela podlaha chodby je vydlazdena celkem $216$ stejnymi ctvercovymi dlazdicemi. Delka strany dlazdice v cm je vyjadrena celym cislem. (Dlazdice jsou polozeny tesne vedle sebe, sirku spar zanedbavame.)',
+        'Jaka je nejmensi mozna delka chodby?'],
+     'opts': ['A) mene nez $360$ cm', 'B) $360$ cm', 'C) $400$ cm', 'D) $432$ cm', 'E) $450$ cm'],
+     'ln': 0,
+     'sol': ['Sirka $300$ cm musi byt delitelna delkou dlazdice $d$. Po sirce je $\\frac{300}{d}$ dlazdic, po delce $\\frac{216}{300/d}=\\frac{18d}{25}$ dlazdic, coz musi byt cele cislo; proto $d$ musi byt nasobek $25$. Nejmensi vyhovujici $d=25$ cm (deli $300$) dava delku $\\frac{18\\cdot 25}{25}\\cdot 25=450$ cm. Vetsi $d$ vede k delsi chodbe, nejmensi delka je tedy $450$ cm.'],
+     'ans': 'E) $450$ cm', 'pts': 2, 'mins': 5, 'diff': '4',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 13', 'zad': [
+        'Ve stanici Licha Lhota stoji na kazde ze tri koleji jeden vlak. Vlak na druhe koleji ma o $3$ vagony vice nez vlak na prvni koleji a dvakrat mene vagonu nez vlak na treti koleji. Vsechny tri vlaky dohromady maji $41$ vagonu.',
+        'O kolik vagonu vice ma vlak na treti koleji nez vlak na prvni koleji?'],
+     'opts': ['A) o $8$ vagonu', 'B) o $10$ vagonu', 'C) o $11$ vagonu', 'D) o $13$ vagonu', 'E) o $14$ vagonu'],
+     'ln': 0,
+     'sol': ['Prvni kolej $x$, druha $x+3$, treti dvakrat vice nez druha, tedy $2(x+3)=2x+6$. Soucet $x+(x+3)+(2x+6)=4x+9=41$, odkud $x=8$. Vlaky maji $8$, $11$ a $22$ vagonu; treti ma o $22-8=14$ vagonu vice nez prvni.'],
+     'ans': 'E) o $14$ vagonu', 'pts': 2, 'mins': 4, 'diff': '2',
+     'codes': B + ['rovnice', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 14', 'zad': [
+        'Jonas a Beata se zapojili do programu Ptaci hodinka. Kazdy v okoli sveho krmitka sledoval vyskyt ptaku v prubehu jedne vybrane hodiny. U kazdeho ptaciho druhu zaznamenali do grafu vzdy nejvyssi pocet jedincu spatrenych najednou. Jonas spatril pet druhu ptaku, zatimco Beata pouze ctyri z nich. Oba dohromady zaznamenali penkav o $6$ mene nez sykor. Jonas zaznamenal celkem o petinu vice ptacich jedincu nez Beata.',
+        'Kolik jedincu brhlika lesniho zaznamenala Beata?'],
+     'opts': ['A) $2$ jedince', 'B) $3$ jedince', 'C) $4$ jedince', 'D) $5$ jedincu', 'E) vice nez $5$ jedincu'],
+     'ln': 0, 'svg': SVG14, 'fn': 'graf-ptaci-hodinka.svg',
+     'alt': 'Skupinovy sloupcovy graf poctu jedincu peti ptacich druhu pro Jonase a Beatu; sloupec Beaty u brhlika lesniho je neznamy (oznaceny otaznikem).',
+     'cap': 'Nejvyssi pocty jedincu jednotlivych druhu (Jonas, Beata)',
+     'sol': ['Z grafu: sykora $8+8=16$, tedy penkavy dohromady $16-6=10$ (Jonas $4$, Beata $6$). Jonas celkem $6+4+8+2+4=24$ jedincu. Beata (bez brhlika) $4+8+0+6=18$; ma-li Jonas o petinu vice, je Beata celkem $24:1{,}2=20$. Brhlika lesniho tedy Beata zaznamenala $20-18=2$ jedince.'],
+     'ans': 'A) $2$ jedince', 'pts': 2, 'mins': 5, 'diff': '3',
+     'codes': B + ['statistika', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 15', 'zad': [
+        'Priradte ke kazde uloze (15.1-15.3) odpovidajici vysledek (A-F).',
+        '15.1 Pan Zdenek bydli poslednich pet osmin sveho dosavadniho zivota v Plzni, kam se prestehoval, kdyz mu bylo $27$ let. Kolik let bydli pan Zdenek v Plzni?',
+        '15.2 Ze tri skol v obci je nejstarsi zakladni skola, ktera je v provozu jiz $84$ let. Funguje tedy o $75\\,\\%$ delsi dobu nez gymnazium. Nejmladsi skolou je lyceum. Pomer doby fungovani lycea a gymnazia je $2:3$. Kolik let funguje v obci lyceum?',
+        '15.3 Soucet veku dvojcat a jejich starsiho bratra je $99$ let. Kazdemu z dvojcat je o $40\\,\\%$ mene let nez jejich bratrovi. Kolik let je kazdemu z dvojcat?'],
+     'opts': ['A) $22$ let', 'B) $27$ let', 'C) $32$ let', 'D) $45$ let', 'E) $48$ let', 'F) vice nez $48$ let'],
+     'ln': 0,
+     'sol': ['15.1 Pred Plzni prozil $27$ let, coz je $\\frac{3}{8}$ zivota, tedy cely zivot $72$ let. V Plzni bydli $\\frac{5}{8}\\cdot 72=45$ let - D.',
+            '15.2 Gymnazium: $84:1{,}75=48$ let. Lyceum $\\frac{2}{3}\\cdot 48=32$ let - C.',
+            '15.3 Bratr $b$, kazde dvojce $0{,}6b$. Soucet $b+2\\cdot 0{,}6b=2{,}2b=99$, tedy $b=45$ a dvojce $0{,}6\\cdot 45=27$ let - B.'],
+     'ans': '15.1: D ($45$ let); 15.2: C ($32$ let); 15.3: B ($27$ let)', 'pts': 6, 'mins': 9, 'diff': '4',
+     'codes': B + ['procenta', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7D 2025 - uloha 16', 'zad': [
+        'Hriste ma tvar obdelniku $KLMN$. Po jeho obvodu vede soutezni trasa se stanovisti $A$, $B$, $C$, $D$ (viz obrazek). Usecky $AC$ a $BD$ jsou rovnobezne se stranami hriste a vyznaceny sedy obrazec je ctverec. Usek $AKB$ soutezni trasy (ze stanoviste $A$ pres vrchol $K$ na stanoviste $B$) meri $45$ m. Usek $BLC$ meri $39$ m a posledni usek $CMD$ meri $30$ m.',
+        '16.1 Vypoctete v metrech rozdil mezi delkami usecek $BK$ a $BL$.',
+        '16.2 Vypoctete v metrech delku kratsi strany hriste.',
+        '16.3 Vypoctete v metrech obvod hriste.',
+        '16.4 Vypoctete v metrech vzdalenost stanoviste $D$ od vrcholu $N$.'],
+     'opts': None, 'ln': 4, 'svg': SVG16, 'fn': 'hriste-KLMN.svg',
+     'alt': 'Obdelnik KLMN se stanovisti A na horni strane, B na leve strane, C na dolni strane a D na prave strane; carkovane usecky AC a BD, sedy ctverec vpravo nahore.',
+     'cap': 'Hriste tvaru obdelniku KLMN se soutezni trasou',
+     'sol': ['Oznacme $|AK|=|LC|=a$ (usek $AC$ je rovnobezny se stranami), $|BK|=|MD|$ a $|BL|=|CM|$ podle stran ctverce a hriste. Ze zadani: $a+|BK|=45$, $|BL|+a=39$, $|CM|+|MD|=30$. Protoze sedy obrazec je ctverec, plati $|CM|=|MD|$ i $|AK|-|BL|$ je hrana ctverce. Reseni soustavy: $|BK|=18$ m, $|BL|=12$ m, $a=27$ m, kratsi strana $30$ m.',
+            '16.1 $|BK|-|BL|=18-12=6$ m.',
+            '16.2 Delsi strana $KN=45$ m, kratsi strana $KL=30$ m; kratsi strana meri $30$ m.',
+            '16.3 Obvod $2\\cdot(45+30)=150$ m.',
+            '16.4 $|DN|=|BK|=18$ m.'],
+     'ans': '16.1: $6$ m; 16.2: $30$ m; 16.3: $150$ m; 16.4: $18$ m', 'pts': 4, 'mins': 7, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+]
+
+if __name__ == '__main__':
+    import os, sys, json
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_cermat as gen
+    gen.CCODE = 'M7PDD25C0T04'
+    gen.YEAR = 2025
+
+    def dollars_ok(s): return s.count('$') % 2 == 0
+    errors = []; names = set()
+    for p in PROBLEMS:
+        if p['name'] in names: errors.append('DUP nazev: ' + p['name'])
+        names.add(p['name'])
+        for t in [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or []):
+            if not dollars_ok(t): errors.append('Neparovy $: ' + t[:70])
+        if p.get('svg') and ("'" in p['svg'] or '\\' in p['svg']):
+            errors.append('SVG zakazany znak: ' + p['name'])
+        if p.get('svg') and not p.get('alt'): errors.append('Obrazek bez alt: ' + p['name'])
+        for lbl, obj in (('content', gen.py_content_json(p)), ('solution', gen.py_solution_json(p)), ('answer', gen.py_answer_json(p))):
+            try: json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e: errors.append(f'JSON {lbl} {p["name"]}: {e}')
+    if errors:
+        print('CHYBY:'); [print('  -', e) for e in errors]; sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'uloh')
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    tot = 0
+    for path, sz, k in gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-cermat-M7D-2025')):
+        tot += k; print(f'{os.path.basename(path)}: {sz} B, {k} uloh [{"OK" if sz<9000 else "PRES 9KB"}]')
+    print('Celkem uloh:', tot)
