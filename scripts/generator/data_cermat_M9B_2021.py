@@ -1,0 +1,419 @@
+# -*- coding: utf-8 -*-
+# CERMAT – Jednotná přijímací zkouška 2021, MATEMATIKA 9 (čtyřleté obory), 2. řádný termín, varianta B.
+# Kód testu: M9PBD21C0T02. 16 úloh (po rozdělení izolovaných podúloh 2–5 celkem 21 úloh).
+# Zdroj odpovědí: klíč správných řešení (KSR). Záznamový arch (VZA) byl prázdný, ověřeno výpočtem.
+
+# ---------- SVG obrázky (bez apostrofů a zpětných lomítek) ----------
+
+SVG6 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 130" font-family="sans-serif">
+<text x="260" y="30" font-size="14" text-anchor="middle">4 km</text>
+<line x1="60" y1="50" x2="460" y2="50" stroke="#555" stroke-width="1"/>
+<polygon points="60,50 69,46 69,54" fill="#555"/>
+<polygon points="460,50 451,46 451,54" fill="#555"/>
+<line x1="60" y1="75" x2="460" y2="75" stroke="#000" stroke-width="2.5"/>
+<line x1="60" y1="66" x2="60" y2="84" stroke="#000" stroke-width="2"/>
+<line x1="260" y1="66" x2="260" y2="84" stroke="#000" stroke-width="2"/>
+<line x1="460" y1="66" x2="460" y2="84" stroke="#000" stroke-width="2"/>
+<text x="60" y="104" font-size="15" text-anchor="middle" font-style="italic">A</text>
+<text x="260" y="104" font-size="15" text-anchor="middle" font-style="italic">S</text>
+<text x="460" y="104" font-size="15" text-anchor="middle" font-style="italic">B</text>
+</svg>"""
+
+SVG7 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 140" font-family="sans-serif">
+<rect x="12" y="12" width="536" height="122" fill="none" stroke="#000"/>
+<line x1="78" y1="12" x2="78" y2="134" stroke="#000"/>
+<line x1="328" y1="12" x2="328" y2="134" stroke="#000"/>
+<line x1="408" y1="12" x2="408" y2="134" stroke="#000"/>
+<line x1="78" y1="40" x2="328" y2="40" stroke="#000"/>
+<line x1="128" y1="40" x2="128" y2="134" stroke="#000"/>
+<line x1="178" y1="40" x2="178" y2="134" stroke="#000"/>
+<line x1="228" y1="40" x2="228" y2="134" stroke="#000"/>
+<line x1="278" y1="40" x2="278" y2="134" stroke="#000"/>
+<line x1="12" y1="66" x2="548" y2="66" stroke="#000"/>
+<line x1="12" y1="100" x2="548" y2="100" stroke="#000"/>
+<text x="203" y="30" font-size="11" text-anchor="middle">Počet účastníků, kteří získali</text>
+<text x="103" y="57" font-size="10" text-anchor="middle">0 bodů</text>
+<text x="153" y="57" font-size="10" text-anchor="middle">1 bod</text>
+<text x="203" y="57" font-size="10" text-anchor="middle">2 body</text>
+<text x="253" y="57" font-size="10" text-anchor="middle">3 body</text>
+<text x="303" y="57" font-size="10" text-anchor="middle">4 body</text>
+<text x="368" y="35" font-size="10" text-anchor="middle">Celkový</text>
+<text x="368" y="49" font-size="10" text-anchor="middle">počet bodů</text>
+<text x="478" y="35" font-size="10" text-anchor="middle">Aritmetický průměr</text>
+<text x="478" y="49" font-size="10" text-anchor="middle">počtu bodů</text>
+<text x="18" y="87" font-size="11">Dívky</text>
+<text x="103" y="87" font-size="11" text-anchor="middle">7</text>
+<text x="203" y="87" font-size="11" text-anchor="middle">4</text>
+<text x="253" y="87" font-size="11" text-anchor="middle">0</text>
+<text x="303" y="87" font-size="11" text-anchor="middle">5</text>
+<text x="18" y="121" font-size="11">Chlapci</text>
+<text x="203" y="121" font-size="11" text-anchor="middle">5</text>
+<text x="253" y="121" font-size="11" text-anchor="middle">4</text>
+<text x="303" y="121" font-size="11" text-anchor="middle">2</text>
+<text x="368" y="121" font-size="11" text-anchor="middle">36</text>
+</svg>"""
+
+SVG8 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 350" font-family="sans-serif">
+<polygon points="340,250 300,250 300,310" fill="none" stroke="#000" stroke-width="2"/>
+<polygon points="340,250 460,250 460,70" fill="none" stroke="#000" stroke-width="2"/>
+<polyline points="300,262 312,262 312,250" fill="none" stroke="#000" stroke-width="1"/>
+<polyline points="460,238 448,238 448,250" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="340" cy="250" r="2.5" fill="#000"/>
+<text x="345" y="245" font-size="15" font-style="italic">A</text>
+<text x="278" y="244" font-size="15" font-style="italic">B₁</text>
+<text x="466" y="246" font-size="15" font-style="italic">B₂</text>
+<text x="280" y="326" font-size="15" font-style="italic">C₁</text>
+<text x="466" y="66" font-size="15" font-style="italic">C₂</text>
+<text x="258" y="286" font-size="13">4 cm</text>
+<text x="398" y="168" font-size="13">20 cm</text>
+</svg>"""
+
+SVG9 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" font-family="sans-serif">
+<line x1="120" y1="150" x2="600" y2="70" stroke="#000" stroke-width="2"/>
+<text x="608" y="72" font-size="16" font-style="italic">c</text>
+<line x1="180" y1="290" x2="600" y2="290" stroke="#000" stroke-width="2"/>
+<line x1="180" y1="282" x2="180" y2="298" stroke="#000" stroke-width="2"/>
+<line x1="470" y1="282" x2="470" y2="298" stroke="#000" stroke-width="2"/>
+<text x="176" y="315" font-size="15" font-style="italic">A</text>
+<text x="466" y="315" font-size="15" font-style="italic">X</text>
+</svg>"""
+
+SVG10 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 440" font-family="sans-serif">
+<line x1="290" y1="185" x2="310" y2="205" stroke="#000" stroke-width="2"/>
+<line x1="310" y1="185" x2="290" y2="205" stroke="#000" stroke-width="2"/>
+<text x="296" y="228" font-size="15" font-style="italic">N</text>
+<line x1="450" y1="305" x2="470" y2="325" stroke="#000" stroke-width="2"/>
+<line x1="470" y1="305" x2="450" y2="325" stroke="#000" stroke-width="2"/>
+<text x="456" y="348" font-size="15" font-style="italic">M</text>
+<line x1="170" y1="385" x2="190" y2="405" stroke="#000" stroke-width="2"/>
+<line x1="190" y1="385" x2="170" y2="405" stroke="#000" stroke-width="2"/>
+<text x="176" y="428" font-size="15" font-style="italic">A</text>
+</svg>"""
+
+SVG12 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 390" font-family="sans-serif">
+<polygon points="120,340 360,340 299,210 181,210" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="360" y1="340" x2="470" y2="340" stroke="#000" stroke-width="2"/>
+<line x1="181" y1="210" x2="105" y2="210" stroke="#000" stroke-width="2"/>
+<line x1="360" y1="340" x2="442" y2="222" stroke="#000" stroke-width="2"/>
+<line x1="299" y1="210" x2="442" y2="222" stroke="#000" stroke-width="2"/>
+<text x="106" y="356" font-size="15" font-style="italic">A</text>
+<text x="356" y="360" font-size="15" font-style="italic">B</text>
+<text x="300" y="202" font-size="15" font-style="italic">C</text>
+<text x="174" y="202" font-size="15" font-style="italic">D</text>
+<text x="450" y="222" font-size="15" font-style="italic">E</text>
+<text x="150" y="236" font-size="13">65°</text>
+<text x="376" y="328" font-size="15">φ</text>
+</svg>"""
+
+SVG13 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" font-family="sans-serif">
+<polygon points="90,250 340,250 440,205 190,205" fill="#e8e8e8" stroke="#999"/>
+<text x="265" y="245" font-size="12" text-anchor="middle" fill="#555">uválcovaný pás</text>
+<rect x="170" y="60" width="180" height="90" fill="#cfcfcf" stroke="#000"/>
+<ellipse cx="170" cy="105" rx="22" ry="45" fill="#bcbcbc" stroke="#000"/>
+<ellipse cx="350" cy="105" rx="22" ry="45" fill="#d8d8d8" stroke="#000"/>
+<line x1="392" y1="60" x2="392" y2="150" stroke="#000" stroke-width="1"/>
+<polygon points="392,60 388,70 396,70" fill="#000"/>
+<polygon points="392,150 388,140 396,140" fill="#000"/>
+<text x="400" y="110" font-size="14">0,5 m</text>
+<line x1="170" y1="172" x2="350" y2="172" stroke="#000" stroke-width="1"/>
+<polygon points="170,172 180,168 180,176" fill="#000"/>
+<polygon points="350,172 340,168 340,176" fill="#000"/>
+<text x="260" y="190" font-size="14" text-anchor="middle">0,8 m</text>
+</svg>"""
+
+SVG15 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" font-family="sans-serif">
+<line x1="40" y1="290" x2="490" y2="290" stroke="#999" stroke-width="1"/>
+<line x1="110" y1="170" x2="110" y2="290" stroke="#000" stroke-width="3"/>
+<line x1="300" y1="205" x2="300" y2="290" stroke="#000" stroke-width="3"/>
+<line x1="440" y1="110" x2="440" y2="290" stroke="#000" stroke-width="3"/>
+<line x1="110" y1="170" x2="300" y2="205" stroke="#000" stroke-width="1.5"/>
+<line x1="300" y1="205" x2="440" y2="110" stroke="#000" stroke-width="1.5"/>
+<line x1="110" y1="170" x2="440" y2="110" stroke="#000" stroke-width="1.5"/>
+<text x="98" y="162" font-size="15" font-weight="bold">A</text>
+<text x="292" y="226" font-size="15" font-weight="bold">B</text>
+<text x="448" y="104" font-size="15" font-weight="bold">C</text>
+<text x="188" y="205" font-size="13">20 m</text>
+<text x="252" y="138" font-size="13">36 m</text>
+</svg>"""
+
+SVG16 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 210" font-family="sans-serif">
+<text x="105" y="30" font-size="13" text-anchor="middle">1. čtverec</text>
+<text x="255" y="30" font-size="13" text-anchor="middle">2. čtverec</text>
+<text x="410" y="30" font-size="13" text-anchor="middle">3. čtverec</text>
+<rect x="60" y="45" width="90" height="90" fill="none" stroke="#000" stroke-width="2"/>
+<rect x="210" y="45" width="90" height="90" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="255" y1="45" x2="255" y2="135" stroke="#000" stroke-width="1.5"/>
+<rect x="365" y="45" width="90" height="90" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="395" y1="45" x2="395" y2="135" stroke="#000" stroke-width="1.5"/>
+<line x1="425" y1="45" x2="425" y2="135" stroke="#000" stroke-width="1.5"/>
+<text x="490" y="98" font-size="22">…</text>
+<line x1="210" y1="150" x2="300" y2="150" stroke="#000" stroke-width="1"/>
+<line x1="210" y1="146" x2="210" y2="154" stroke="#000" stroke-width="1"/>
+<line x1="300" y1="146" x2="300" y2="154" stroke="#000" stroke-width="1"/>
+<text x="255" y="170" font-size="13" text-anchor="middle">20 cm</text>
+</svg>"""
+
+# ---------- Úlohy ----------
+
+B = ['zs2', 'r9']
+
+PROBLEMS = [
+    {'name': 'CERMAT M9B 2021 – úloha 1',
+     'zad': ['Vypočtěte: $\\sqrt{\\frac{16}{0{,}1}+9}=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$\\frac{16}{0{,}1}=160$, tedy $\\sqrt{160+9}=\\sqrt{169}=13$.'],
+     'ans': '$13$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 2.1',
+     'zad': ['Vypočtěte, kolikrát více je polovina z 240 minut než dvě třetiny z 1 hodiny.'],
+     'opts': None, 'ln': 2,
+     'sol': ['Polovina z 240 minut je 120 minut. Dvě třetiny z 1 hodiny (60 minut) jsou 40 minut. Podíl $120:40=3$.'],
+     'ans': '$3$krát', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 2.2',
+     'zad': ['Čtyřúhelník lze rozdělit na dva rovnoramenné trojúhelníky o obsahu $S_1=1\\,200$ cm² a $S_2=0{,}2$ m², nebo na dva shodné trojúhelníky, každý o obsahu $S_3$.',
+             'Vypočtěte v dm² obsah $S_3$.'],
+     'opts': None, 'ln': 2,
+     'sol': ['Obsah čtyřúhelníku je $S_1+S_2$. Protože $0{,}2$ m² $=2\\,000$ cm², je celkový obsah $1\\,200+2\\,000=3\\,200$ cm². Dva shodné trojúhelníky mají každý $S_3=1\\,600$ cm² $=16$ dm².'],
+     'ans': '$16$ dm²', 'pts': 1, 'mins': 3, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 3.1',
+     'zad': ['Vypočtěte a výsledek zapište zlomkem v základním tvaru.',
+             '$\\frac{2-\\frac{4}{7}}{3-\\frac{13}{21}}=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Čitatel: $2-\\frac{4}{7}=\\frac{14-4}{7}=\\frac{10}{7}$. Jmenovatel: $3-\\frac{13}{21}=\\frac{63-13}{21}=\\frac{50}{21}$. Podíl: $\\frac{10}{7}:\\frac{50}{21}=\\frac{10}{7}\\cdot\\frac{21}{50}=\\frac{3}{5}$.'],
+     'ans': '$\\frac{3}{5}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 3.2',
+     'zad': ['Vypočtěte a výsledek zapište zlomkem v základním tvaru.',
+             '$\\left(\\frac{3}{8}-\\frac{2}{5}\\right)\\cdot 5-\\frac{3}{4}=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$\\frac{3}{8}-\\frac{2}{5}=\\frac{15-16}{40}=-\\frac{1}{40}$. Dále $-\\frac{1}{40}\\cdot 5=-\\frac{1}{8}$ a $-\\frac{1}{8}-\\frac{3}{4}=-\\frac{1}{8}-\\frac{6}{8}=-\\frac{7}{8}$.'],
+     'ans': '$-\\frac{7}{8}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 4.1',
+     'zad': ['Zjednodušte (výsledný výraz nesmí obsahovat závorky).',
+             '$(2-x)\\cdot 3x-2x=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$(2-x)\\cdot 3x-2x=6x-3x^2-2x=4x-3x^2$.'],
+     'ans': '$4x-3x^2$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 4.2',
+     'zad': ['Umocněte a zjednodušte (výsledný výraz nesmí obsahovat závorky).',
+             '$\\left(y-\\frac{1}{2}\\right)^2=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$\\left(y-\\frac{1}{2}\\right)^2=y^2-2\\cdot y\\cdot\\frac{1}{2}+\\frac{1}{4}=y^2-y+\\frac{1}{4}$.'],
+     'ans': '$y^2-y+\\frac{1}{4}$', 'pts': 1, 'mins': 2, 'diff': '3',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 4.3',
+     'zad': ['Zjednodušte a rozložte podle vzorce (výsledný výraz uveďte ve tvaru součinu).',
+             '$5^2-(a^2+16)=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$5^2-(a^2+16)=25-a^2-16=9-a^2=3^2-a^2=(3-a)(3+a)$.'],
+     'ans': '$(3-a)(3+a)$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 5.1',
+     'zad': ['Řešte rovnici:',
+             '$2x\\cdot(3{,}2-2{,}3)=2x-(3{,}2-2{,}3)$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$3{,}2-2{,}3=0{,}9$, tedy $1{,}8x=2x-0{,}9$. Odtud $-0{,}2x=-0{,}9$ a $x=4{,}5$.'],
+     'ans': '$x=4{,}5$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 5.2',
+     'zad': ['Řešte rovnici:',
+             '$\\frac{y+3}{3}+\\frac{3}{8}\\cdot(y+1)=\\frac{2y-1}{4}+1$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Rovnici vynásobíme $24$: $8(y+3)+9(y+1)=6(2y-1)+24$. Po úpravě $17y+33=12y+18$, tedy $5y=-15$ a $y=-3$.'],
+     'ans': '$y=-3$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 6',
+     'zad': ['Přímá trasa z místa $A$ do místa $B$ měří $4$ km. Přesně v polovině této trasy je místo $S$. Z místa $A$ vystartovali současně 3 kamarádi a za stejný čas zdolali na této trase úseky různých délek. Každý z kamarádů se pohyboval stálou rychlostí.',
+             'Soňa došla pěšky pouze do místa $S$ ($A\\to S$).',
+             'Barbora doběhla až do místa $B$ ($A\\to S\\to B$).',
+             'Karel na kole dojel nejprve do místa $B$, pak se vrátil zpět do $A$ a nakonec zamířil do místa $S$, kam dorazil ve stejném okamžiku jako Soňa ($A\\to S\\to B\\to S\\to A\\to S$).',
+             'Vypočtěte:',
+             '6.1 kolikrát větší byla rychlost Karla než rychlost Barbory,',
+             '6.2 kolik km od místa $A$ byl vzdálen Karel v okamžiku, kdy Barbora míjela místo $S$,',
+             '6.3 kolik m od sebe byli vzdáleni Karel s Barborou v okamžiku, kdy Soňa urazila prvních $400$ m.'],
+     'opts': None, 'ln': 4, 'svg': SVG6, 'fn': 'trasa-ASB.svg',
+     'alt': 'Číselná osa s body A, S, B; S je střed úsečky AB dlouhé 4 km.',
+     'cap': 'Trasa A–S–B (S je střed)',
+     'sol': ['Za stejný čas urazí: Soňa $2$ km, Barbora $4$ km, Karel $2+2+2+2+2=10$ km.',
+             '6.1 Rychlost Karla je $10:4=2{,}5$krát větší než rychlost Barbory.',
+             '6.2 Když Barbora míjí $S$, urazila $2$ km, tj. polovinu své trasy; za stejný čas urazí Karel polovinu své trasy, tedy $5$ km. Karel je pak $1$ km za bodem $B$ na cestě zpět, tj. $3$ km od $A$.',
+             '6.3 Když Soňa urazí $400$ m (pětinu své trasy), urazí Barbora $800$ m a Karel $2\\,000$ m, tj. je právě v místě $S$. Vzdálenost Karla a Barbory je $2\\,000-800=1\\,200$ m.'],
+     'ans': '6.1: $2{,}5$krát; 6.2: $3$ km; 6.3: $1\\,200$ m', 'pts': 3, 'mins': 6, 'diff': '4',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 7',
+     'zad': ['Každý účastník soutěže mohl získat 0, 1, 2, 3, nebo 4 body. Výsledky jsou v tabulce, některá pole nejsou vyplněna (viz obrázek).',
+             '7.1 Dívek, které získaly pouze 1 bod, bylo dvakrát více než dívek bez bodu. Vypočtěte průměrný bodový zisk dívek.',
+             '7.2 Chlapců, kteří získali pouze 1 bod, bylo dvakrát více než chlapců bez bodu. Všichni chlapci dohromady získali v soutěži 36 bodů. Vypočtěte průměrný bodový zisk chlapců.'],
+     'opts': None, 'ln': 4, 'svg': SVG7, 'fn': 'tabulka-soutez.svg',
+     'alt': 'Tabulka počtu účastníků podle získaných bodů; u dívek chybí počet s 1 bodem, u chlapců počet bez bodu a s 1 bodem.',
+     'cap': 'Výsledky soutěže (chybějící pole)',
+     'sol': ['7.1 Dívek bez bodu je $7$, s $1$ bodem tedy $14$. Počet dívek $7+14+4+0+5=30$, celkem bodů $14\\cdot1+4\\cdot2+0\\cdot3+5\\cdot4=42$. Průměr $42:30=1{,}4$ bodu.',
+             '7.2 Chlapců bez bodu je $c$, s $1$ bodem $2c$. Body: $2c+5\\cdot2+4\\cdot3+2\\cdot4=2c+30=36$, tedy $c=3$. Počet chlapců $3+6+5+4+2=20$, průměr $36:20=1{,}8$ bodu.'],
+     'ans': '7.1: $1{,}4$ bodu; 7.2: $1{,}8$ bodu', 'pts': 3, 'mins': 5, 'diff': '3',
+     'codes': B + ['statistika', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 8',
+     'zad': ['Trojúhelníky $AB_1C_1$ a $AB_2C_2$ jsou pravoúhlé. Společný vrchol $A$ dělí úsečky $B_1B_2$ a $C_1C_2$ ve stejném poměru $|AB_1|:|AB_2|=|AC_1|:|AC_2|=1:3$. Úsečka $C_1C_2$ měří $20$ cm, odvěsna $B_1C_1$ měří $4$ cm (viz obrázek).',
+             'Vypočtěte',
+             '8.1 v cm délku přepony $AC_1$ menšího trojúhelníku,',
+             '8.2 v cm obvod menšího trojúhelníku $AB_1C_1$,',
+             '8.3 v cm² obsah většího trojúhelníku $AB_2C_2$.'],
+     'opts': None, 'ln': 3, 'svg': SVG8, 'fn': 'trojuhelniky-A.svg',
+     'alt': 'Dva pravoúhlé trojúhelníky se společným vrcholem A, menší AB1C1 a větší AB2C2, poměr 1:3.',
+     'cap': 'Pravoúhlé trojúhelníky se společným vrcholem A',
+     'sol': ['Bod $A$ dělí $C_1C_2$ v poměru $1:3$, takže $AC_1=\\frac{1}{4}\\cdot 20=5$ cm a $AC_2=15$ cm.',
+             '8.1 Přepona $AC_1=5$ cm.',
+             '8.2 Odvěsny menšího trojúhelníku: $B_1C_1=4$ cm a $AB_1=\\sqrt{5^2-4^2}=3$ cm. Obvod $3+4+5=12$ cm.',
+             '8.3 Větší trojúhelník je zvětšením v poměru $3$: $AB_2=9$ cm, $B_2C_2=12$ cm, obsah $\\frac{1}{2}\\cdot 9\\cdot 12=54$ cm².'],
+     'ans': '8.1: $5$ cm; 8.2: $12$ cm; 8.3: $54$ cm²', 'pts': 3, 'mins': 5, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 9',
+     'zad': ['V rovině leží přímka $c$ a polopřímka $AX$ (viz obrázek).',
+             'Bod $A$ je vrchol rovnoramenného pravoúhlého trojúhelníku $ABC$. Vrchol $B$ leží na polopřímce $AX$, vrchol $C$ na přímce $c$. Pravý úhel je buď při vrcholu $A$, nebo při vrcholu $B$.',
+             'Sestrojte trojúhelník $ABC$ s pravým úhlem při vrcholu',
+             '9.1 $A$,',
+             '9.2 $B$,',
+             'a vrcholy $B$, $C$ označte písmeny.'],
+     'opts': None, 'ln': 0, 'svg': SVG9, 'fn': 'primka-c-AX.svg',
+     'alt': 'Šikmá přímka c a vodorovná polopřímka AX s vyznačenými body A a X.',
+     'cap': 'Výchozí obrázek k úloze 9',
+     'sol': ['9.1 (pravý úhel u $A$): kolmice k polopřímce $AX$ v bodě $A$ protne přímku $c$ ve vrcholu $C_1$; na polopřímku $AX$ naneseme $|AB_1|=|AC_1|$, čímž dostaneme vrchol $B_1$.',
+             '9.2 (pravý úhel u $B$): rameno $BC$ je kolmé k $AX$ a $|BC|=|AB|$, proto je úhel při vrcholu $A$ roven $45^\\circ$. Polopřímka z $A$ svírající s $AX$ úhel $45^\\circ$ protne přímku $c$ ve vrcholu $C_2$; pata kolmice z $C_2$ na $AX$ je vrchol $B_2$.'],
+     'ans': 'Dvě řešení: trojúhelník $AB_1C_1$ s pravým úhlem u $A$ ($C_1$ na kolmici k $AX$ v bodě $A$, $|AB_1|=|AC_1|$) a trojúhelník $AB_2C_2$ s pravým úhlem u $B_2$ ($C_2$ na polopřímce z $A$ pod úhlem $45^\\circ$, $B_2$ pata kolmice z $C_2$) – viz obrázek v klíči.',
+     'pts': 3, 'mins': 6, 'diff': '4',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 10',
+     'zad': ['V rovině leží tři různé body $A$, $M$, $N$ (viz obrázek).',
+             'Bod $A$ je vrchol rovnoběžníku $ABCD$. Bod $M$ leží uvnitř strany $AB$, bod $N$ uvnitř strany $AD$ a výška na stranu $AB$ měří $5$ cm. Vrchol $D$ má od vrcholů $A$ i $B$ stejnou vzdálenost, tedy $|BD|=|AD|$.',
+             'Sestrojte vrcholy $B$, $C$, $D$ rovnoběžníku $ABCD$, označte je písmeny a rovnoběžník narýsujte.'],
+     'opts': None, 'ln': 0, 'svg': SVG10, 'fn': 'body-AMN.svg',
+     'alt': 'Tři body A, M, N vyznačené křížky; A vlevo dole, N nahoře, M vpravo uprostřed.',
+     'cap': 'Výchozí obrázek k úloze 10',
+     'sol': ['Přímka strany $AB$ prochází body $A$, $M$; přímka strany $AD$ prochází body $A$, $N$. Vrchol $D$ je průsečík polopřímky $AN$ s rovnoběžkou s přímkou $AB$ vzdálenou $5$ cm (výška na $AB$); tím je dána délka $|AD|$. Vrchol $B$ leží na polopřímce $AM$ ve vzdálenosti $|BD|=|AD|$ od $D$ (druhý průsečík kružnice se středem $D$ a poloměrem $|AD|$ s přímkou $AB$). Vrchol $C$ doplníme tak, aby $ABCD$ byl rovnoběžník ($|BC|=|AD|$, $BC\\parallel AD$).'],
+     'ans': 'Konstrukce rovnoběžníku $ABCD$: $D$ je průsečík polopřímky $AN$ s rovnoběžkou s $AB$ ve vzdálenosti $5$ cm, $B$ leží na polopřímce $AM$ tak, že $|BD|=|AD|$, vrchol $C$ doplňuje rovnoběžník – viz obrázek v klíči.',
+     'pts': 3, 'mins': 6, 'diff': '4',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 11',
+     'zad': ['V knihovně je $480$ knih psaných česky, zbývajících $40\\,\\%$ knih je cizojazyčných. Z cizojazyčných knih je jedna osmina psána německy a ostatní anglicky.',
+             'Rozhodněte o každém z následujících tvrzení (11.1–11.3), zda je pravdivé (A), či nikoli (N).',
+             '11.1 V knihovně je méně než $300$ cizojazyčných knih.',
+             '11.2 V knihovně tvoří německy psané knihy $5\\,\\%$ všech knih.',
+             '11.3 V knihovně je $280$ knih psaných anglicky.'],
+     'opts': None, 'ln': 0,
+     'sol': ['České knihy tvoří $60\\,\\%$, tedy $480$ knih $=60\\,\\%$ a všech knih je $480:0{,}6=800$. Cizojazyčných je $40\\,\\%$, tj. $320$; z nich německy $320:8=40$ a anglicky $320-40=280$.',
+             '11.1 Cizojazyčných je $320$, což není méně než $300$ → N.',
+             '11.2 Německy: $\\frac{40}{800}=5\\,\\%$ → A.',
+             '11.3 Anglicky psaných je $280$ → A.'],
+     'ans': '11.1: N; 11.2: A; 11.3: A', 'pts': 4, 'mins': 5, 'diff': '3',
+     'codes': B + ['procenta', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 12',
+     'zad': ['V rovině leží rovnoramenný lichoběžník $ABCD$ se základnou $AB$, rovnostranný trojúhelník $BEC$ a polopřímky $AB$, $CD$. Úhel vyznačený na obrázku při vrcholu $D$ (mezi polopřímkou $CD$ a ramenem $DA$) měří $65^\\circ$.',
+             'Jaká je velikost úhlu $\\varphi$? Velikosti úhlů neměřte, ale vypočtěte.'],
+     'opts': ['A) menší než $45^\\circ$', 'B) $45^\\circ$', 'C) $50^\\circ$', 'D) $55^\\circ$', 'E) větší než $55^\\circ$'],
+     'ln': 0, 'svg': SVG12, 'fn': 'lichobeznik-BEC.svg',
+     'alt': 'Rovnoramenný lichoběžník ABCD se základnou AB, na straně BC rovnostranný trojúhelník BEC; u D úhel 65°, u B úhel fí.',
+     'cap': 'Lichoběžník ABCD s rovnostranným trojúhelníkem BEC',
+     'sol': ['Vyznačený úhel $65^\\circ$ je vedlejší k vnitřnímu úhlu lichoběžníku při vrcholu $D$, proto úhel při základně (u vrcholů $A$ a $B$) je $65^\\circ$. Polopřímka $AB$ svírá s ramenem $BC$ úhel $180^\\circ-65^\\circ=115^\\circ$. Trojúhelník $BEC$ je rovnostranný, takže úhel $CBE=60^\\circ$. Odtud $\\varphi=115^\\circ-60^\\circ=55^\\circ$.'],
+     'ans': 'D) $55^\\circ$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 13',
+     'zad': ['Válcovací stroj se pohyboval přímo vpřed. Jeho přední rotační válec vykonal při tomto pohybu $200$ otáček (bez prokluzu). Válec má průměr podstavy $0{,}5$ m a zanechává za sebou uválcovaný pás široký $0{,}8$ m. (Jedna otáčka je otočení o $360^\\circ$.)',
+             'Kolik m² uválcoval přední rotační válec? Výsledek je zaokrouhlen na celé m². Za $\\pi$ lze dosadit $3{,}14$.'],
+     'opts': ['A) méně než $250$ m²', 'B) $251$ m²', 'C) $314$ m²', 'D) $331$ m²', 'E) více než $332$ m²'],
+     'ln': 0, 'svg': SVG13, 'fn': 'valec.svg',
+     'alt': 'Schematický rotační válec s vyznačeným průměrem podstavy 0,5 m a šířkou uválcovaného pásu 0,8 m.',
+     'cap': 'Rotační válec (schematicky)',
+     'sol': ['Za jednu otáčku válec ujede délku svého obvodu $\\pi\\cdot 0{,}5=3{,}14\\cdot 0{,}5=1{,}57$ m a uválcuje pás šířky $0{,}8$ m, tj. plochu $1{,}57\\cdot 0{,}8=1{,}256$ m². Za $200$ otáček je to $200\\cdot 1{,}256=251{,}2$ m², po zaokrouhlení $251$ m².'],
+     'ans': 'B) $251$ m²', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['planimetrie', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 14',
+     'zad': ['Ve třídě 9. A je počet dívek o $4$ větší než počet chlapců. Na exkurzi se přihlásila čtvrtina dívek a polovina chlapců. Mezi přihlášenými žáky 9. A bylo dívek o $2$ méně než chlapců. Neznámou $d$ je označen počet dívek 9. A.',
+             'Ze které rovnice lze v souladu se zadáním určit počet dívek třídy 9. A?'],
+     'opts': ['A) $\\frac{d}{2}-2=\\frac{d+4}{4}$', 'B) $\\frac{d}{2}+2=\\frac{d-4}{4}$', 'C) $\\frac{d}{4}-2=\\frac{d+4}{2}$', 'D) $\\frac{d}{4}+2=\\frac{d-4}{2}$', 'E) $\\frac{d}{4}+2=\\frac{d+4}{2}$'],
+     'ln': 0,
+     'sol': ['Počet chlapců je $d-4$. Přihlášených dívek je $\\frac{d}{4}$, přihlášených chlapců $\\frac{d-4}{2}$. Přihlášených dívek je o $2$ méně než chlapců: $\\frac{d}{4}=\\frac{d-4}{2}-2$, tedy $\\frac{d}{4}+2=\\frac{d-4}{2}$.'],
+     'ans': 'D) $\\frac{d}{4}+2=\\frac{d-4}{2}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['rovnice', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 15',
+     'zad': ['Mezi třemi sloupy $A$, $B$, $C$ jsou uchycena lana. Délka lana uchyceného mezi dvěma sloupy je vždy o $20\\,\\%$ větší než vzdálenost těchto sloupů. Vzdálenost sloupů $A$, $B$ je $20$ m, délka lana mezi sloupy $A$, $C$ je $36$ m a vzdálenost sloupů $B$, $C$ je o $20\\,\\%$ menší než vzdálenost sloupů $A$, $B$ (viz obrázek).',
+             'Přiřaďte ke každé otázce (15.1–15.3) správnou odpověď (A–F).',
+             '15.1 Jaká je délka lana mezi sloupy $A$, $B$?',
+             '15.2 Jaká je vzdálenost sloupů $A$, $C$?',
+             '15.3 Jaká je délka lana mezi sloupy $B$, $C$?'],
+     'opts': ['A) $19{,}2$ m', 'B) $20$ m', 'C) $24$ m', 'D) $28{,}8$ m', 'E) $30$ m', 'F) jiná'],
+     'ln': 0, 'svg': SVG15, 'fn': 'sloupy-lana.svg',
+     'alt': 'Tři sloupy A, B, C spojené lany; vyznačena vzdálenost A–B 20 m a délka lana A–C 36 m.',
+     'cap': 'Sloupy A, B, C s lany',
+     'sol': ['15.1 Lano $AB$ je o $20\\,\\%$ delší než vzdálenost $20$ m: $20\\cdot 1{,}2=24$ m → C.',
+             '15.2 Lano $AC$ měří $36$ m a je o $20\\,\\%$ delší než vzdálenost $AC$: vzdálenost $=36:1{,}2=30$ m → E.',
+             '15.3 Vzdálenost $BC=20\\cdot 0{,}8=16$ m, lano $BC=16\\cdot 1{,}2=19{,}2$ m → A.'],
+     'ans': '15.1: C ($24$ m); 15.2: E ($30$ m); 15.3: A ($19{,}2$ m)', 'pts': 6, 'mins': 6, 'diff': '3',
+     'codes': B + ['procenta', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9B 2021 – úloha 16',
+     'zad': ['První čtverec má obvod $60$ cm. Každý další čtverec je sestaven z několika shodných obdélníků, z nichž každý má obvod $60$ cm. Druhý čtverec je sestaven ze dvou shodných obdélníků, třetí ze tří shodných (užších) obdélníků, čtvrtý ze čtyř atd. (viz obrázek).',
+             '16.1 Vypočtěte v cm délku strany třetího čtverce.',
+             '16.2 Vypočtěte v cm obvod devátého čtverce.',
+             '16.3 Určete, kolikátý čtverec má stranu délky $28$ cm.'],
+     'opts': None, 'ln': 4, 'svg': SVG16, 'fn': 'ctverce-obdelniky.svg',
+     'alt': 'První, druhý a třetí čtverec; druhý rozdělený na dva svislé obdélníky, třetí na tři, dále tři tečky.',
+     'cap': '1., 2. a 3. čtverec',
+     'sol': ['$n$-tý čtverec je složen z $n$ svislých obdélníků o výšce rovné straně $s_n$ a šířce $\\frac{s_n}{n}$. Obvod obdélníku $2\\left(s_n+\\frac{s_n}{n}\\right)=60$, odtud $s_n=\\frac{30n}{n+1}$. (Pro $n=1$ vyjde $s_1=15$ cm, obvod $60$ cm.)',
+             '16.1 $s_3=\\frac{30\\cdot 3}{4}=22{,}5$ cm.',
+             '16.2 $s_9=\\frac{30\\cdot 9}{10}=27$ cm, obvod $4\\cdot 27=108$ cm.',
+             '16.3 $\\frac{30n}{n+1}=28\\Rightarrow 30n=28n+28\\Rightarrow n=14$; stranu $28$ cm má 14. čtverec.'],
+     'ans': '16.1: $22{,}5$ cm; 16.2: $108$ cm; 16.3: 14. čtverec', 'pts': 4, 'mins': 6, 'diff': '4',
+     'codes': B + ['posloupnosti', 'modelovani', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+]
+
+if __name__ == '__main__':
+    import os, sys, json
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_cermat as gen
+    gen.CCODE = 'M9PBD21C0T02'
+    gen.YEAR = 2021
+
+    def dollars_ok(s): return s.count('$') % 2 == 0
+    errors = []; names = set()
+    for p in PROBLEMS:
+        if p['name'] in names: errors.append('DUP název: ' + p['name'])
+        names.add(p['name'])
+        for t in [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or []):
+            if not dollars_ok(t): errors.append('Nepárový $: ' + t[:70])
+        if p.get('svg') and ("'" in p['svg'] or '\\' in p['svg']):
+            errors.append('SVG zakázaný znak: ' + p['name'])
+        if p.get('svg') and not p.get('alt'): errors.append('Obrázek bez alt: ' + p['name'])
+        for lbl, obj in (('content', gen.py_content_json(p)), ('solution', gen.py_solution_json(p)), ('answer', gen.py_answer_json(p))):
+            try: json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e: errors.append(f'JSON {lbl} {p["name"]}: {e}')
+    if errors:
+        print('CHYBY:'); [print('  -', e) for e in errors]; sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'úloh')
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    tot = 0
+    for path, sz, k in gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-cermat-M9B-2021')):
+        tot += k; print(f'{os.path.basename(path)}: {sz} B, {k} úloh [{"OK" if sz<9000 else "PŘES 9KB"}]')
+    print('Celkem úloh:', tot)
