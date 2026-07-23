@@ -80,7 +80,7 @@ je odpověď spojena středníkem.
 ## Obsah — CERMAT (jednotná přijímací zkouška)
 
 Zdroj: `prijimacky.cermat.cz`. Soubory v `scripts/apex/cermat/`.
-Celkem **1430 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T01–T04):
+Celkem **1651 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T01–T04):
 - **2026** a **2025**: viz tabulky níže (M5 130, M7 137, M9 čtyřleté 163, M9 nanečisto 42)
 - **2024**: M5 72 + M7 74 + M9 80 = 226 (`import-cermat-M{5,7,9}{A..D}-2024-*`)
 - **2023**: M5 71 + M7 71 + M9 86 = 228 (`import-cermat-M{5,7,9}{A..D}-2023-*`)
@@ -88,6 +88,7 @@ Celkem **1430 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T0
 - **2021**: M5 68 + M7 73 + M9 83 = 224 (`import-cermat-M{5,7,9}{A..D}-2021-*`)
 - **2020**: M5 16 + M7 19 + M9 21 = 56 (jen 1 řádný termín „A" kvůli covidu; `import-cermat-M{5,7,9}A-2020-*`)
 - **2019**: M5 34 + M7 34 + M9 42 = 110 (1.+2. řádný termín = varianty A/B; `import-cermat-M{5,7,9}{A,B}-2019-*`)
+- **2018**: M5 35 + M7 32 + M9 44 = 111 (1.+2. řádný termín = varianty A/B; `import-cermat-M{5,7,9}{A,B}-2018-*`)
 
 ### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 
@@ -153,6 +154,6 @@ Regenerace: `python3 scripts/generator/data_cermat_M5A_2026.py` (analogicky B/C/
 do SVG — mají schematickou poznámku a odpověď z klíče; grafy/plánky/mřížky u některých úloh jsou
 schematické (přesné hodnoty z klíče). Konstrukce (7) mají odpověď jako slovní popis.
 
-**Zpracované ročníky:** 2019–2026 (2021–2026 varianty A–D; 2019 řádné termíny A/B; 2020 jen „A") + M9 nanečisto 2025/2026.
-**Starší ročníky (2015–2018)** jsou na webu CERMATu k dispozici (často jen 1–2 varianty
-a některé jsou skenované) — zatím nezpracovány.
+**Zpracované ročníky:** 2018–2026 (2021–2026 varianty A–D; 2018+2019 řádné termíny A/B; 2020 jen „A") + M9 nanečisto 2025/2026.
+Ročníky 2018–2019 jsou na webu CERMATu skenované (bez textové vrstvy) — přepsány vizuálně z renderů PDF.
+**Starší ročníky (2015–2017)** jsou na webu CERMATu k dispozici (skenované, často jen 1–2 varianty) — zatím nezpracovány.

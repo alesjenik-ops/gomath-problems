@@ -1,0 +1,374 @@
+# -*- coding: utf-8 -*-
+# CERMAT – Jednotná přijímací zkouška 2018, MATEMATIKA 9 (čtyřleté obory, 9. ročník),
+# varianta B, 2. řádný termín. Kód testu: M9PBD18C0T02.
+# 16 úloh (po rozdělení izolovaných podúloh 22 záznamů). Součet bodů = 50.
+# Zdroj odpovědí: klíč správných řešení (KSR) + záznamový arch (VZA).
+
+# ---- SVG obrázky (bez ' a \) ----
+SVG6 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" font-family="sans-serif">
+<circle cx="90" cy="220" r="4" fill="#000"/><text x="52" y="238" font-size="14">Start</text>
+<circle cx="560" cy="180" r="4" fill="#000"/><text x="574" y="176" font-size="14">Cíl</text>
+<path d="M90,220 C180,55 460,55 560,180" fill="none" stroke="#000" stroke-width="2.5"/>
+<circle cx="185" cy="140" r="13" fill="#fff" stroke="#000"/><text x="185" y="145" font-size="13" text-anchor="middle">A</text>
+<text x="320" y="80" font-size="13" text-anchor="middle">1 500 m</text>
+<line x1="90" y1="220" x2="560" y2="180" stroke="#000" stroke-width="2.5" stroke-dasharray="2 5"/>
+<circle cx="255" cy="207" r="13" fill="#fff" stroke="#000"/><text x="255" y="212" font-size="13" text-anchor="middle">B</text>
+<text x="370" y="192" font-size="13" text-anchor="middle">600 m</text>
+<path d="M90,220 C120,285 150,282 178,268" fill="none" stroke="#000" stroke-width="2.5" stroke-dasharray="2 5"/>
+<text x="112" y="300" font-size="12">90 m</text>
+<path d="M178,268 C300,320 470,300 545,213" fill="none" stroke="#000" stroke-width="2.5"/>
+<circle cx="305" cy="272" r="13" fill="#fff" stroke="#000"/><text x="305" y="277" font-size="13" text-anchor="middle">C</text>
+<text x="380" y="305" font-size="12" text-anchor="middle">? m</text>
+<path d="M545,213 C551,203 556,193 560,180" fill="none" stroke="#000" stroke-width="2.5" stroke-dasharray="2 5"/>
+<text x="500" y="233" font-size="12">60 m</text>
+<line x1="428" y1="320" x2="468" y2="320" stroke="#000" stroke-width="2.5" stroke-dasharray="2 5"/><text x="474" y="324" font-size="12">Pěšky</text>
+<line x1="428" y1="335" x2="468" y2="335" stroke="#000" stroke-width="2.5"/><text x="474" y="339" font-size="12">Na koloběžce</text>
+</svg>"""
+
+SVG7 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 0 550 340" font-family="sans-serif">
+<polygon points="120,300 360,300 280,180" fill="none" stroke="#000" stroke-width="2"/>
+<polygon points="360,300 280,180 400,100 480,220" fill="none" stroke="#000" stroke-width="1.6"/>
+<polygon points="120,300 280,180 160,20 0,140" fill="none" stroke="#000" stroke-width="1.6"/>
+<line x1="280" y1="180" x2="280" y2="300" stroke="#000" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="280" y="288" width="12" height="12" fill="none" stroke="#000" stroke-width="1"/>
+<text x="292" y="250" font-size="13">3 cm</text>
+<text x="384" y="165" font-size="13">25 cm²</text>
+<text x="108" y="316" font-size="14" font-style="italic">A</text>
+<text x="360" y="316" font-size="14" font-style="italic">B</text>
+<text x="272" y="172" font-size="14" font-style="italic">C</text>
+<text x="276" y="316" font-size="14" font-style="italic">P</text>
+</svg>"""
+
+SVG91 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 330" font-family="sans-serif">
+<polygon points="80,90 300,300 300,90" fill="none" stroke="#000" stroke-width="2"/>
+<rect x="284" y="90" width="16" height="16" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="300" y1="90" x2="195" y2="200" stroke="#000" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="182" y="80" font-size="14" font-style="italic">va</text>
+<text x="305" y="200" font-size="14" font-style="italic">vb</text>
+<text x="236" y="135" font-size="14" font-style="italic">vc</text>
+<text x="62" y="88" font-size="14" font-style="italic">A</text>
+<text x="304" y="312" font-size="14" font-style="italic">B</text>
+<text x="304" y="84" font-size="14" font-style="italic">C</text>
+</svg>"""
+
+SVG92 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 260" font-family="sans-serif">
+<line x1="40" y1="220" x2="400" y2="220" stroke="#000" stroke-width="2"/>
+<line x1="80" y1="210" x2="80" y2="230" stroke="#000" stroke-width="2"/>
+<line x1="360" y1="210" x2="360" y2="230" stroke="#000" stroke-width="2"/>
+<text x="220" y="152" font-size="16" text-anchor="middle">×</text>
+<text x="74" y="245" font-size="14" font-style="italic">A</text>
+<text x="356" y="245" font-size="14" font-style="italic">B</text>
+<text x="228" y="150" font-size="14" font-style="italic">M</text>
+</svg>"""
+
+SVG10 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 410" font-family="sans-serif">
+<line x1="320" y1="360" x2="120" y2="105" stroke="#000" stroke-width="2"/>
+<line x1="200" y1="187" x2="212" y2="173" stroke="#000" stroke-width="2"/>
+<line x1="400" y1="110" x2="452" y2="380" stroke="#000" stroke-width="2"/>
+<text x="322" y="378" font-size="14" font-style="italic">A</text>
+<text x="184" y="182" font-size="14" font-style="italic">X</text>
+<text x="458" y="392" font-size="14" font-style="italic">o</text>
+</svg>"""
+
+SVG11 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 470" font-family="sans-serif">
+<circle cx="250" cy="230" r="140" fill="none" stroke="#000" stroke-width="1.5"/>
+<polygon points="151,329 349,329 349,131 151,131" fill="none" stroke="#000" stroke-width="2"/>
+<polygon points="151,131 349,329 349,230 250,131" fill="#bdbdbd" stroke="#000" stroke-width="1.6"/>
+<text x="136" y="345" font-size="14" font-style="italic">A</text>
+<text x="354" y="345" font-size="14" font-style="italic">B</text>
+<text x="354" y="128" font-size="14" font-style="italic">C</text>
+<text x="134" y="128" font-size="14" font-style="italic">D</text>
+<text x="358" y="235" font-size="14" font-style="italic">E</text>
+<text x="246" y="122" font-size="14" font-style="italic">F</text>
+<text x="96" y="234" font-size="14" font-style="italic">k</text>
+</svg>"""
+
+SVG12 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 360" font-family="sans-serif">
+<line x1="70" y1="110" x2="430" y2="110" stroke="#000" stroke-width="1.4"/>
+<line x1="60" y1="180" x2="122" y2="180" stroke="#000" stroke-width="1.4"/>
+<line x1="250" y1="62" x2="250" y2="350" stroke="#000" stroke-width="1" stroke-dasharray="5 5"/>
+<polygon points="150,110 120,180 250,330 380,180 350,110" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="96" y1="103" x2="104" y2="117" stroke="#000"/><line x1="103" y1="103" x2="111" y2="117" stroke="#000"/>
+<line x1="82" y1="173" x2="90" y2="187" stroke="#000"/><line x1="89" y1="173" x2="97" y2="187" stroke="#000"/>
+<text x="136" y="150" font-size="12">110°</text>
+<text x="350" y="150" font-size="12">100°</text>
+<text x="245" y="292" font-size="13" font-style="italic">β</text>
+<text x="243" y="312" font-size="14" font-style="italic">B</text>
+<text x="140" y="103" font-size="14" font-style="italic">E</text>
+<text x="352" y="103" font-size="14" font-style="italic">D</text>
+<text x="103" y="192" font-size="14" font-style="italic">A</text>
+<text x="386" y="192" font-size="14" font-style="italic">C</text>
+<text x="256" y="76" font-size="14" font-style="italic">o</text>
+</svg>"""
+
+SVG13 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 290" font-family="sans-serif">
+<polygon points="60,230 60,105 280,230" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="60" y1="105" x2="110" y2="78" stroke="#000" stroke-width="2"/>
+<line x1="60" y1="230" x2="110" y2="203" stroke="#000" stroke-width="2"/>
+<line x1="280" y1="230" x2="330" y2="203" stroke="#000" stroke-width="2"/>
+<polyline points="110,78 110,203 330,203" fill="none" stroke="#000" stroke-width="1.4" stroke-dasharray="4 4"/>
+<text x="30" y="172" font-size="13">12 dm</text>
+<text x="150" y="250" font-size="13">24 dm</text>
+<text x="300" y="222" font-size="13">10 dm</text>
+<rect x="420" y="95" width="105" height="135" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="420" y1="95" x2="462" y2="66" stroke="#000" stroke-width="1.6"/>
+<line x1="525" y1="95" x2="567" y2="66" stroke="#000" stroke-width="1.6"/>
+<line x1="525" y1="230" x2="567" y2="201" stroke="#000" stroke-width="1.6"/>
+<polyline points="462,66 567,66 567,201" fill="none" stroke="#000" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="462" y1="66" x2="462" y2="95" stroke="#000" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="452" y="252" font-size="13">12 dm</text>
+<text x="545" y="222" font-size="13">10 dm</text>
+<text x="575" y="150" font-size="15">?</text>
+</svg>"""
+
+B = ['zs2', 'r9']
+
+PROBLEMS = [
+    {'name': 'CERMAT M9B 2018 – úloha 1',
+     'zad': ['Vypočtěte tři sedminy ze součinu čísel $21$ a $14$.'],
+     'opts': None, 'ln': 2,
+     'sol': ['Součin: $21\\cdot 14=294$. Tři sedminy: $\\frac{3}{7}\\cdot 294=126$.'],
+     'ans': '$126$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 2.1',
+     'zad': ['Vypočtěte: $100+1:\\sqrt{6\\,400+60^2}=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$60^2=3\\,600$, $6\\,400+3\\,600=10\\,000$, $\\sqrt{10\\,000}=100$. Tedy $100+1:100=100+0{,}01=100{,}01$.'],
+     'ans': '$100{,}01$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 2.2',
+     'zad': ['Vypočtěte: $0{,}005\\cdot 10^2-1{,}2:0{,}02=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$0{,}005\\cdot 100=0{,}5$, $1{,}2:0{,}02=60$. Tedy $0{,}5-60=-59{,}5$.'],
+     'ans': '$-59{,}5$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 3.1',
+     'zad': ['Vypočtěte a výsledek zapište zlomkem v základním tvaru:',
+             '$\\left(0{,}5+\\frac{2}{5}\\right):\\left(2-\\frac{7}{8}\\right)=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$0{,}5+\\frac{2}{5}=\\frac{1}{2}+\\frac{2}{5}=\\frac{9}{10}$; $2-\\frac{7}{8}=\\frac{9}{8}$. Podíl: $\\frac{9}{10}:\\frac{9}{8}=\\frac{9}{10}\\cdot\\frac{8}{9}=\\frac{4}{5}$.'],
+     'ans': '$\\frac{4}{5}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 3.2',
+     'zad': ['Vypočtěte a výsledek zapište zlomkem v základním tvaru:',
+             '$\\dfrac{3\\cdot\\frac{2}{9}-\\frac{3}{5}:\\frac{6}{15}}{2}=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$3\\cdot\\frac{2}{9}=\\frac{2}{3}$; $\\frac{3}{5}:\\frac{6}{15}=\\frac{3}{5}\\cdot\\frac{15}{6}=\\frac{3}{2}$. Čitatel: $\\frac{2}{3}-\\frac{3}{2}=-\\frac{5}{6}$. Celý zlomek: $-\\frac{5}{6}:2=-\\frac{5}{12}$.'],
+     'ans': '$-\\frac{5}{12}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 4.1',
+     'zad': ['Zjednodušte (výsledný výraz nesmí obsahovat závorky):',
+             '$(2+3a)^2-(2-3a)^2=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Podle vzorce $x^2-y^2=(x+y)(x-y)$: $\\big((2+3a)+(2-3a)\\big)\\cdot\\big((2+3a)-(2-3a)\\big)=4\\cdot 6a=24a$.'],
+     'ans': '$24a$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 4.2',
+     'zad': ['Zjednodušte (výsledný výraz nesmí obsahovat závorky):',
+             '$\\frac{1}{2}\\cdot n\\cdot(2-3n)+3\\cdot(n+2n)-n\\cdot(3-n)=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$\\frac{1}{2}n(2-3n)=n-\\frac{3}{2}n^2$; $3\\cdot(n+2n)=9n$; $-n(3-n)=-3n+n^2$. Součet: $n-\\frac{3}{2}n^2+9n-3n+n^2=-\\frac{1}{2}n^2+7n$.'],
+     'ans': '$-\\frac{1}{2}n^2+7n$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 5.1',
+     'zad': ['Řešte rovnici:', '$x\\cdot(x+2)+0{,}6=x\\cdot x+\\frac{1}{5}$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$x^2+2x+0{,}6=x^2+0{,}2$, odtud $2x=0{,}2-0{,}6=-0{,}4$, tedy $x=-0{,}2=-\\frac{1}{5}$.'],
+     'ans': '$x=-\\frac{1}{5}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 5.2',
+     'zad': ['Řešte rovnici:', '$\\frac{2y-3}{4}-2\\cdot\\frac{y}{5}=\\frac{2-y}{2}-1$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Vynásobíme číslem $20$: $5(2y-3)-8y=10(2-y)-20$, tj. $10y-15-8y=20-10y-20$, $2y-15=-10y$, $12y=15$, $y=\\frac{5}{4}$.'],
+     'ans': '$y=\\frac{5}{4}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 6',
+     'zad': ['Tři chlapci se přemístili od startu do cíle po třech různých trasách $A$, $B$, $C$ vždy za stejný čas. Adam trasu $A$ dlouhou $1\\,500$ m ujel na koloběžce. Bedřich trasu $B$ dlouhou $600$ m ušel pěšky. Cyril na trase $C$ nasedl na koloběžku až po $90$ m pěší chůze, koloběžku pak zanechal $60$ m před cílem a do cíle došel pěšky.',
+             'Adam jezdí na koloběžce stejně rychle jako Cyril. Cyril chodí pěšky stejně rychle jako Bedřich. Časové ztráty při nasedání a odkládání koloběžky zanedbáváme.',
+             '6.1 Vypočtěte, kolikrát je jízda na koloběžce rychlejší než pěší chůze.',
+             '6.2 Adam s Cyrilem vystartovali současně. Vyjádřete zlomkem, jakou část trasy měl za sebou Adam v okamžiku, kdy Cyril nasedl na koloběžku.',
+             '6.3 Vypočtěte, kolik metrů ujel Cyril na koloběžce.'],
+     'opts': None, 'ln': 4, 'svg': SVG6, 'fn': 'trasy-abc.svg',
+     'alt': 'Schéma tří tras od startu do cíle: trasa A 1 500 m na koloběžce, trasa B 600 m pěšky, trasa C 90 m pěšky, část na koloběžce a 60 m pěšky před cílem.',
+     'cap': 'Výchozí obrázek k úloze 6',
+     'sol': ['6.1 Všichni jeli stejný čas $t$. Adam ujel $1\\,500$ m na koloběžce, Bedřich ušel $600$ m pěšky. Poměr rychlostí koloběžka : chůze $=1\\,500:600=2{,}5$, jízda je $2{,}5$krát rychlejší.',
+             '6.2 Cyril šel prvních $90$ m pěšky; za tuto dobu ujel Adam na koloběžce (rychlejší $2{,}5$krát) $2{,}5\\cdot 90=225$ m. Z trasy $1\\,500$ m to je $\\frac{225}{1\\,500}=\\frac{3}{20}$.',
+             '6.3 Cyril jde pěšky $90+60=150$ m, zbytek jede na koloběžce. Kdyby šel celou dobu pěšky, ušel by $600$ m (jako Bedřich za stejný čas). Času, který místo chůze jel, odpovídá pěší dráha $600-150=450$ m; na koloběžce za něj ujede $2{,}5\\cdot 450=1\\,125$ m.'],
+     'ans': '6.1: $2{,}5$krát; 6.2: $\\frac{3}{20}$; 6.3: $1\\,125$ m', 'pts': 4, 'mins': 8, 'diff': '4',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'fyzika']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 7',
+     'zad': ['Nad dvěma stranami trojúhelníku $ABC$ jsou sestrojeny čtverce. Obsah čtverce nad stranou $BC$ je $25$ cm². Velikost výšky $v_c$ na stranu $AB$ je $3$ cm. Pata $P$ výšky $v_c$ dělí stranu $AB$ v poměru $2:1$. Strana $AC$ je delší než strana $BC$.',
+             '7.1 Vypočtěte v cm délku strany $AB$.',
+             '7.2 Vypočtěte v cm² obsah čtverce nad stranou $AC$.'],
+     'opts': None, 'ln': 4, 'svg': SVG7, 'fn': 'ctverce-trojuhelnik.svg',
+     'alt': 'Trojúhelník ABC se čtverci sestrojenými nad stranami BC (obsah 25 cm²) a AC; výška vc z vrcholu C na stranu AB s patou P.',
+     'cap': 'Výchozí obrázek k úloze 7',
+     'sol': ['7.1 Obsah čtverce nad $BC$ je $25$ cm², tedy $|BC|=5$ cm. V pravoúhlém trojúhelníku $BPC$ je $|CP|=v_c=3$ cm, proto $|BP|=\\sqrt{5^2-3^2}=4$ cm. Protože $AC>BC$, je pata $P$ blíže k $B$, takže $|AP|:|BP|=2:1$, tedy $|AP|=8$ cm. $|AB|=|AP|+|BP|=8+4=12$ cm.',
+             '7.2 V pravoúhlém trojúhelníku $APC$ je $|AP|=8$ cm, $|CP|=3$ cm, proto $|AC|^2=8^2+3^2=73$. Obsah čtverce nad $AC$ je $|AC|^2=73$ cm².'],
+     'ans': '7.1: $12$ cm; 7.2: $73$ cm²', 'pts': 3, 'mins': 7, 'diff': '4',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 8.1',
+     'zad': ['Doplňte do rámečku ($\\square$) takové číslo, aby platila rovnost:',
+             '$80$ dm³ $-\\;\\square\\cdot 400$ cm³ $=20$ dm³'],
+     'opts': None, 'ln': 2,
+     'sol': ['$80$ dm³ $-20$ dm³ $=60$ dm³ se musí rovnat $\\square\\cdot 400$ cm³. Protože $400$ cm³ $=0{,}4$ dm³, je $\\square=60:0{,}4=150$.'],
+     'ans': '$150$', 'pts': 1, 'mins': 2, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 8.2',
+     'zad': ['Doplňte do rámečku ($\\square$) takové číslo, aby platila rovnost:',
+             '$(5+\\square)$ minut $=\\frac{2}{5}$ hodiny $-\\frac{1}{4}$ hodiny'],
+     'opts': None, 'ln': 2,
+     'sol': ['$\\frac{2}{5}$ hodiny $-\\frac{1}{4}$ hodiny $=\\frac{8}{20}-\\frac{5}{20}=\\frac{3}{20}$ hodiny $=\\frac{3}{20}\\cdot 60=9$ minut. Tedy $5+\\square=9$, $\\square=4$.'],
+     'ans': '$4$', 'pts': 1, 'mins': 2, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 9.1',
+     'zad': ['V pravoúhlém trojúhelníku $ABC$ (pravý úhel u vrcholu $C$) sestrojte a popište výšky $v_a$, $v_b$, $v_c$.'],
+     'opts': None, 'ln': 0, 'svg': SVG91, 'fn': 'pravouhly-trojuhelnik.svg',
+     'alt': 'Pravoúhlý trojúhelník ABC s pravým úhlem u vrcholu C; vyznačeny výšky va, vb (splývají s odvěsnami) a vc (kolmice z C na přeponu AB).',
+     'cap': 'Výchozí obrázek k úloze 9.1',
+     'sol': ['Výška $v_c$ z vrcholu $C$ je kolmice z $C$ na přeponu $AB$. Výška $v_a$ (z vrcholu $A$ na stranu $a=BC$) splývá s odvěsnou $AC$ a výška $v_b$ (z vrcholu $B$ na stranu $b=AC$) splývá s odvěsnou $BC$, neboť úhel u $C$ je pravý.'],
+     'ans': 'Výšky pravoúhlého trojúhelníku: $v_c$ je kolmice z $C$ na $AB$; $v_a$ splývá s odvěsnou $AC$ a $v_b$ s odvěsnou $BC$ (viz obrázek v klíči).',
+     'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 9.2',
+     'zad': ['Úsečka $AB$ je přepona $c$ pravoúhlého trojúhelníku $ABC$. Bod $M$ leží na kterékoli z jeho tří výšek $v_a$, $v_b$, $v_c$.',
+             'Sestrojte chybějící vrchol $C$ trojúhelníku $ABC$ a trojúhelník narýsujte. Najděte všechna řešení. (Neuvažujte o řešení, kdy bod $M$ leží vně trojúhelníku.)'],
+     'opts': None, 'ln': 0, 'svg': SVG92, 'fn': 'prepona-bod-m.svg',
+     'alt': 'Úsečka AB (přepona) a bod M ležící mimo ni; úkolem je najít vrchol C pravoúhlého trojúhelníku ABC.',
+     'cap': 'Výchozí obrázek k úloze 9.2',
+     'sol': ['Protože úhel u vrcholu $C$ je pravý, leží $C$ na Thaletově kružnici nad průměrem $AB$. Bod $M$ leží na některé z výšek: výška $v_c$ prochází body $C$ a $M$ kolmo k $AB$, výšky $v_a$, $v_b$ splývají s odvěsnami a procházejí vrcholem $A$, resp. $B$. Příslušné přímky protnou Thaletovu kružnici ve vrcholech $C$; úloha má tři řešení $C_1$, $C_2$, $C_3$.'],
+     'ans': 'Vrchol $C$ leží na Thaletově kružnici nad průměrem $AB$; podle toho, na které výšce ($v_a$, $v_b$, $v_c$) leží bod $M$, vzniknou tři řešení $C_1$, $C_2$, $C_3$ (viz obrázek v klíči).',
+     'pts': 3, 'mins': 8, 'diff': '4',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 10',
+     'zad': ['V rovině leží polopřímka $AX$ a přímka $o$ (viz obrázek).',
+             'Bod $A$ je vrchol rovnoramenného lichoběžníku $ABCD$ s osou souměrnosti $o$. Vrchol $D$ leží na polopřímce $AX$. Strany $AB$ a $AD$ mají stejnou délku.',
+             'Sestrojte a popište chybějící vrcholy lichoběžníku $ABCD$ a lichoběžník narýsujte.'],
+     'opts': None, 'ln': 0, 'svg': SVG10, 'fn': 'poloprimka-ax-o.svg',
+     'alt': 'Polopřímka AX vycházející z bodu A a samostatná přímka o.',
+     'cap': 'Výchozí obrázek k úloze 10',
+     'sol': ['Osa $o$ je osou souměrnosti lichoběžníku. Vrchol $B$ sestrojíme jako obraz vrcholu $A$ v osové souměrnosti podle osy $o$; tím je dána délka základny $|AB|$. Vrchol $D$ leží na polopřímce $AX$ ve vzdálenosti $|AD|=|AB|$ od bodu $A$ (kružnice se středem $A$ a poloměrem $|AB|$). Vrchol $C$ je obrazem vrcholu $D$ podle osy $o$. Základny $AB$ a $CD$ jsou kolmé k ose $o$ a ramena $AD=BC$.'],
+     'ans': 'Vrchol $B$ je obraz $A$ v osové souměrnosti podle osy $o$, vrchol $D$ leží na polopřímce $AX$ s $|AD|=|AB|$ a vrchol $C$ je obraz $D$ podle osy $o$; vznikne rovnoramenný lichoběžník $ABCD$ (viz obrázek v klíči).',
+     'pts': 2, 'mins': 6, 'diff': '3',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 11',
+     'zad': ['Na kružnici $k$, jejíž délka je $20\\pi$ cm, leží vrcholy čtverce $ABCD$. Čtverec je rozdělen na dva trojúhelníky a lichoběžník $DBEF$. Délka úsečky $BD$ je dvojnásobkem délky úsečky $EF$.',
+             'Rozhodněte o každém z tvrzení 11.1–11.3, zda je pravdivé (A), či nikoli (N).',
+             '11.1 Výška lichoběžníku $DBEF$ je $10$ cm.',
+             '11.2 Lichoběžník $DBEF$ má obsah $75$ cm².',
+             '11.3 Obsah lichoběžníku $DBEF$ tvoří tři osminy obsahu čtverce $ABCD$.'],
+     'opts': None, 'ln': 0, 'svg': SVG11, 'fn': 'ctverec-kruznice-lichobeznik.svg',
+     'alt': 'Kružnice k s vepsaným čtvercem ABCD; čtverec je úhlopříčkou BD a úsečkou EF rozdělen, šedý lichoběžník DBEF.',
+     'cap': 'Výchozí obrázek k úloze 11',
+     'sol': ['Délka kružnice $20\\pi$ cm znamená průměr $20$ cm. Úhlopříčka čtverce $|BD|=20$ cm (je průměrem), strana čtverce $a=\\frac{20}{\\sqrt2}=10\\sqrt2$ cm, obsah čtverce $a^2=200$ cm². Dále $|EF|=\\frac{1}{2}|BD|=10$ cm.',
+             '11.1 Výška lichoběžníku je vzdálenost rovnoběžných úseček $BD$ a $EF$, ta je $5$ cm (ne $10$ cm) – Ne.',
+             '11.2 Obsah $=\\frac{|BD|+|EF|}{2}\\cdot v=\\frac{20+10}{2}\\cdot 5=75$ cm² – Ano.',
+             '11.3 $\\frac{75}{200}=\\frac{3}{8}$ – Ano.'],
+     'ans': '11.1: Ne; 11.2: Ano; 11.3: Ano', 'pts': 4, 'mins': 7, 'diff': '4',
+     'codes': B + ['planimetrie', 'argumentace', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 12',
+     'zad': ['Rovinný obrazec $ABCDE$ je osově souměrný podle osy $o$ procházející bodem $B$. U vrcholu $A$ je vnitřní úhel $110^\\circ$, u vrcholu $C$ je vnitřní úhel $100^\\circ$ (viz obrázek).',
+             'Jaká je velikost úhlu $\\beta$ u vrcholu $B$? (Úhly neměřte, ale vypočtěte.)'],
+     'opts': ['A) menší než $100^\\circ$', 'B) $100^\\circ$', 'C) $110^\\circ$', 'D) $120^\\circ$', 'E) větší než $120^\\circ$'],
+     'ln': 0, 'svg': SVG12, 'fn': 'petiuhelnik-osa.svg',
+     'alt': 'Pětiúhelník ABCDE souměrný podle svislé osy o procházející vrcholem B; u vrcholu A úhel 110 stupňů, u vrcholu C úhel 100 stupňů, u vrcholu B úhel beta.',
+     'cap': 'Výchozí obrázek k úloze 12',
+     'sol': ['Součet vnitřních úhlů pětiúhelníku je $540^\\circ$. Přímka procházející vrcholy $E$ a $D$ je rovnoběžná s přímkou procházející vrcholem $A$ (vyznačeno); z rovnoběžnosti a daných úhlů $110^\\circ$ a $100^\\circ$ dopočteme zbývající vnitřní úhly a pro úhel u vrcholu $B$ vyjde $\\beta=120^\\circ$.'],
+     'ans': 'D) $120^\\circ$', 'pts': 2, 'mins': 5, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 13',
+     'zad': ['Kolmý hranol, jehož podstavy tvoří pravoúhlé trojúhelníky, má stejný objem jako kvádr (viz obrázek). Hranol má odvěsny podstavy $12$ dm a $24$ dm a délku $10$ dm. Kvádr má rozměry podstavy $12$ dm a $10$ dm.',
+             'Jaký je chybějící rozměr kvádru?'],
+     'opts': ['A) $8$ dm', 'B) $12$ dm', 'C) $15$ dm', 'D) $16$ dm', 'E) jiný počet dm'],
+     'ln': 0, 'svg': SVG13, 'fn': 'hranol-kvadr.svg',
+     'alt': 'Kolmý trojboký hranol s odvěsnami podstavy 12 dm a 24 dm a délkou 10 dm vedle kvádru o rozměrech 12 dm, 10 dm a neznámém rozměru.',
+     'cap': 'Výchozí obrázek k úloze 13',
+     'sol': ['Objem hranolu $=\\frac{1}{2}\\cdot 12\\cdot 24\\cdot 10=1\\,440$ dm³. Objem kvádru $=12\\cdot 10\\cdot x$. Z rovnosti $120x=1\\,440$ plyne $x=12$ dm.'],
+     'ans': 'B) $12$ dm', 'pts': 2, 'mins': 4, 'diff': '2',
+     'codes': B + ['stereometrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 14',
+     'zad': ['Jeden kilogram jablek byl zlevněn o třetinu ceny. Za $5$ kg zlevněných jablek se tak zaplatí o $18$ Kč méně než za $4$ kg jablek před slevou.',
+             'Která z následujících rovnic odpovídá zadání úlohy, jestliže neznámá $x$ představuje cenu za $1$ kg jablek před slevou?'],
+     'opts': ['A) $5\\cdot\\frac{2x}{3}+18=4x$', 'B) $5x+18=4\\cdot\\frac{4x}{3}$', 'C) $5\\left(x-\\frac{1}{3}\\right)=4x+18$', 'D) $5(x-18)=\\frac{2}{3}\\cdot 4x$', 'E) $5x+18=4\\cdot\\left(x+\\frac{1}{3}\\right)$'],
+     'ln': 0,
+     'sol': ['Cena po zlevnění o třetinu je $x-\\frac{1}{3}x=\\frac{2}{3}x$. Za $5$ kg zlevněných zaplatíme $5\\cdot\\frac{2x}{3}$, což je o $18$ Kč méně než $4x$ (cena $4$ kg před slevou): $5\\cdot\\frac{2x}{3}=4x-18$, tj. $5\\cdot\\frac{2x}{3}+18=4x$.'],
+     'ans': 'A) $5\\cdot\\frac{2x}{3}+18=4x$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['rovnice', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 15',
+     'zad': ['Přiřaďte ke každé úloze (15.1–15.3) odpovídající výsledek (A–F).',
+             '15.1 Číslo $420$ je o $20\\,\\%$ větší než neznámé číslo. Jaké je neznámé číslo?',
+             '15.2 $48\\,\\%$ neznámého čísla je o $51$ větší než $33\\,\\%$ téhož neznámého čísla. Jaké je neznámé číslo?',
+             '15.3 Poměr dvou čísel je $1:3$. Polovina většího z nich je $135$. Jaký je součet obou čísel?'],
+     'opts': ['A) menší než $320$', 'B) $320$', 'C) $340$', 'D) $350$', 'E) $360$', 'F) větší než $360$'],
+     'ln': 0,
+     'sol': ['15.1 $420=1{,}2\\cdot x\\Rightarrow x=350$ – D.',
+             '15.2 $0{,}48x=0{,}33x+51\\Rightarrow 0{,}15x=51\\Rightarrow x=340$ – C.',
+             '15.3 Větší číslo $3k$, menší $k$; $\\frac{3k}{2}=135\\Rightarrow k=90$. Čísla $270$ a $90$, součet $360$ – E.'],
+     'ans': '15.1: D ($350$); 15.2: C ($340$); 15.3: E ($360$)', 'pts': 6, 'mins': 9, 'diff': '3',
+     'codes': B + ['procenta', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9B 2018 – úloha 16',
+     'zad': ['Na obrazovce počítače jsou dvě čísla – jedno v modrém a druhé v červeném poli. Na počátku jsou obě čísla stejná. Při každém pípnutí se obě čísla současně zvětší. V modrém poli se číslo zvětší vždy o $6$. Přírůstky čísla v červeném poli se pravidelně střídají – jednou se číslo zvětší o $3$, při dalším pípnutí o $5$, potom znovu o $3$, o $5$, o $3$, o $5$ atd. V jednu chvíli se objeví v modrém poli číslo $500$ a současně v červeném poli číslo $400$.',
+             '16.1 Určete, jaké číslo je v modrém poli na počátku.',
+             '16.2 Určete, o kolik se zvětší číslo v modrém poli, zatímco se číslo v červeném poli zvětší o $123$.',
+             '16.3 Určete číslo v červeném poli v okamžiku, kdy je o $444$ menší než číslo v modrém poli.'],
+     'opts': None, 'ln': 4,
+     'sol': ['Rozdíl (modré − červené) roste po dvojicích pípnutí: přírůstky se liší o $6-3=3$ a o $6-5=1$, tedy o $4$ za dvojici. Za sudý počet $2m$ pípnutí je rozdíl $4m$. Když je modré $500$ a červené $400$, je rozdíl $100=4m$, tj. $m=25$ a $50$ pípnutí.',
+             '16.1 Modré: počátek $+6\\cdot 50=500$, tedy počátek $=500-300=200$.',
+             '16.2 Červené se za dvojici pípnutí zvětší o $8$; $123=8\\cdot 15+3$, tj. $30$ pípnutí (o $120$) a ještě jedno pípnutí (o $3$), celkem $31$ pípnutí. Modré se zvětší o $6\\cdot 31=186$.',
+             '16.3 Rozdíl $444=4m\\Rightarrow m=111$, tj. $222$ pípnutí. Červené $=200+8\\cdot 111=200+888=1\\,088$.'],
+     'ans': '16.1: $200$; 16.2: o $186$; 16.3: $1\\,088$', 'pts': 4, 'mins': 8, 'diff': '4',
+     'codes': B + ['posloupnosti', 'modelovani', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+]
+
+if __name__ == '__main__':
+    import os, sys, json
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_cermat as gen
+    gen.CCODE = 'M9PBD18C0T02'
+    gen.YEAR = 2018
+
+    def dollars_ok(s): return s.count('$') % 2 == 0
+    errors = []; names = set(); tot_pts = 0
+    for p in PROBLEMS:
+        if p['name'] in names: errors.append('DUP název: ' + p['name'])
+        names.add(p['name'])
+        if 'M9B' not in p['name']: errors.append('Název bez M9B: ' + p['name'])
+        tot_pts += p['pts']
+        for t in [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or []):
+            if not dollars_ok(t): errors.append('Nepárový $: ' + t[:70])
+        if p.get('svg') and ("'" in p['svg'] or '\\' in p['svg']):
+            errors.append('SVG zakázaný znak: ' + p['name'])
+        if p.get('svg') and not p.get('alt'): errors.append('Obrázek bez alt: ' + p['name'])
+        for lbl, obj in (('content', gen.py_content_json(p)), ('solution', gen.py_solution_json(p)), ('answer', gen.py_answer_json(p))):
+            try: json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e: errors.append(f'JSON {lbl} {p["name"]}: {e}')
+    if errors:
+        print('CHYBY:'); [print('  -', e) for e in errors]; sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'úloh, součet bodů:', tot_pts)
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    tot = 0
+    for path, sz, k in gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-cermat-M9B-2018')):
+        tot += k; print(f'{os.path.basename(path)}: {sz} B, {k} úloh [{"OK" if sz<9000 else "PŘES 9KB"}]')
+    print('Celkem úloh:', tot)

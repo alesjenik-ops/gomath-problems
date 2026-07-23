@@ -1,0 +1,341 @@
+# -*- coding: utf-8 -*-
+# CERMAT – Jednotná přijímací zkouška 2018, MATEMATIKA 7 (šestileté obory, 7. ročník),
+# 2. řádný termín (varianta B). Kód testu: M7PBD18C0T02. 16 úloh, 50 bodů.
+# Zdroj odpovědí: klíč správných řešení (KSR), ověřeno vlastním přepočtem.
+# SVG obrázky bez apostrofů a zpětných lomítek; matematika jen v textových polích.
+
+# ---------------- SVG obrázky ----------------
+
+# úloha 6: složené těleso ze dvou krychlí (hrana 8 cm a 4 cm), schematicky
+SVG6 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" font-family="sans-serif">
+<polygon points="60,120 200,120 245,75 105,75" fill="#f2f2f2" stroke="#000" stroke-width="2"/>
+<polygon points="200,120 245,75 245,215 200,260" fill="#e2e2e2" stroke="#000" stroke-width="2"/>
+<rect x="60" y="120" width="140" height="140" fill="#fafafa" stroke="#000" stroke-width="2"/>
+<polygon points="150,55 220,55 245,32 175,32" fill="#f2f2f2" stroke="#000" stroke-width="2"/>
+<polygon points="220,55 245,32 245,97 220,120" fill="#e2e2e2" stroke="#000" stroke-width="2"/>
+<rect x="150" y="55" width="70" height="65" fill="#ffffff" stroke="#000" stroke-width="2"/>
+<text x="130" y="285" font-size="15">8 cm</text>
+<text x="163" y="47" font-size="14">4 cm</text>
+</svg>"""
+
+# úloha 7: rovnováha – housky (kolečka) a topinky (čtverce)
+SVG7 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" font-family="sans-serif">
+<text x="30" y="30" font-size="15">Dvě housky váží o 10 gramů více než dvě topinky.</text>
+<circle cx="230" cy="70" r="20" fill="#d9d9d9" stroke="#000"/><line x1="212" y1="62" x2="248" y2="78" stroke="#000"/><line x1="212" y1="78" x2="248" y2="62" stroke="#000"/>
+<circle cx="285" cy="70" r="20" fill="#d9d9d9" stroke="#000"/><line x1="267" y1="62" x2="303" y2="78" stroke="#000"/><line x1="267" y1="78" x2="303" y2="62" stroke="#000"/>
+<text x="320" y="76" font-size="18">=</text><text x="345" y="76" font-size="16">10 g</text><text x="400" y="76" font-size="18">+</text>
+<rect x="425" y="50" width="40" height="40" rx="6" fill="#ffffff" stroke="#000"/>
+<rect x="480" y="50" width="40" height="40" rx="6" fill="#ffffff" stroke="#000"/>
+<text x="30" y="125" font-size="15">Jedna houska a dvě topinky váží celkem 110 gramů.</text>
+<circle cx="245" cy="160" r="20" fill="#d9d9d9" stroke="#000"/><line x1="227" y1="152" x2="263" y2="168" stroke="#000"/><line x1="227" y1="168" x2="263" y2="152" stroke="#000"/>
+<text x="285" y="166" font-size="18">+</text>
+<rect x="315" y="140" width="40" height="40" rx="6" fill="#ffffff" stroke="#000"/>
+<rect x="370" y="140" width="40" height="40" rx="6" fill="#ffffff" stroke="#000"/>
+<text x="425" y="166" font-size="18">=</text><text x="450" y="166" font-size="16">110 g</text>
+</svg>"""
+
+# úloha 8: různoběžky o, p a bod D na přímce o (výchozí obrázek)
+SVG8 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 380" font-family="sans-serif">
+<line x1="40" y1="300" x2="410" y2="312" stroke="#000" stroke-width="2"/>
+<text x="415" y="312" font-size="16" font-style="italic">p</text>
+<line x1="130" y1="60" x2="350" y2="360" stroke="#000" stroke-width="2"/>
+<text x="352" y="372" font-size="16" font-style="italic">o</text>
+<text x="182" y="118" font-size="16">×</text><text x="196" y="112" font-size="16" font-style="italic">D</text>
+</svg>"""
+
+# úloha 9: přímka AB a bod T mimo ni (výchozí obrázek)
+SVG9 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" font-family="sans-serif">
+<line x1="50" y1="300" x2="430" y2="300" stroke="#000" stroke-width="2"/>
+<line x1="150" y1="292" x2="150" y2="308" stroke="#000" stroke-width="2"/>
+<line x1="330" y1="292" x2="330" y2="308" stroke="#000" stroke-width="2"/>
+<text x="144" y="326" font-size="16" font-style="italic">A</text>
+<text x="324" y="326" font-size="16" font-style="italic">B</text>
+<text x="296" y="168" font-size="16">×</text><text x="310" y="162" font-size="16" font-style="italic">T</text>
+</svg>"""
+
+# úloha 10: čtvercová síť 10x9 se dvěma bílými obrazci A, B
+def _grid10():
+    ox, oy, cell, W, Hh = 20, 15, 30, 10, 9
+    s = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 320" font-family="sans-serif">']
+    for i in range(W+1):
+        x = ox + i*cell
+        s.append('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="#999" stroke-width="1"/>' % (x, oy, x, oy+Hh*cell))
+    for j in range(Hh+1):
+        y = oy + j*cell
+        s.append('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="#999" stroke-width="1"/>' % (ox, y, ox+W*cell, y))
+    def P(gx, gy):
+        return '%d,%d' % (ox+gx*cell, oy+gy*cell)
+    A = ' '.join(P(*v) for v in [(2,0),(5,0),(2,6),(1,6),(1,3)])
+    B = ' '.join(P(*v) for v in [(8,1),(10,1),(7,7),(5,7)])
+    s.append('<polygon points="%s" fill="#ffffff" stroke="#000" stroke-width="2.5"/>' % A)
+    s.append('<polygon points="%s" fill="#ffffff" stroke="#000" stroke-width="2.5"/>' % B)
+    s.append('<text x="%d" y="%d" font-size="16" font-weight="bold">A</text>' % (ox+2.2*cell, oy+3.2*cell))
+    s.append('<text x="%d" y="%d" font-size="16" font-weight="bold">B</text>' % (ox+7.4*cell, oy+4.2*cell))
+    s.append('<rect x="%d" y="%d" width="%d" height="%d" fill="#d9d9d9" stroke="#999"/>' % (ox+9*cell, oy+8*cell, cell, cell))
+    s.append('<text x="%d" y="%d" font-size="12">1 cm</text>' % (ox+9*cell+2, oy+8*cell-4))
+    s.append('</svg>')
+    return ''.join(s)
+SVG10 = _grid10()
+
+# úloha 11: dvě různoběžky a příčka s vyznačenými úhly 60°, 70°, 140° a úhlem fí
+SVG11 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" font-family="sans-serif">
+<line x1="30" y1="255" x2="470" y2="255" stroke="#000" stroke-width="2"/>
+<line x1="95" y1="255" x2="300" y2="45" stroke="#000" stroke-width="2"/>
+<line x1="255" y1="35" x2="380" y2="295" stroke="#000" stroke-width="2"/>
+<line x1="60" y1="120" x2="440" y2="205" stroke="#000" stroke-width="2"/>
+<path d="M 130 255 A 35 35 0 0 1 150 227" fill="none" stroke="#000"/>
+<text x="120" y="248" font-size="15">60°</text>
+<path d="M 268 78 A 30 30 0 0 1 300 92" fill="none" stroke="#000"/>
+<text x="270" y="72" font-size="15">70°</text>
+<path d="M 388 175 A 45 45 0 0 1 300 168" fill="none" stroke="#000"/>
+<text x="330" y="168" font-size="15">140°</text>
+<path d="M 300 255 A 40 40 0 0 1 330 235" fill="none" stroke="#000"/>
+<text x="308" y="248" font-size="16" font-style="italic">&#966;</text>
+</svg>"""
+
+# úloha 16: čtyři obdélníky sestavené z tmavých a bílých čtverečků + čísla
+def _pattern():
+    s = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 130" font-family="sans-serif">']
+    cell = 16
+    x0 = 20
+    tops = {1:'2', 2:'6', 3:'12', 4:'20'}
+    rights = {2:'2', 3:'3', 4:'4'}
+    for n in range(1, 5):
+        cols = n+1
+        rows = n
+        w = cols*cell
+        top = 100 - rows*cell
+        for r in range(rows):
+            for c in range(cols):
+                dark = c <= r
+                col = '#cfcfcf' if dark else '#ffffff'
+                s.append('<rect x="%d" y="%d" width="%d" height="%d" fill="%s" stroke="#000"/>' % (x0+c*cell, top+r*cell, cell, cell, col))
+        s.append('<text x="%d" y="%d" font-size="14" text-anchor="middle">%s</text>' % (x0+w/2, top-6, tops[n]))
+        if n in rights:
+            s.append('<text x="%d" y="%d" font-size="13">%s</text>' % (x0+w+4, top+rows*cell/2+4, rights[n]))
+        x0 += w + 44
+    s.append('<text x="%d" y="94" font-size="20">...</text>' % (x0+2))
+    s.append('</svg>')
+    return ''.join(s)
+SVG16 = _pattern()
+
+# ---------------- Úlohy ----------------
+
+B = ['zs2', 'r7']  # 7. ročník (šestileté obory)
+
+PROBLEMS = [
+    {'name': 'CERMAT M7B 2018 – úloha 1',
+     'zad': ['Vypočtěte, kolik procent je $400$ mililitrů z $5$ litrů.'],
+     'opts': None, 'ln': 2,
+     'sol': ['$5$ litrů $=5000$ ml. Podíl $\\frac{400}{5000}=0{,}08=8\\,\\%$.'],
+     'ans': '$8\\,\\%$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['procenta', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 2',
+     'zad': ['Doplňte do rámečku takové číslo, aby platila rovnost.',
+             '2.1 $\\frac{1}{4}$ hodiny $+\\,300$ sekund $=\\,\\square$ minut',
+             '2.2 $\\frac{1}{2}$ km $=\\,\\square\\cdot 40$ m'],
+     'opts': None, 'ln': 2,
+     'sol': ['2.1 $\\frac{1}{4}$ hodiny $=15$ minut, $300$ sekund $=5$ minut; dohromady $20$ minut.',
+             '2.2 $\\frac{1}{2}$ km $=500$ m; $500:40=12{,}5$, tedy $500$ m $=12{,}5\\cdot 40$ m.'],
+     'ans': '2.1: $20$; 2.2: $12{,}5$', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 3',
+     'zad': ['Vypočtěte a výsledek zapište zlomkem v základním tvaru.',
+             '3.1 $\\frac{2}{3}\\cdot 0{,}25-\\frac{1}{4}\\cdot\\left(2-\\frac{2}{3}\\right)=$',
+             '3.2 $\\dfrac{\\frac{2+3}{6-2}:\\frac{15}{16}}{\\frac{3\\cdot 5}{3+5}-\\frac{1}{8}}=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['3.1 $\\frac{2}{3}\\cdot 0{,}25=\\frac{1}{6}$ a $\\frac{1}{4}\\cdot\\left(2-\\frac{2}{3}\\right)=\\frac{1}{4}\\cdot\\frac{4}{3}=\\frac{1}{3}$; tedy $\\frac{1}{6}-\\frac{1}{3}=-\\frac{1}{6}$.',
+             '3.2 Čitatel: $\\frac{5}{4}:\\frac{15}{16}=\\frac{5}{4}\\cdot\\frac{16}{15}=\\frac{4}{3}$. Jmenovatel: $\\frac{15}{8}-\\frac{1}{8}=\\frac{14}{8}=\\frac{7}{4}$. Podíl $\\frac{4}{3}:\\frac{7}{4}=\\frac{16}{21}$.'],
+     'ans': '3.1: $-\\frac{1}{6}$; 3.2: $\\frac{16}{21}$', 'pts': 4, 'mins': 6, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 4',
+     'zad': ['Maminka dala všechny upečené koláče na dva talíře ve stejném počtu. Jarda z prvního talíře 5 koláčů snědl a potom na něj přendal 3 koláče z druhého talíře. Emilka pak z talíře s větším počtem koláčů odebrala třetinu koláčů a dala si je do krabičky. Odnesla si tak v krabičce celkem 5 koláčů.',
+             'Určete',
+             '4.1 počet všech upečených koláčů (tj. na obou talířích dohromady);',
+             '4.2 počet koláčů, které zbyly na druhém talíři.'],
+     'opts': None, 'ln': 3,
+     'sol': ['Na každém talíři bylo $n$ koláčů. Po Jardových přesunech je na 1. talíři $n-5+3=n-2$ koláčů, na 2. talíři $n-3$ koláčů. Více jich je na 1. talíři; Emilka z něj vzala třetinu, tj. 5 koláčů, takže na 1. talíři bylo $15$ koláčů: $n-2=15$, $n=17$.',
+             '4.1 Všech koláčů je $2n=34$.',
+             '4.2 Na druhém talíři zbylo $n-3=14$ koláčů.'],
+     'ans': '4.1: $34$; 4.2: $14$', 'pts': 3, 'mins': 6, 'diff': '3',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 5',
+     'zad': ['Jana si nahrála na několik CD všechny lekce němčiny, a to postupně od první lekce do poslední. Jednotlivá CD zaplňovala rovněž v pořadí od prvního do posledního CD. Na každém CD je stejný počet lekcí – nejméně 5, ale nejvíce 10. Jen jediná dvojice ze čtyř lekcí 11, 13, 31 a 33 je nahrána na stejném CD.',
+             'Určete, kolik lekcí může být na jednom CD. Uveďte všechna možná řešení.'],
+     'opts': None, 'ln': 3,
+     'sol': ['Lekce číslo $L$ je na CD číslo $\\lceil L/k\\rceil$, kde $k$ je počet lekcí na CD. Pro $k=5,7,9,10$ jsou dvě dvojice na stejném CD; pro $k=6$ je spolu jen dvojice 31, 33; pro $k=8$ je spolu jen dvojice 11, 13.',
+             'Podmínku „právě jedna dvojice" splňuje $k=6$ a $k=8$.'],
+     'ans': '$6$ lekcí nebo $8$ lekcí', 'pts': 3, 'mins': 6, 'diff': '4',
+     'codes': B + ['aritmetika', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 6',
+     'zad': ['Těleso bylo sestaveno ze dvou krychlí ze stejného materiálu. Ke krychli s délkou hrany 8 cm je přilepena krychle s délkou hrany 4 cm. Přilepená stěna menší krychle nepřečnívá přes větší krychli. Menší krychle váží 400 g.',
+             'Vypočtěte',
+             '6.1 v gramech hmotnost tělesa;',
+             '6.2 v cm² povrch tělesa (včetně dolní stěny větší krychle).'],
+     'opts': None, 'ln': 0, 'svg': SVG6, 'fn': 'teleso-krychle.svg',
+     'alt': 'Velká krychle s hranou 8 cm, na jejíž horní stěně je přilepena menší krychle s hranou 4 cm.',
+     'cap': 'Těleso ze dvou krychlí (schematicky)',
+     'sol': ['6.1 Objem menší krychle $4^3=64$ cm³ váží 400 g, hustota je $400:64=6{,}25$ g/cm³. Větší krychle má objem $8^3=512$ cm³ a váží $512\\cdot 6{,}25=3200$ g. Celkem $3200+400=3600$ g.',
+             '6.2 Povrch větší krychle $6\\cdot 8^2=384$ cm². Menší krychle přidá 5 stěn $5\\cdot 4^2=80$ cm² a zakryje $4^2=16$ cm² horní stěny větší krychle: $384-16+80=448$ cm².'],
+     'ans': '6.1: $3\\,600$ g; 6.2: $448$ cm²', 'pts': 4, 'mins': 6, 'diff': '3',
+     'codes': B + ['stereometrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 7',
+     'zad': ['Dvě housky váží o 10 gramů více než dvě topinky. Jedna houska a dvě topinky váží celkem 110 gramů (viz obrázek).',
+             'Vypočtěte,',
+             '7.1 o kolik gramů méně váží jedna topinka než jedna houska;',
+             '7.2 kolik gramů váží tři topinky;',
+             '7.3 kolik gramů váží jedna houska.'],
+     'opts': None, 'ln': 0, 'svg': SVG7, 'fn': 'housky-topinky.svg',
+     'alt': 'Dvě housky se rovnají 10 g plus dvě topinky; jedna houska plus dvě topinky se rovnají 110 g.',
+     'cap': 'Vztahy mezi hmotnostmi housek a topinek',
+     'sol': ['Označme hmotnost housky $h$ a topinky $t$. Z $2h=2t+10$ plyne $h-t=5$.',
+             '7.1 Jedna topinka váží o $5$ g méně než jedna houska.',
+             '7.2 Z $h+2t=110$ a $h=t+5$: $(t+5)+2t=110$, $3t=105$, tedy tři topinky váží $105$ g (a $t=35$ g).',
+             '7.3 Houska váží $t+5=35+5=40$ g.'],
+     'ans': '7.1: o $5$ g; 7.2: $105$ g; 7.3: $40$ g', 'pts': 5, 'mins': 7, 'diff': '3',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 8 (konstrukce)',
+     'zad': ['V rovině leží různoběžky $o$, $p$ a bod $D$ na přímce $o$ (viz obrázek).',
+             'Bod $D$ je vrchol kosočtverce $ABCD$. Přímka $o$ je osou souměrnosti tohoto kosočtverce a další dva vrcholy $A$, $B$ leží na přímce $p$.',
+             'Sestrojte a popište chybějící vrcholy $A$, $B$, $C$ kosočtverce $ABCD$ a kosočtverec narýsujte.'],
+     'opts': None, 'ln': 0, 'svg': SVG8, 'fn': 'primky-op-D.svg',
+     'alt': 'Dvě různoběžky o a p a bod D ležící na přímce o nad průsečíkem obou přímek.',
+     'cap': 'Výchozí obrázek k úloze 8',
+     'sol': ['Osa souměrnosti $o$ kosočtverce prochází vrcholem $D$, je to tedy úhlopříčka $DB$; bod $B$ proto leží na $o$ i na $p$, tj. $B=o\\cap p$. Střed $S$ kosočtverce je střed úsečky $BD$. Druhá úhlopříčka $AC$ je kolmá k $o$ a prochází bodem $S$; její průsečík s přímkou $p$ je vrchol $A$. Vrchol $C$ je obraz bodu $A$ v osové souměrnosti podle přímky $o$ (tj. $C$ je souměrný s $A$ podle $S$).'],
+     'ans': 'Konstrukce kosočtverce $ABCD$: $B=o\\cap p$, $S$ je střed $BD$, $A$ je průsečík kolmice k $o$ v bodě $S$ s přímkou $p$, $C$ je obraz $A$ v souměrnosti podle $o$ (viz obrázek v klíči).',
+     'pts': 3, 'mins': 6, 'diff': '3',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 9 (konstrukce)',
+     'zad': ['V rovině leží přímka $AB$ a mimo ni bod $T$ (viz obrázek).',
+             'Body $A$, $B$ jsou vrcholy trojúhelníku $ABC$ a bod $T$ je jeho těžiště.',
+             'Sestrojte a popište chybějící vrchol $C$ trojúhelníku $ABC$ a trojúhelník narýsujte.'],
+     'opts': None, 'ln': 0, 'svg': SVG9, 'fn': 'primka-AB-T.svg',
+     'alt': 'Přímka s vyznačenými body A a B a bod T ležící nad úsečkou AB.',
+     'cap': 'Výchozí obrázek k úloze 9',
+     'sol': ['Sestrojíme střed $M$ strany $AB$ (osa úsečky $AB$). Těžiště $T$ leží na těžnici $CM$ a dělí ji v poměru $CT:TM=2:1$. Vrchol $C$ tedy leží na polopřímce $MT$ tak, že $|MC|=3\\cdot|MT|$ (bod $C$ získáme trojnásobným nanesením vzdálenosti $|MT|$ od bodu $M$ přes $T$).'],
+     'ans': 'Konstrukce trojúhelníku $ABC$: $M$ je střed $AB$, vrchol $C$ leží na polopřímce $MT$ ve vzdálenosti $|MC|=3\\cdot|MT|$ (těžiště dělí těžnici v poměru $2:1$) – viz obrázek v klíči.',
+     'pts': 3, 'mins': 6, 'diff': '3',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 10',
+     'zad': ['Čtvercová síť je tvořena čtverečky s délkou strany 1 cm. Ve čtvercové síti jsou zakresleny bílé obrazce $A$, $B$ s vrcholy v mřížových bodech (viz obrázek).',
+             'Rozhodněte o každém z následujících tvrzení (10.1–10.3), zda je pravdivé (A), či nikoli (N).',
+             '10.1 Obsah obrazce $A$ je stejný jako obsah obrazce $B$.',
+             '10.2 Obsah obrazce $A$ je větší než $12$ cm².',
+             '10.3 Obvod obrazce $A$ je větší než obvod obrazce $B$.'],
+     'opts': None, 'ln': 0, 'svg': SVG10, 'fn': 'sit-obrazce-AB.svg',
+     'alt': 'Čtvercová síť s dvěma bílými šikmými obrazci A a B o stejném obsahu; obrazec B je protáhlejší.',
+     'cap': 'Bílé obrazce A a B ve čtvercové síti (schematicky)',
+     'sol': ['Přepočtem čtverečků (např. doplněním obrazce do obdélníku a odečtením trojúhelníků) vyjde obsah obrazce $A$ i obrazce $B$ shodně $13{,}5$ cm².',
+             '10.1 Obsahy obou obrazců jsou stejné → Ano.',
+             '10.2 Obsah obrazce $A$ je $13{,}5$ cm² $>12$ cm² → Ano.',
+             '10.3 Obrazec $B$ je protáhlejší (šikmější), jeho obvod je větší; obvod $A$ tedy není větší než obvod $B$ → Ne.'],
+     'ans': '10.1: Ano; 10.2: Ano; 10.3: Ne', 'pts': 4, 'mins': 5, 'diff': '3',
+     'codes': B + ['planimetrie', 'argumentace', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 11',
+     'zad': ['Na obrázku jsou dvě různoběžky a příčka; jsou vyznačeny velikosti úhlů $60^\\circ$, $70^\\circ$ a $140^\\circ$.',
+             'Jaká je velikost úhlu $\\varphi$? Úhly neměřte, ale vypočtěte.'],
+     'opts': ['A) $40^\\circ$', 'B) $50^\\circ$', 'C) $60^\\circ$', 'D) $70^\\circ$', 'E) jiná velikost'],
+     'ln': 0, 'svg': SVG11, 'fn': 'uhly-fi.svg',
+     'alt': 'Trojúhelník na přímce s vyznačenými úhly 60° u levého vrcholu, 70° nahoře, 140° u příčky a hledaným úhlem fí u pravého vrcholu.',
+     'cap': 'Schematický nákres k úloze 11',
+     'sol': ['V pomocném trojúhelníku, který tvoří obě různoběžky a příčka, je jeden úhel $70^\\circ$ a druhý $180^\\circ-140^\\circ=40^\\circ$, takže třetí úhel (vrcholový úhel obou různoběžek) je $180^\\circ-70^\\circ-40^\\circ=70^\\circ$. Ve velkém trojúhelníku pak platí $60^\\circ+70^\\circ+\\varphi=180^\\circ$, odtud $\\varphi=50^\\circ$.'],
+     'ans': 'B) $50^\\circ$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 12',
+     'zad': ['V pondělí znečištěná plocha pokrývala šestnáctinu plochy hladiny rybníka. V každém z dalších dnů byla velikost znečištěné plochy na hladině rybníka vždy dvakrát větší než o den dříve.',
+             'Ve kterém dnu v týdnu znečištěná plocha pokryla polovinu plochy hladiny rybníka?'],
+     'opts': ['A) ve čtvrtek', 'B) v pátek', 'C) v sobotu', 'D) v neděli', 'E) v jiném dnu'],
+     'ln': 0,
+     'sol': ['Pondělí $\\frac{1}{16}$, úterý $\\frac{2}{16}$, středa $\\frac{4}{16}$, čtvrtek $\\frac{8}{16}=\\frac{1}{2}$. Polovinu tedy plocha pokryla ve čtvrtek.'],
+     'ans': 'A) ve čtvrtek', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['aritmetika', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 13',
+     'zad': ['Sedmé třídy (7. A a 7. B) uspořádaly sběr papíru. Každý žák přinesl stejné množství papíru. V jednotlivých třídách je počet žáků větší než 20 a menší než 30. V 7. A nasbírali žáci celkem 580 kg papíru, přičemž chlapci nasbírali o 100 kg méně než dívky. V 7. B je celkem 24 dětí a mezi nimi je dvakrát více chlapců než dívek.',
+             'Kolik kg papíru nasbíraly dívky 7. A?'],
+     'opts': ['A) $300$ kg', 'B) $320$ kg', 'C) $340$ kg', 'D) $360$ kg', 'E) jiný počet kg'],
+     'ln': 0,
+     'sol': ['Dívky $d$, chlapci $d-100$; $d+(d-100)=580$, tedy $2d=680$ a $d=340$. Dívky 7. A nasbíraly $340$ kg.'],
+     'ans': 'C) $340$ kg', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 14',
+     'zad': ['Vyjděte z výchozího textu a tabulky k úlohám 13–14 (sběr papíru tříd 7. A a 7. B; každý žák přinesl stejné množství papíru, počet žáků ve třídě je větší než 20 a menší než 30).',
+             'Kolik kg papíru nasbírali chlapci 7. B?'],
+     'opts': ['A) $300$ kg', 'B) $320$ kg', 'C) $340$ kg', 'D) $360$ kg', 'E) jiný počet kg'],
+     'ln': 0,
+     'sol': ['V 7. A je $17$ dívek a $12$ chlapců, tj. $29$ žáků; na jednoho připadá $580:29=20$ kg. V 7. B je z 24 dětí $8$ dívek a $16$ chlapců. Chlapci 7. B nasbírali $16\\cdot 20=320$ kg.'],
+     'ans': 'B) $320$ kg', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 15',
+     'zad': ['Přiřaďte ke každé úloze (15.1–15.3) odpovídající výsledek (A–F).',
+             '15.1 Které číslo získáme zmenšením čísla 350 o $60\\,\\%$?',
+             '15.2 Pro které číslo platí, že $75\\,\\%$ z jeho poloviny je 60?',
+             '15.3 Kolik je $\\frac{5}{6}$ z takového čísla, které je rovno $\\frac{2}{3}$ z 270?'],
+     'opts': ['A) $90$', 'B) $120$', 'C) $140$', 'D) $150$', 'E) $160$', 'F) $210$'],
+     'ln': 0,
+     'sol': ['15.1 $350\\cdot(1-0{,}6)=350\\cdot 0{,}4=140$ → C.',
+             '15.2 $0{,}75\\cdot\\frac{x}{2}=60\\Rightarrow \\frac{x}{2}=80\\Rightarrow x=160$ → E.',
+             '15.3 $\\frac{2}{3}$ z 270 je $180$; $\\frac{5}{6}$ z 180 je $150$ → D.'],
+     'ans': '15.1: C ($140$); 15.2: E ($160$); 15.3: D ($150$)', 'pts': 6, 'mins': 7, 'diff': '3',
+     'codes': B + ['procenta', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M7B 2018 – úloha 16',
+     'zad': ['Ze stejně velkých čtverečků se podle jednotného pravidla sestavují obdélníky. První obdélník obsahuje 2 čtverečky. Každý další obdélník vznikne tak, že se k předchozímu obdélníku přidá nejprve dole jedna řada tmavých čtverečků a poté vpravo jeden sloupec bílých čtverečků. Číslo nahoře nad obdélníkem vždy uvádí počet všech čtverečků v obdélníku, číslo vpravo uvádí počet bílých čtverečků v nejdelším z přidaných sloupců. U každého z následujících obdélníků je chybějící počet nahrazen otazníkem.',
+             '16.1 Obdélník obsahuje celkem 110 čtverečků. Určete počet bílých čtverečků v nejdelším z přidaných sloupců.',
+             '16.2 Nejdelší z přidaných sloupců obsahuje 20 bílých čtverečků. Určete počet všech čtverečků v obdélníku.',
+             '16.3 Počet čtverečků v obdélníku je větší než 900, ale menší než 1 000. Určete přesný počet čtverečků v obdélníku. Najděte všechna možná řešení.'],
+     'opts': None, 'ln': 3, 'svg': SVG16, 'fn': 'obdelniky-vzor.svg',
+     'alt': 'Čtyři obdélníky sestavené z tmavých a bílých čtverečků s počty 2, 6, 12, 20 nahoře a 2, 3, 4 vpravo.',
+     'cap': 'Pravidlo sestavování obdélníků',
+     'sol': ['$n$-tý obdélník má $n$ řádků a $n+1$ sloupců, tedy $n(n+1)$ čtverečků; číslo vpravo (bílé čtverečky v přidaném sloupci) je $n$.',
+             '16.1 $n(n+1)=110\\Rightarrow n=10$; bílých čtverečků je $10$.',
+             '16.2 $n=20\\Rightarrow n(n+1)=20\\cdot 21=420$ čtverečků.',
+             '16.3 $900<n(n+1)<1000$: $30\\cdot 31=930$ a $31\\cdot 32=992$. Řešení jsou $930$ a $992$.'],
+     'ans': '16.1: $10$; 16.2: $420$; 16.3: $930$ a $992$', 'pts': 4, 'mins': 6, 'diff': '3',
+     'codes': B + ['posloupnosti', 'argumentace', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+]
+
+if __name__ == '__main__':
+    import os, sys, json
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_cermat as gen
+    gen.CCODE = 'M7PBD18C0T02'
+    gen.YEAR = 2018
+
+    def dollars_ok(s): return s.count('$') % 2 == 0
+    errors = []; names = set(); total_pts = 0
+    for p in PROBLEMS:
+        if p['name'] in names: errors.append('DUP název: ' + p['name'])
+        names.add(p['name']); total_pts += p['pts']
+        if 'M7B' not in p['name']: errors.append('Název bez M7B: ' + p['name'])
+        for t in [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or []):
+            if not dollars_ok(t): errors.append('Nepárový $: ' + t[:70])
+        if p.get('svg') and ("'" in p['svg'] or '\\' in p['svg']):
+            errors.append('SVG zakázaný znak: ' + p['name'])
+        if p.get('svg') and not p.get('alt'): errors.append('Obrázek bez alt: ' + p['name'])
+        for lbl, obj in (('content', gen.py_content_json(p)), ('solution', gen.py_solution_json(p)), ('answer', gen.py_answer_json(p))):
+            try: json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e: errors.append(f'JSON {lbl} {p["name"]}: {e}')
+    if total_pts != 50: errors.append('Součet bodů != 50: ' + str(total_pts))
+    if errors:
+        print('CHYBY:'); [print('  -', e) for e in errors]; sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'úloh, součet bodů', total_pts)
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    tot = 0
+    for path, sz, k in gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-cermat-M7B-2018')):
+        tot += k; print(f'{os.path.basename(path)}: {sz} B, {k} úloh [{"OK" if sz<9000 else "PŘES 9KB"}]')
+    print('Celkem úloh:', tot)
