@@ -80,7 +80,7 @@ je odpověď spojena středníkem.
 ## Obsah — CERMAT (jednotná přijímací zkouška)
 
 Zdroj: `prijimacky.cermat.cz`. Soubory v `scripts/apex/cermat/`.
-Celkem **267 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137).
+Celkem **309 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137 + M9 nanečisto 42).
 
 ### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 
@@ -110,6 +110,13 @@ Celkem **267 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137).
 
 > Pozn. M7B 2025 úloha 16: v předloze nesrovnalost (rozměr 24 vs 25 cm) mezi zadáním
 > a klíčem — odpovědi z klíče, k ruční kontrole.
+
+### MATEMATIKA 9 – přijímačky nanečisto (čtyřleté obory, 9. ročník) — 42 úloh, taxonomie `zs2` + `r9`
+
+| Test | kód (CERMAT_Code__c) | rok | úloh |
+|---|---|---|---|
+| M9 nanečisto 2025 | M9PND25C0T01 | 2025 | 21 |
+| M9 nanečisto 2026 | M9PND26C0T01 | 2026 | 21 |
 
 Generátor `scripts/generator/gen_cermat.py` navíc nastavuje CERMAT pole:
 `Source_Type__c = 'CERMAT'`, `CERMAT_Code__c = <kód testu>`, `Source_Year__c = <rok>`,
