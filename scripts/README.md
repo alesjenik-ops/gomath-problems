@@ -80,7 +80,8 @@ je odpověď spojena středníkem.
 ## Obsah — CERMAT (jednotná přijímací zkouška)
 
 Zdroj: `prijimacky.cermat.cz`. Soubory v `scripts/apex/cermat/`.
-Celkem **472 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137 + M9 čtyřleté 163 + M9 nanečisto 42).
+Celkem **698 GoMath úloh**: ročníky **2026 + 2025** (tabulky níže) a **2024**
+(M5 72 + M7 74 + M9 80 = 226; varianty A–D, kódy T01–T04, viz `import-cermat-M{5,7,9}{A..D}-2024-*`).
 
 ### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 

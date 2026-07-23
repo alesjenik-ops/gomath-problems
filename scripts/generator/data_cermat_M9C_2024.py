@@ -1,0 +1,361 @@
+# -*- coding: utf-8 -*-
+# CERMAT - Jednotna prijimaci zkouska 2024, MATEMATIKA 9C (ctyrlete obory, 9. rocnik).
+# Kod testu: M9PCD24C0T03. 16 uloh (po rozdeleni nezavislych poduloh 20 uloh).
+# Zdroj odpovedi: klic spravnych reseni (KLIC_9C_2024).
+
+# ---- SVG obrazky (bez apostrofu a zpetnych lomitek) ----
+
+# uloha 2: dve valcove nadoby A (uzka, plna) a B (siroka, prazdna), stejna vyska 20 cm
+SVG2 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 250" font-family="sans-serif">
+<path d="M82 55 L82 190 A28 9 0 0 0 138 190 L138 55" fill="#cfe3f5" stroke="#000"/>
+<ellipse cx="110" cy="55" rx="28" ry="9" fill="#cfe3f5" stroke="#000"/>
+<text x="110" y="128" font-size="16" text-anchor="middle" font-style="italic">A</text>
+<line x1="82" y1="205" x2="138" y2="205" stroke="#444"/>
+<text x="110" y="220" font-size="12" text-anchor="middle">10 cm</text>
+<path d="M238 55 L238 190 A52 14 0 0 0 342 190 L342 55" fill="#ffffff" stroke="#000"/>
+<ellipse cx="290" cy="55" rx="52" ry="14" fill="#ffffff" stroke="#000"/>
+<text x="290" y="128" font-size="16" text-anchor="middle" font-style="italic">B</text>
+<line x1="238" y1="212" x2="342" y2="212" stroke="#444"/>
+<text x="290" y="227" font-size="12" text-anchor="middle">20 cm</text>
+<line x1="410" y1="55" x2="410" y2="190" stroke="#444"/>
+<text x="418" y="128" font-size="12">20 cm</text>
+</svg>"""
+
+# uloha 6: pravouhly lichobeznik ABCD, uhlopricka AC, trojuhelnik ABC sedy (64 cm2)
+SVG6 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" font-family="sans-serif">
+<polygon points="70,220 430,220 205,40 70,40" fill="none" stroke="#000" stroke-width="2"/>
+<polygon points="70,220 430,220 205,40" fill="#b9b9b9" stroke="#000"/>
+<line x1="70" y1="220" x2="205" y2="40" stroke="#000"/>
+<rect x="70" y="40" width="16" height="16" fill="none" stroke="#000"/>
+<text x="56" y="36" font-size="14" font-style="italic">D</text>
+<text x="205" y="32" font-size="14" font-style="italic" text-anchor="middle">C</text>
+<text x="56" y="236" font-size="14" font-style="italic">A</text>
+<text x="438" y="226" font-size="14" font-style="italic">B</text>
+<text x="140" y="32" font-size="12" text-anchor="middle">6 cm</text>
+<text x="250" y="240" font-size="12" text-anchor="middle">16 cm</text>
+<text x="245" y="150" font-size="13" text-anchor="middle">64 cm²</text>
+</svg>"""
+
+# uloha 7: 3 zahony - 1. a 3. ctvrtkruh, 2. kruh (sedy)
+SVG7 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 200" font-family="sans-serif">
+<path d="M150 70 L92 70 A58 58 0 0 0 150 128 Z" fill="none" stroke="#000"/>
+<circle cx="210" cy="100" r="40" fill="#b9b9b9" stroke="#000"/>
+<path d="M270 70 L328 70 A58 58 0 0 1 270 128 Z" fill="none" stroke="#000"/>
+<text x="118" y="104" font-size="11" text-anchor="middle">1. záhon</text>
+<text x="210" y="104" font-size="11" text-anchor="middle">2. záhon</text>
+<text x="302" y="104" font-size="11" text-anchor="middle">3. záhon</text>
+<text x="116" y="84" font-size="12" font-style="italic">r</text>
+<text x="300" y="84" font-size="12" font-style="italic">r</text>
+</svg>"""
+
+# uloha 8: trojuhelnik ABC vymezeny tremi ruznobezkami a, b, c; vnejsi uhel 130 u B
+SVG8 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 330" font-family="sans-serif">
+<line x1="80" y1="157" x2="560" y2="253" stroke="#000"/>
+<line x1="281" y1="19" x2="533" y2="307" stroke="#000"/>
+<line x1="394" y1="35" x2="122" y2="205" stroke="#000"/>
+<text x="70" y="150" font-size="15" font-style="italic">c</text>
+<text x="540" y="320" font-size="15" font-style="italic">a</text>
+<text x="400" y="30" font-size="15" font-style="italic">b</text>
+<text x="166" y="164" font-size="14" font-style="italic" text-anchor="middle">A</text>
+<text x="332" y="68" font-size="14" font-style="italic" text-anchor="middle">C</text>
+<text x="478" y="238" font-size="14" font-style="italic">B</text>
+<text x="205" y="172" font-size="14">α</text>
+<text x="322" y="112" font-size="14">γ</text>
+<text x="430" y="212" font-size="14">β</text>
+<text x="498" y="274" font-size="13">130°</text>
+</svg>"""
+
+# uloha 9: vychozi obrazek - kruznice k se stredem S prochazejici bodem A, bod E vne
+SVG9 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" font-family="sans-serif">
+<circle cx="200" cy="180" r="130" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="200" y="185" font-size="14" text-anchor="middle">×</text>
+<text x="212" y="192" font-size="14" font-style="italic">S</text>
+<text x="108" y="277" font-size="14" text-anchor="middle">×</text>
+<text x="94" y="277" font-size="14" font-style="italic">A</text>
+<text x="372" y="185" font-size="14" text-anchor="middle">×</text>
+<text x="384" y="185" font-size="14" font-style="italic">E</text>
+<text x="118" y="82" font-size="15" font-style="italic">k</text>
+</svg>"""
+
+# uloha 10: vychozi obrazek - primka o (osa soumernosti) a body A, S
+SVG10 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" font-family="sans-serif">
+<line x1="232" y1="70" x2="180" y2="300" stroke="#000" stroke-width="1.5"/>
+<text x="240" y="66" font-size="15" font-style="italic">o</text>
+<text x="150" y="235" font-size="14" text-anchor="middle">×</text>
+<text x="150" y="252" font-size="14" font-style="italic" text-anchor="middle">A</text>
+<text x="290" y="200" font-size="14" text-anchor="middle">×</text>
+<text x="300" y="205" font-size="14" font-style="italic">S</text>
+</svg>"""
+
+# uloha 11: krychle a nove teleso (schodovite) - prostorove teleso, schematicky
+SVG11 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 210" font-family="sans-serif">
+<polygon points="60,90 140,90 140,170 60,170" fill="#ffffff" stroke="#000"/>
+<polygon points="60,90 90,68 170,68 140,90" fill="#ffffff" stroke="#000"/>
+<polygon points="140,90 170,68 170,148 140,170" fill="#ffffff" stroke="#000"/>
+<line x1="60" y1="130" x2="140" y2="130" stroke="#000" stroke-dasharray="4 3"/>
+<line x1="140" y1="130" x2="170" y2="108" stroke="#000" stroke-dasharray="4 3"/>
+<text x="115" y="192" font-size="12" text-anchor="middle">krychle</text>
+<polygon points="250,120 390,120 390,160 250,160" fill="#ffffff" stroke="#000"/>
+<polygon points="250,120 280,100 420,100 390,120" fill="#ffffff" stroke="#000"/>
+<polygon points="390,120 420,100 420,140 390,160" fill="#ffffff" stroke="#000"/>
+<polygon points="250,80 320,80 320,120 250,120" fill="#ffffff" stroke="#000"/>
+<polygon points="250,80 280,60 350,60 320,80" fill="#ffffff" stroke="#000"/>
+<polygon points="320,80 350,60 350,100 320,120" fill="#ffffff" stroke="#000"/>
+<text x="330" y="188" font-size="12" text-anchor="middle">nové těleso</text>
+</svg>"""
+
+# uloha 15: dva kolacove grafy - zajem o GYM/SOS/SOU a SOS podle zamereni
+SVG15 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" font-family="sans-serif">
+<text x="140" y="24" font-size="12" text-anchor="middle">Zájem o gymnázia, SOŠ a SOU</text>
+<path d="M140 150 L140 70 A80 80 0 0 1 219.8 145.0 Z" fill="#e8e8e8" stroke="#000"/>
+<path d="M140 150 L219.8 145.0 A80 80 0 0 1 186.0 214.7 Z" fill="#ffffff" stroke="#000"/>
+<path d="M140 150 L186.0 214.7 A80 80 0 1 1 140 70 Z" fill="#d0d0d0" stroke="#000"/>
+<text x="196" y="112" font-size="11" text-anchor="middle">12 žáků</text>
+<text x="196" y="124" font-size="11" text-anchor="middle">GYM</text>
+<text x="200" y="192" font-size="11" text-anchor="middle">16 % SOU</text>
+<text x="92" y="160" font-size="11" text-anchor="middle">60 % SOŠ</text>
+<text x="380" y="24" font-size="12" text-anchor="middle">SOŠ podle zaměření</text>
+<path d="M380 150 L380 70 A80 80 0 0 1 427.0 214.7 Z" fill="#e8e8e8" stroke="#000"/>
+<path d="M380 150 L427.0 214.7 A80 80 0 0 1 380 230 Z" fill="#ffffff" stroke="#000"/>
+<path d="M380 150 L380 230 A80 80 0 1 1 380 70 Z" fill="#9a9a9a" stroke="#000"/>
+<text x="345" y="145" font-size="11" text-anchor="middle">technické</text>
+<text x="345" y="157" font-size="11" text-anchor="middle">15 žáků</text>
+<text x="432" y="140" font-size="11" text-anchor="middle">humanitní</text>
+<text x="432" y="248" font-size="11" text-anchor="middle">3 žáci</text>
+<text x="432" y="260" font-size="11" text-anchor="middle">umělecké</text>
+</svg>"""
+
+B = ['zs2', 'r9']  # 9. rocnik ZS (ctyrlete obory); stupen zs2, rocnik r9
+
+PROBLEMS = [
+    {'name': 'CERMAT M9C 2024 – úloha 1', 'zad': [
+        'Města Jihlava a Třebíč mají dohromady $86\\,200$ obyvatel. Jihlava má o $16\\,000$ obyvatel více.',
+        'Kolik obyvatel má Třebíč?'],
+     'opts': None, 'ln': 2,
+     'sol': ['Označme počet obyvatel Třebíče $t$. Jihlava má $t+16\\,000$ obyvatel a platí $t+(t+16\\,000)=86\\,200$, tj. $2t=70\\,200$, tedy $t=35\\,100$.'],
+     'ans': '$35\\,100$ obyvatel', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 2', 'zad': [
+        'Dvě válcové nádoby $A$ a $B$ mají stejnou výšku $v=20$ cm. Nádoba $A$ má průměr podstavy $d_1=10$ cm, nádoba $B$ má průměr podstavy $d_2=20$ cm. Nádoba $A$ je naplněna až po okraj vodou, nádoba $B$ je prázdná (viz obrázek).',
+        'Do jaké výšky bude sahat voda v nádobě $B$, pokud všechnu vodu z nádoby $A$ přelijeme do nádoby $B$?'],
+     'opts': None, 'ln': 3, 'svg': SVG2, 'fn': 'valce-AB.svg',
+     'alt': 'Dvě válcové nádoby stejné výšky 20 cm: užší nádoba A (průměr 10 cm) naplněná vodou a širší prázdná nádoba B (průměr 20 cm).',
+     'cap': 'Válcové nádoby A a B',
+     'sol': ['Objem vody se přeléváním nemění. Poloměr nádoby $A$ je $5$ cm, poloměr nádoby $B$ je $10$ cm. Z rovnosti objemů $\\pi\\cdot 5^2\\cdot 20=\\pi\\cdot 10^2\\cdot h$ plyne $h=\\frac{25\\cdot 20}{100}=5$ cm. (Průměr $B$ je dvojnásobný, obsah podstavy čtyřnásobný, proto výška hladiny klesne na čtvrtinu.)'],
+     'ans': '$5$ cm', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['stereometrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 3.1', 'zad': [
+        'Vypočtěte a výsledek zapište zlomkem v základním tvaru: $\\frac{\\frac{7}{5}+3{,}3-\\frac{1}{2}}{\\frac{1}{15}+\\frac{1}{3}}=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Čitatel: $\\frac{7}{5}+3{,}3-\\frac{1}{2}=1{,}4+3{,}3-0{,}5=4{,}2$. Jmenovatel: $\\frac{1}{15}+\\frac{1}{3}=\\frac{1}{15}+\\frac{5}{15}=\\frac{6}{15}=\\frac{2}{5}=0{,}4$. Podíl: $4{,}2:0{,}4=\\frac{21}{2}$.'],
+     'ans': '$\\frac{21}{2}$', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 3.2', 'zad': [
+        'Vypočtěte a výsledek zapište zlomkem v základním tvaru: $\\left(\\frac{1}{2}+\\frac{1}{3}:\\frac{5}{6}\\right)-\\frac{7}{2}+\\frac{3}{5}:\\frac{3}{2}-1=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$\\frac{1}{3}:\\frac{5}{6}=\\frac{1}{3}\\cdot\\frac{6}{5}=\\frac{2}{5}$, proto $\\frac{1}{2}+\\frac{2}{5}=\\frac{9}{10}$. Dále $\\frac{3}{5}:\\frac{3}{2}=\\frac{3}{5}\\cdot\\frac{2}{3}=\\frac{2}{5}$. Celkem $\\frac{9}{10}-\\frac{7}{2}+\\frac{2}{5}-1=\\frac{9-35+4-10}{10}=-\\frac{32}{10}=-\\frac{16}{5}$.'],
+     'ans': '$-\\frac{16}{5}$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 4.1', 'zad': [
+        'Umocněte a zjednodušte; výsledek zapište zlomkem v základním tvaru: $\\left(\\frac{b}{3}-3b\\right)^2=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$\\frac{b}{3}-3b=\\frac{b-9b}{3}=-\\frac{8b}{3}$, po umocnění $\\left(-\\frac{8b}{3}\\right)^2=\\frac{64}{9}b^2$.'],
+     'ans': '$\\frac{64}{9}b^2$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 4.2', 'zad': [
+        'Upravte a výsledný výraz rozložte na součin pomocí vzorců: $5-(1-x^2)-x\\cdot 2x=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$5-(1-x^2)-x\\cdot 2x=5-1+x^2-2x^2=4-x^2=(2+x)\\cdot(2-x)$.'],
+     'ans': '$(2+x)\\cdot(2-x)$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 4.3', 'zad': [
+        'Zjednodušte (výsledný výraz nesmí obsahovat závorky): $(c-7)\\cdot(c-7)-(c-5)\\cdot 3c+c\\cdot(c+c)=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$(c-7)^2=c^2-14c+49$; $(c-5)\\cdot 3c=3c^2-15c$; $c\\cdot(c+c)=2c^2$. Celkem $c^2-14c+49-(3c^2-15c)+2c^2=c^2-14c+49-3c^2+15c+2c^2=c+49$.'],
+     'ans': '$c+49$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 5.1', 'zad': [
+        'Řešte rovnici: $\\left(x+\\frac{1}{2}x\\right)\\cdot 2=\\left(x+\\frac{1}{6}x\\right)\\cdot 2+6$'],
+     'opts': None, 'ln': 4,
+     'sol': ['Levá strana: $\\left(x+\\frac{1}{2}x\\right)\\cdot 2=3x$. Pravá strana: $\\left(x+\\frac{1}{6}x\\right)\\cdot 2+6=\\frac{7}{3}x+6$. Z rovnice $3x=\\frac{7}{3}x+6$ plyne $9x=7x+18$, tedy $2x=18$ a $x=9$.'],
+     'ans': '$x=9$', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 5.2', 'zad': [
+        'Řešte rovnici: $\\frac{1}{2}\\cdot(x+2)-(x-2)^2=6-x^2$'],
+     'opts': None, 'ln': 4,
+     'sol': ['$\\frac{1}{2}(x+2)-(x^2-4x+4)=6-x^2$, tj. $\\frac{x}{2}+1-x^2+4x-4=6-x^2$. Po odečtení $-x^2$ z obou stran: $\\frac{x}{2}+4x-3=6$, tedy $\\frac{9x}{2}=9$ a $x=2$.'],
+     'ans': '$x=2$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 6', 'zad': [
+        'Pravoúhlý lichoběžník $ABCD$ se základnami $AB$ a $CD$ a s pravým úhlem při vrcholu $D$ je úhlopříčkou $AC$ rozdělen na dva trojúhelníky $ABC$ a $ACD$. Pro délky stran platí: $|AB|=16$ cm, $|CD|=6$ cm. Obsah trojúhelníku $ABC$ je $64$ cm² (viz obrázek).',
+        '6.1 Vypočtěte výšku lichoběžníku $ABCD$. Výsledek uveďte v cm.',
+        '6.2 Vypočtěte obsah lichoběžníku $ABCD$. Výsledek uveďte v cm².'],
+     'opts': None, 'ln': 4, 'svg': SVG6, 'fn': 'lichobeznik-ABCD.svg',
+     'alt': 'Pravoúhlý lichoběžník ABCD s pravým úhlem u D, úhlopříčkou AC a šedě vyznačeným trojúhelníkem ABC o obsahu 64 cm²; AB = 16 cm, CD = 6 cm.',
+     'cap': 'Pravoúhlý lichoběžník ABCD',
+     'sol': ['6.1 Trojúhelník $ABC$ má základnu $AB=16$ cm a jeho výška je zároveň výškou lichoběžníku $v$. Z obsahu $\\frac{1}{2}\\cdot 16\\cdot v=64$ plyne $8v=64$, tedy $v=8$ cm.',
+            '6.2 Obsah lichoběžníku: $S=\\frac{AB+CD}{2}\\cdot v=\\frac{16+6}{2}\\cdot 8=11\\cdot 8=88$ cm².'],
+     'ans': '6.1: $8$ cm; 6.2: $88$ cm²', 'pts': 4, 'mins': 6, 'diff': '2',
+     'codes': B + ['planimetrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 7', 'zad': [
+        'V parku jsou 3 okrasné záhony. První a třetí záhon o stejné velikosti mají tvar čtvrtkruhu, druhý záhon má tvar kruhu. Každý ze tří záhonů má obsah $314$ dm² (viz obrázek).',
+        'V podúlohách 7.1 a 7.2 pro výpočet použijte zaokrouhlenou hodnotu čísla $\\pi\\doteq 3{,}14$ z tabulky na začátku testového sešitu.',
+        '7.1 Vypočtěte obvod druhého (kruhového) záhonu. Výsledek uveďte v celých metrech.',
+        '7.2 Vypočtěte poloměr $r$ jednoho z čtvrtkruhových záhonů. Výsledek uveďte v celých metrech.'],
+     'opts': None, 'ln': 4, 'svg': SVG7, 'fn': 'zahony.svg',
+     'alt': 'Tři záhony vedle sebe: první a třetí ve tvaru čtvrtkruhu s poloměrem r, prostřední ve tvaru kruhu.',
+     'cap': 'Tři okrasné záhony (schematický nákres)',
+     'sol': ['7.1 Kruhový záhon: $\\pi r^2=314$ dm², s $\\pi\\doteq 3{,}14$ je $r^2=100$, tedy $r=10$ dm. Obvod $o=2\\pi r=2\\cdot 3{,}14\\cdot 10=62{,}8$ dm $=6{,}28$ m $\\doteq 6$ m.',
+            '7.2 Čtvrtkruhový záhon: $\\frac{1}{4}\\pi r^2=314$ dm², tj. $\\pi r^2=1256$, $r^2=400$, a proto $r=20$ dm $=2$ m.'],
+     'ans': '7.1: $6$ m; 7.2: $2$ m', 'pts': 4, 'mins': 6, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 8', 'zad': [
+        'Trojúhelník $ABC$ je vymezen třemi různoběžkami $a$, $b$, $c$. Přímky $a$ a $c$ svírají úhel $130^\\circ$ a velikosti úhlů $\\alpha$ a $\\gamma$ jsou v poměru $2:3$ (viz obrázek).',
+        '8.1 Vypočtěte velikost vnitřního úhlu $\\gamma$ při vrcholu $C$.',
+        '8.2 Vypočtěte rozdíl $\\alpha-\\beta$ vnitřních úhlů $\\alpha$ a $\\beta$. Velikosti úhlů neměřte, ale vypočtěte (obrázek je ilustrační).'],
+     'opts': None, 'ln': 4, 'svg': SVG8, 'fn': 'trojuhelnik-uhly.svg',
+     'alt': 'Trojúhelník ABC vymezený třemi různoběžkami a, b, c s vnitřními úhly alfa u A, beta u B, gama u C a vnějším úhlem 130 stupňů u vrcholu B.',
+     'cap': 'Schematický nákres k úloze 8',
+     'sol': ['8.1 Úhel $130^\\circ$, který svírají přímky $a$ a $c$, je vnějším úhlem trojúhelníku při vrcholu $B$. Podle věty o vnějším úhlu je $\\alpha+\\gamma=130^\\circ$. Protože $\\alpha:\\gamma=2:3$, je $\\alpha=52^\\circ$ a $\\gamma=78^\\circ$.',
+            '8.2 Vnitřní úhel $\\beta=180^\\circ-130^\\circ=50^\\circ$. Rozdíl $\\alpha-\\beta=52^\\circ-50^\\circ=2^\\circ$.'],
+     'ans': '8.1: $\\gamma=78^\\circ$; 8.2: $\\alpha-\\beta=2^\\circ$', 'pts': 4, 'mins': 5, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 9 (konstrukce)', 'zad': [
+        'V rovině leží bod $E$ a kružnice $k$ se středem $S$, která prochází bodem $A$ (viz obrázek).',
+        'Bod $A$ je vrchol pravoúhlého lichoběžníku $ABCD$ se základnami $AB$ a $CD$ a pravým úhlem při vrcholu $A$. Vrcholy $C$ a $D$ tohoto lichoběžníku leží na kružnici $k$, bod $E$ je střed ramene $BC$.',
+        'Sestrojte zbývající vrcholy $B$, $C$ a $D$ lichoběžníku $ABCD$, označte je písmeny a lichoběžník narýsujte.'],
+     'opts': None, 'ln': 0, 'svg': SVG9, 'fn': 'kruznice-k-E.svg',
+     'alt': 'Kružnice k se středem S procházející bodem A vlevo dole a samostatný bod E vpravo vně kružnice.',
+     'cap': 'Výchozí obrázek k úloze 9',
+     'sol': ['Kružnice $k$ je Thaletovou kružnicí trojúhelníku $ACD$ (pravý úhel u $D$), proto úhlopříčka $AC$ prochází středem $S$. Vrchol $C$ je tedy průsečík polopřímky $AS$ s kružnicí $k$: $C=AS\\cap k$.',
+            'Bod $E$ je střed ramene $BC$, proto sestrojíme kružnici $m(E;|EC|)$ a vrchol $B$ najdeme jako $B=CE\\cap m$ (tak, že $|EB|=|EC|$).',
+            'V bodě $A$ vztyčíme kolmici k přímce $AB$ (pravý úhel při vrcholu $A$); její průsečík s kružnicí $k$ je vrchol $D$. Spojením $A$, $B$, $C$, $D$ vznikne lichoběžník $ABCD$.'],
+     'ans': 'Konstrukce lichoběžníku $ABCD$: $C=AS\\cap k$; $B$ na polopřímce $CE$ s $|EB|=|EC|$; $D$ je průsečík kolmice k $AB$ v bodě $A$ s kružnicí $k$ ($k$ je Thaletova kružnice nad průměrem $AC$). Viz obrázek v klíči.',
+     'pts': 3, 'mins': 7, 'diff': '3',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 10 (konstrukce)', 'zad': [
+        'V rovině je dána přímka $o$ a body $A$ a $S$, které neleží na přímce $o$ (viz obrázek).',
+        'Bod $A$ je vrchol rovnoramenného lichoběžníku $ABCD$, bod $S$ je střed strany $BC$. Přímka $o$ je osa souměrnosti lichoběžníku.',
+        'Sestrojte lichoběžník $ABCD$.'],
+     'opts': None, 'ln': 0, 'svg': SVG10, 'fn': 'primka-o-AS.svg',
+     'alt': 'Šikmá přímka o (osa souměrnosti) a dva body: A vlevo dole a S vpravo, oba mimo přímku.',
+     'cap': 'Výchozí obrázek k úloze 10',
+     'sol': ['Rovnoramenný lichoběžník je souměrný podle osy $o$. Vrchol $B$ je obrazem vrcholu $A$ v osové souměrnosti podle osy $o$: $B=O_o(A)$.',
+            'Bod $S$ je střed strany $BC$, proto vrchol $C$ leží na polopřímce $BS$ tak, že $|CS|=|BS|$.',
+            'Vrchol $D$ je obrazem vrcholu $C$ v osové souměrnosti podle osy $o$: $D=O_o(C)$. Spojením vznikne lichoběžník $ABCD$.'],
+     'ans': 'Konstrukce lichoběžníku $ABCD$: $B=O_o(A)$; $C$ na polopřímce $BS$ s $|CS|=|BS|$; $D=O_o(C)$. Viz obrázek v klíči.',
+     'pts': 3, 'mins': 6, 'diff': '3',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 11', 'zad': [
+        'Krychle má délku hrany $3$ dm. Krychli rozdělíme vodorovným řezem na dva shodné hranoly a vytvoříme nové těleso (viz obrázek).',
+        'O kolik dm² se zvětší povrch nového tělesa?'],
+     'opts': ['A) o $4{,}5$ dm²', 'B) o $9$ dm²', 'C) o $18$ dm²', 'D) oba povrchy jsou stejné', 'E) jiný výsledek'],
+     'ln': 0, 'svg': SVG11, 'fn': 'krychle-teleso.svg',
+     'alt': 'Krychle o hraně 3 dm rozdělená vodorovným řezem a nové schodovité těleso vzniklé posunutím horního hranolu.',
+     'cap': 'Schematický nákres krychle a nového tělesa',
+     'sol': ['Řez rozdělí krychli na dva shodné kvádry $3\\times 3\\times 1{,}5$ dm; řezná plocha má obsah $3\\cdot 3=9$ dm². Nové těleso vznikne posunutím horního kvádru o polovinu, takže se odkryje polovina řezné plochy na dolním i na horním kvádru: $\\frac{9}{2}+\\frac{9}{2}=9$ dm². O tuto plochu se povrch zvětší.'],
+     'ans': 'B) o $9$ dm²', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['stereometrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 12', 'zad': [
+        'Dva sourozenci Eva a Michal šetří společně na dárek pro rodiče. Eva našetřila $40\\,\\%$ potřebné částky, Michal o $24$ korun více než Eva. Sourozencům zbývá našetřit $72$ korun.',
+        'Kolik korun stojí dárek?'],
+     'opts': ['A) $96$ Kč', 'B) $120$ Kč', 'C) $480$ Kč', 'D) $1\\,920$ Kč', 'E) jiný výsledek'],
+     'ln': 0,
+     'sol': ['Označme cenu dárku $x$. Eva našetřila $0{,}4x$, Michal $0{,}4x+24$. Platí $0{,}4x+(0{,}4x+24)+72=x$, tj. $0{,}8x+96=x$, odtud $0{,}2x=96$ a $x=480$ Kč.'],
+     'ans': 'C) $480$ Kč', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['procenta', 'modelovani', 'slovni', 'bez-kalkulacky', 'finance']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 13', 'zad': [
+        'V divadle bylo těsně před začátkem představení v sále obsazeno $70\\,\\%$ sedadel. Po začátku představení přišlo se zpožděním ještě $11$ lidí a obsazenost sálu se tím zvýšila na $75\\,\\%$.',
+        'Jaká je kapacita sálu?'],
+     'opts': ['A) méně než $200$', 'B) $200$', 'C) $210$', 'D) $220$', 'E) více než $220$'],
+     'ln': 0,
+     'sol': ['Příchod $11$ lidí zvýšil obsazenost o $75\\,\\%-70\\,\\%=5\\,\\%$. Tedy $5\\,\\%$ kapacity sálu odpovídá $11$ sedadlům, kapacita je $11:0{,}05=220$ sedadel.'],
+     'ans': 'D) $220$', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['procenta', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 14', 'zad': [
+        'Tři kamarádi Petr, Cyril a Honza čtou komiksy. Petr přečetl o $3$ komiksy více než Cyril, Honza přečetl o osminu komiksů více než Cyril. Petr a Honza přečetli stejný počet komiksů.',
+        'Kolik komiksů přečetl Petr?'],
+     'opts': ['A) $22$', 'B) $24$', 'C) $25$', 'D) $26$', 'E) $27$'],
+     'ln': 0,
+     'sol': ['Označme počet Cyrilových komiksů $c$. Petr přečetl $c+3$, Honza $c+\\frac{1}{8}c=\\frac{9}{8}c$. Z rovnosti $c+3=\\frac{9}{8}c$ plyne $8c+24=9c$, tedy $c=24$. Petr přečetl $24+3=27$ komiksů.'],
+     'ans': 'E) $27$', 'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 15', 'zad': [
+        'Všichni žáci 9. A a 9. B odpověděli v průzkumu, jakou střední školu chtějí studovat. Žáci chtějí na gymnázia (GYM), střední odborné školy (SOŠ) nebo střední odborná učiliště (SOU). Ti, kteří chtějí na SOŠ, uvedli také obor zaměření — humanitní, technický, či umělecký. Na gymnázia chce jít studovat $12$ žáků. Nejmenší zájem je o odborná učiliště, kam chce jít $16\\,\\%$ žáků. Největší zájem je o střední odborné školy, na kterých chtějí studovat všichni, kteří nechtějí jít na gymnázia ani na odborná učiliště. Na uměleckou střední školu chtějí $3$ žáci, $15$ žáků na technicky zaměřenou střední školu, ostatní, kteří chtějí na SOŠ, by si vybrali humanitní obor. Výsledky průzkumu jsou v grafech (viz obrázek).',
+        'Rozhodněte o každém z následujících tvrzení 15.1–15.3, zda je pravdivé (A), či nikoli (N).',
+        '15.1 Na uměleckou střední školu chce jít $6\\,\\%$ všech žáků.',
+        '15.2 V 9. A a 9. B je celkem více než $50$ žáků.',
+        '15.3 Na gymnázia a na humanitní střední školy se chce hlásit stejný počet žáků.'],
+     'opts': None, 'ln': 0, 'svg': SVG15, 'fn': 'grafy-skoly.svg',
+     'alt': 'Dva kruhové grafy: vlevo zájem o gymnázia (12 žáků), SOŠ (60 %) a SOU (16 %); vpravo rozdělení SOŠ na technické (15 žáků), humanitní a umělecké (3 žáci).',
+     'cap': 'Výsledky průzkumu zájmu o střední školy',
+     'sol': ['Gymnázium volí $12$ žáků, což je $100\\,\\%-60\\,\\%-16\\,\\%=24\\,\\%$ všech žáků. Celkem je tedy $12:0{,}24=50$ žáků. Střední odborné školy volí $60\\,\\%$ z $50$, tj. $30$ žáků; z nich humanitní obor $30-15-3=12$ žáků.',
+            '15.1 Umělecký obor volí $3$ žáci, tj. $\\frac{3}{50}=6\\,\\%$ všech žáků — pravdivé (A).',
+            '15.2 Celkem je $50$ žáků, není jich tedy více než $50$ — nepravdivé (N).',
+            '15.3 Na gymnázia míří $12$ žáků a na humanitní SOŠ také $12$ žáků — pravdivé (A).'],
+     'ans': '15.1: Ano; 15.2: Ne; 15.3: Ano', 'pts': 3, 'mins': 6, 'diff': '3',
+     'codes': B + ['statistika', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9C 2024 – úloha 16', 'zad': [
+        'Deset zedníků dokončí stavbu budovy za $20$ dní. Všichni zedníci jsou stejně výkonní a pracují rovnoměrným tempem.',
+        'Přiřaďte ke každé úloze (16.1–16.3) odpovídající výsledek (A–F).',
+        '16.1 Za kolik dní dokončí stavbu budovy $4$ zedníci?',
+        '16.2 Kolik zedníků dokončí stavbu budovy za $5$ dní?',
+        '16.3 Kolik dní bude trvat dokončení stavby budovy, jestliže na první polovině stavby pracuje $8$ zedníků a současně na druhé polovině stavby pracuje $10$ zedníků?'],
+     'opts': ['A) $10$', 'B) $12{,}5$', 'C) $22{,}5$', 'D) $40$', 'E) $50$', 'F) $52{,}5$'],
+     'ln': 0,
+     'sol': ['Celková práce je $10\\cdot 20=200$ zednických dní.',
+            '16.1 $200:4=50$ dní — možnost E.',
+            '16.2 $200:5=40$ zedníků — možnost D.',
+            '16.3 Každá polovina stavby představuje $100$ zednických dní. První polovina s $8$ zedníky trvá $100:8=12{,}5$ dne, druhá polovina s $10$ zedníky trvá $100:10=10$ dní. Obě poloviny se staví současně, celá stavba je hotová po $12{,}5$ dne — možnost B.'],
+     'ans': '16.1: E ($50$ dní); 16.2: D ($40$ zedníků); 16.3: B ($12{,}5$ dne)', 'pts': 6, 'mins': 6, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+]
+
+if __name__ == '__main__':
+    import os, sys, json
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_cermat as gen
+    gen.CCODE = 'M9PCD24C0T03'
+    gen.YEAR = 2024
+
+    def dollars_ok(s): return s.count('$') % 2 == 0
+    errors = []; names = set()
+    for p in PROBLEMS:
+        if p['name'] in names: errors.append('DUP název: ' + p['name'])
+        names.add(p['name'])
+        for t in [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or []):
+            if not dollars_ok(t): errors.append('Nepárový $: ' + t[:70])
+        if p.get('svg') and ("'" in p['svg'] or '\\' in p['svg']):
+            errors.append('SVG zakázaný znak: ' + p['name'])
+        if p.get('svg') and not p.get('alt'): errors.append('Obrázek bez alt: ' + p['name'])
+        for lbl, obj in (('content', gen.py_content_json(p)), ('solution', gen.py_solution_json(p)), ('answer', gen.py_answer_json(p))):
+            try: json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e: errors.append(f'JSON {lbl} {p["name"]}: {e}')
+    if errors:
+        print('CHYBY:'); [print('  -', e) for e in errors]; sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'úloh')
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    tot = 0
+    for path, sz, k in gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-cermat-M9C-2024')):
+        tot += k; print(f'{os.path.basename(path)}: {sz} B, {k} úloh [{"OK" if sz<9000 else "PŘES 9KB"}]')
+    print('Celkem úloh:', tot)
