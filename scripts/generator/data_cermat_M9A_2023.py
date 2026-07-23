@@ -1,0 +1,425 @@
+# -*- coding: utf-8 -*-
+# CERMAT - Jednotna prijimaci zkouska 2023, MATEMATIKA 9A (ctyrlete obory, 9. rocnik),
+# 1. radny termin. Kod testu: M9PAD23C0T01. 16 uloh, max 50 bodu.
+# Po rozdeleni nezavislych poduuloh (uloha 2, 3, 4, 5) je zde 22 uloh.
+# Zdroj odpovedi: klic spravnych reseni (KSR) MATEMATIKA 9A.
+
+# ---- SVG obrazky (bez ' a \) ----
+
+# uloha 6: pravouhly lichobeznik ABCD, pravy uhel pri C; DC=10, CB=8, AB=6, uhloprickou DB
+SVG6 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 280" font-family="sans-serif">
+<polygon points="136,232 280,232 280,40 40,40" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="40" y1="40" x2="280" y2="232" stroke="#000"/>
+<rect x="263" y="40" width="17" height="17" fill="none" stroke="#000"/>
+<text x="26" y="36" font-size="16" font-style="italic">D</text>
+<text x="286" y="36" font-size="16" font-style="italic">C</text>
+<text x="286" y="246" font-size="16" font-style="italic">B</text>
+<text x="120" y="246" font-size="16" font-style="italic">A</text>
+<text x="150" y="32" font-size="14">10 cm</text>
+<text x="288" y="140" font-size="14">8 cm</text>
+<text x="196" y="252" font-size="14">6 cm</text>
+</svg>"""
+
+
+# uloha 7: skladany? ne -- skupinovy sloupcovy graf (8. a 9. tridy) pro tri krouzky.
+# Hodnoty (dilek = 3 zaci): hud 15/12, sach 12/21, rob 9/(chybi). Cisla na ose chybi.
+def _graf7():
+    y0 = 250
+    s = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" font-family="sans-serif">']
+    # osy
+    s.append(f'<line x1="55" y1="60" x2="55" y2="{y0}" stroke="#000"/>')
+    s.append(f'<line x1="55" y1="{y0}" x2="410" y2="{y0}" stroke="#000"/>')
+    # vodorovne mrizky (bez cisel, cisla na ose chybi)
+    for g in range(1, 8):
+        yy = y0 - g * 24
+        s.append(f'<line x1="55" y1="{yy}" x2="410" y2="{yy}" stroke="#ddd"/>')
+    # sloupce: (x, vyska_px, barva)
+    bars = [(78, 120, "#555"), (106, 96, "#d9d9d9"),
+            (178, 96, "#555"), (206, 168, "#d9d9d9"),
+            (278, 72, "#555")]
+    for x, h, col in bars:
+        s.append(f'<rect x="{x}" y="{y0-h}" width="26" height="{h}" fill="{col}" stroke="#000"/>')
+    # chybejici sloupec roboticky 9. tridy -- carkovany placeholder s otaznikem
+    s.append(f'<rect x="306" y="210" width="26" height="40" fill="none" stroke="#999" stroke-dasharray="4 3"/>')
+    s.append('<text x="319" y="202" font-size="15" text-anchor="middle">?</text>')
+    # popisky skupin
+    for cx, name in ((110, "hudebni"), (210, "sachovy"), (310, "roboticky")):
+        s.append(f'<text x="{cx}" y="268" font-size="12" text-anchor="middle">{name}</text>')
+    s.append(f'<text x="46" y="{y0+4}" font-size="12" text-anchor="end">0</text>')
+    s.append('<text x="24" y="160" font-size="12" text-anchor="middle" transform="rotate(-90 24 160)">Pocet zaku</text>')
+    # legenda
+    s.append('<rect x="330" y="70" width="13" height="13" fill="#555" stroke="#000"/><text x="348" y="81" font-size="12">8. tridy</text>')
+    s.append('<rect x="330" y="90" width="13" height="13" fill="#d9d9d9" stroke="#000"/><text x="348" y="101" font-size="12">9. tridy</text>')
+    s.append('</svg>')
+    return "".join(s)
+SVG7 = _graf7()
+
+
+# uloha 8: ctvercovy a obdelnikovy pozemek (schematicky), carkovane porovnani se ctvercem
+SVG8 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" font-family="sans-serif">
+<rect x="40" y="45" width="110" height="110" fill="none" stroke="#000" stroke-width="2"/>
+<text x="95" y="105" font-size="15" text-anchor="middle" font-style="italic">a</text>
+<text x="95" y="175" font-size="12" text-anchor="middle">ctvercovy</text>
+<rect x="235" y="45" width="110" height="110" fill="none" stroke="#999" stroke-dasharray="5 4"/>
+<rect x="235" y="72" width="150" height="83" fill="none" stroke="#000" stroke-width="2"/>
+<text x="310" y="175" font-size="12" text-anchor="middle">obdelnikovy</text>
+</svg>"""
+
+
+# uloha 9: body A (vlevo), M (vpravo nahore), C (vpravo dole) -- vychozi obrazek
+SVG9 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" font-family="sans-serif">
+<rect x="6" y="6" width="448" height="288" fill="none" stroke="#ccc"/>
+<text x="120" y="185" font-size="16" text-anchor="middle">x</text>
+<text x="104" y="182" font-size="15" font-style="italic">A</text>
+<text x="320" y="132" font-size="16" text-anchor="middle">x</text>
+<text x="326" y="128" font-size="15" font-style="italic">M</text>
+<text x="360" y="218" font-size="16" text-anchor="middle">x</text>
+<text x="366" y="222" font-size="15" font-style="italic">C</text>
+</svg>"""
+
+
+# uloha 10: kruznice k se stredem S, body P (uvnitr) a A (vpravo) -- vychozi obrazek
+SVG10 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 340" font-family="sans-serif">
+<rect x="6" y="6" width="488" height="328" fill="none" stroke="#ccc"/>
+<circle cx="250" cy="180" r="140" fill="none" stroke="#000" stroke-width="2"/>
+<text x="250" y="184" font-size="16" text-anchor="middle">x</text>
+<text x="256" y="198" font-size="15" font-style="italic">S</text>
+<text x="215" y="144" font-size="16" text-anchor="middle">x</text>
+<text x="200" y="140" font-size="15" font-style="italic">P</text>
+<text x="415" y="188" font-size="16" text-anchor="middle">x</text>
+<text x="421" y="204" font-size="15" font-style="italic">A</text>
+<text x="345" y="302" font-size="15" font-style="italic">k</text>
+</svg>"""
+
+
+# uloha 12: kvadr ABCDEFGH s uzavrenou lomenou carou ACFHA (zvyraznena)
+SVG12 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 300" font-family="sans-serif">
+<line x1="60" y1="240" x2="300" y2="240" stroke="#000"/>
+<line x1="300" y1="240" x2="360" y2="200" stroke="#000"/>
+<line x1="360" y1="200" x2="120" y2="200" stroke="#000" stroke-dasharray="5 4"/>
+<line x1="120" y1="200" x2="60" y2="240" stroke="#000" stroke-dasharray="5 4"/>
+<line x1="60" y1="140" x2="300" y2="140" stroke="#000"/>
+<line x1="300" y1="140" x2="360" y2="100" stroke="#000"/>
+<line x1="360" y1="100" x2="120" y2="100" stroke="#000"/>
+<line x1="120" y1="100" x2="60" y2="140" stroke="#000"/>
+<line x1="60" y1="240" x2="60" y2="140" stroke="#000"/>
+<line x1="300" y1="240" x2="300" y2="140" stroke="#000"/>
+<line x1="360" y1="200" x2="360" y2="100" stroke="#000"/>
+<line x1="120" y1="200" x2="120" y2="100" stroke="#000" stroke-dasharray="5 4"/>
+<polyline points="60,240 360,200 300,140 120,100 60,240" fill="none" stroke="#111" stroke-width="3"/>
+<text x="48" y="256" font-size="14" font-style="italic">A</text>
+<text x="304" y="256" font-size="14" font-style="italic">B</text>
+<text x="366" y="206" font-size="14" font-style="italic">C</text>
+<text x="102" y="214" font-size="14" font-style="italic">D</text>
+<text x="44" y="138" font-size="14" font-style="italic">E</text>
+<text x="304" y="136" font-size="14" font-style="italic">F</text>
+<text x="366" y="98" font-size="14" font-style="italic">G</text>
+<text x="102" y="98" font-size="14" font-style="italic">H</text>
+<text x="170" y="258" font-size="13">15 m</text>
+<text x="366" y="176" font-size="13">6 m</text>
+<text x="196" y="230" font-size="13">17 m</text>
+</svg>"""
+
+
+# uloha 14: dve rovnobezky (//) a dve ruznobezky protinajici se nahore; uhly 2a, b, 4a, 4a
+SVG14 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" font-family="sans-serif">
+<line x1="150" y1="290" x2="320" y2="10" stroke="#000"/>
+<line x1="350" y1="290" x2="180" y2="10" stroke="#000"/>
+<line x1="110" y1="165" x2="420" y2="165" stroke="#000"/>
+<line x1="110" y1="250" x2="420" y2="250" stroke="#000"/>
+<line x1="404" y1="158" x2="412" y2="172" stroke="#000"/>
+<line x1="410" y1="158" x2="418" y2="172" stroke="#000"/>
+<line x1="404" y1="243" x2="412" y2="257" stroke="#000"/>
+<line x1="410" y1="243" x2="418" y2="257" stroke="#000"/>
+<text x="250" y="112" font-size="16" text-anchor="middle">2&#945;</text>
+<text x="205" y="159" font-size="16" text-anchor="middle">&#946;</text>
+<text x="260" y="159" font-size="16" text-anchor="middle">4&#945;</text>
+<text x="188" y="243" font-size="16" text-anchor="middle">4&#945;</text>
+</svg>"""
+
+
+# uloha 16: obrazce 1, 2, 3 -- deleni bileho trojuhelniku na 4, prostredni na sedo (rekurze)
+def _tri(ax, ay, bx, by, cx, cy, depth, out):
+    if depth == 0:
+        out.append(f'<polygon points="{ax},{ay} {bx},{by} {cx},{cy}" fill="#fff" stroke="#000" stroke-width="1"/>')
+        return
+    mab = ((ax + bx) / 2, (ay + by) / 2)
+    mbc = ((bx + cx) / 2, (by + cy) / 2)
+    mca = ((cx + ax) / 2, (cy + ay) / 2)
+    out.append(f'<polygon points="{mab[0]},{mab[1]} {mbc[0]},{mbc[1]} {mca[0]},{mca[1]}" fill="#9a9a9a" stroke="#000" stroke-width="1"/>')
+    _tri(ax, ay, mab[0], mab[1], mca[0], mca[1], depth - 1, out)
+    _tri(mab[0], mab[1], bx, by, mbc[0], mbc[1], depth - 1, out)
+    _tri(mca[0], mca[1], mbc[0], mbc[1], cx, cy, depth - 1, out)
+
+def _obrazce():
+    s = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 150" font-family="sans-serif">']
+    tris = []
+    _tri(70, 10, 20, 110, 120, 110, 0, tris)      # 1. obrazec (depth 0)
+    _tri(230, 10, 180, 110, 280, 110, 1, tris)    # 2. obrazec (depth 1)
+    _tri(390, 10, 340, 110, 440, 110, 2, tris)    # 3. obrazec (depth 2)
+    s += tris
+    s.append('<text x="70" y="132" font-size="12" text-anchor="middle">1. obrazec</text>')
+    s.append('<text x="230" y="132" font-size="12" text-anchor="middle">2. obrazec</text>')
+    s.append('<text x="390" y="132" font-size="12" text-anchor="middle">3. obrazec</text>')
+    s.append('</svg>')
+    return "".join(s)
+SVG16 = _obrazce()
+
+
+B = ['zs2', 'r9']  # 9. rocnik ZS (ctyrlete obory)
+
+PROBLEMS = [
+    {'name': 'CERMAT M9A 2023 – úloha 1', 'zad': [
+        'Celý film trvá $1$ hodinu. Doba, která ještě zbývá do konce filmu, je polovinou doby, která již uplynula od začátku filmu.',
+        'Vypočtěte, kolik minut zbývá do konce filmu.'],
+     'opts': None, 'ln': 2,
+     'sol': ['Označme uplynulou dobu $u$ a zbývající dobu $z$. Platí $z=\\frac{u}{2}$ a $u+z=60$ minut. Dosazením $u+\\frac{u}{2}=60$, tj. $\\frac{3u}{2}=60$, $u=40$ min. Zbývá tedy $z=60-40=20$ minut.'],
+     'ans': '$20$ minut', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 2.1', 'zad': [
+        'Vnitřní objem sudu je $15$krát větší než objem kbelíku. Objem kbelíku je $5$krát větší než objem konvičky. Ze sudu plného vody jsme třetinu vody odebrali, takže v něm zbylo $60$ litrů vody.',
+        'Vypočtěte v litrech objem konvičky.'],
+     'opts': None, 'ln': 2,
+     'sol': ['V sudu zbyly dvě třetiny, tedy $60$ litrů odpovídá $\\frac{2}{3}$ objemu sudu; plný sud má $60:\\frac{2}{3}=90$ litrů. Kbelík: $90:15=6$ litrů. Konvička: $6:5=1{,}2$ litru.'],
+     'ans': '$1{,}2$ litru', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 2.2', 'zad': [
+        'Kvádr je možné beze zbytku rozřezat na $200$ krychlí, z nichž každá má objem $8$ dm³.',
+        'Vypočtěte, na kolik krychliček o objemu $1$ cm³ lze tento kvádr beze zbytku rozřezat.'],
+     'opts': None, 'ln': 2,
+     'sol': ['Objem kvádru je $200\\cdot 8=1600$ dm³. Protože $1$ dm³ $=1000$ cm³, je objem kvádru $1600\\cdot 1000=1\\,600\\,000$ cm³, tj. lze jej rozřezat na $1\\,600\\,000$ krychliček o objemu $1$ cm³.'],
+     'ans': '$1\\,600\\,000$ krychliček', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 3.1', 'zad': [
+        'Vypočtěte a výsledek zapište zlomkem v základním tvaru.',
+        '$\\dfrac{5}{9}-\\dfrac{5}{9}:5=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$\\frac{5}{9}:5=\\frac{5}{9}\\cdot\\frac{1}{5}=\\frac{1}{9}$. Tedy $\\frac{5}{9}-\\frac{1}{9}=\\frac{4}{9}$.'],
+     'ans': '$\\dfrac{4}{9}$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 3.2', 'zad': [
+        'Vypočtěte a výsledek zapište zlomkem v základním tvaru.',
+        '$\\dfrac{4-7}{8}\\cdot\\dfrac{16}{21}=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$\\frac{4-7}{8}=\\frac{-3}{8}$. Dále $\\frac{-3}{8}\\cdot\\frac{16}{21}=\\frac{-3\\cdot 16}{8\\cdot 21}=\\frac{-48}{168}=-\\frac{2}{7}$.'],
+     'ans': '$-\\dfrac{2}{7}$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 3.3', 'zad': [
+        'Vypočtěte a výsledek zapište zlomkem v základním tvaru. Uveďte celý postup řešení.',
+        '$\\dfrac{\\frac{3}{5}:\\left(\\frac{2}{5}+\\frac{1}{2}\\right)}{\\frac{7}{6}+\\frac{7}{10}}=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['Čitatel: $\\frac{2}{5}+\\frac{1}{2}=\\frac{4}{10}+\\frac{5}{10}=\\frac{9}{10}$, tedy $\\frac{3}{5}:\\frac{9}{10}=\\frac{3}{5}\\cdot\\frac{10}{9}=\\frac{2}{3}$. Jmenovatel: $\\frac{7}{6}+\\frac{7}{10}=\\frac{35}{30}+\\frac{21}{30}=\\frac{56}{30}=\\frac{28}{15}$. Podíl: $\\frac{2}{3}:\\frac{28}{15}=\\frac{2}{3}\\cdot\\frac{15}{28}=\\frac{30}{84}=\\frac{5}{14}$.'],
+     'ans': '$\\dfrac{5}{14}$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['aritmetika', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 4.1', 'zad': [
+        'Upravte a rozložte na součin vytknutím:',
+        '$2\\cdot(x^2-x)+x=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$2\\cdot(x^2-x)+x=2x^2-2x+x=2x^2-x=x\\cdot(2x-1)$.'],
+     'ans': '$x\\cdot(2x-1)$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 4.2', 'zad': [
+        'Umocněte a zjednodušte (výsledný výraz nesmí obsahovat závorky):',
+        '$\\left(\\dfrac{2}{3}a-3\\right)^2=$'],
+     'opts': None, 'ln': 2,
+     'sol': ['$\\left(\\frac{2}{3}a-3\\right)^2=\\left(\\frac{2}{3}a\\right)^2-2\\cdot\\frac{2}{3}a\\cdot 3+3^2=\\frac{4}{9}a^2-4a+9$.'],
+     'ans': '$\\dfrac{4}{9}a^2-4a+9$', 'pts': 1, 'mins': 2, 'diff': '2',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 4.3', 'zad': [
+        'Zjednodušte (výsledný výraz nesmí obsahovat závorky). Uveďte celý postup řešení.',
+        '$3n\\cdot(2-n+2n)+(2n+1)\\cdot(7-n)=$'],
+     'opts': None, 'ln': 3,
+     'sol': ['$3n\\cdot(2+n)=6n+3n^2$; $(2n+1)\\cdot(7-n)=14n-2n^2+7-n=-2n^2+13n+7$. Součet: $3n^2-2n^2+6n+13n+7=n^2+19n+7$.'],
+     'ans': '$n^2+19n+7$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['vyrazy', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 5.1', 'zad': [
+        'Řešte rovnici. Uveďte celý postup řešení (zkoušku nezapisujte).',
+        '$0{,}5x+2\\cdot(x+2{,}5)=2{,}5\\cdot(x+3)$'],
+     'opts': None, 'ln': 4,
+     'sol': ['$0{,}5x+2x+5=2{,}5x+7{,}5$; $2{,}5x+5=2{,}5x+7{,}5$; po odečtení $2{,}5x$ dostaneme $5=7{,}5$, což neplatí. Rovnice nemá řešení.'],
+     'ans': 'rovnice nemá řešení', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 5.2', 'zad': [
+        'Řešte rovnici. Uveďte celý postup řešení (zkoušku nezapisujte).',
+        '$\\dfrac{y+10}{15}+\\dfrac{2y}{5}=1-\\dfrac{5-y}{3}$'],
+     'opts': None, 'ln': 4,
+     'sol': ['Vynásobíme $15$: $(y+10)+6y=15-5\\cdot(5-y)$; $7y+10=15-25+5y$; $7y+10=5y-10$; $2y=-20$; $y=-10$.'],
+     'ans': '$y=-10$', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['rovnice', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 6', 'zad': [
+        'Pravoúhlý lichoběžník $ABCD$ se základnami $AB$, $CD$ má pravý úhel při vrcholu $C$. Podle obrázku je $CD=10$ cm, $CB=8$ cm a $AB=6$ cm.',
+        '6.1 Vypočtěte v cm² obsah trojúhelníku $ABD$.',
+        '6.2 Vypočtěte v cm² obsah lichoběžníku $ABCD$.'],
+     'opts': None, 'ln': 3, 'svg': SVG6, 'fn': 'lichobeznik-ABCD.svg',
+     'alt': 'Pravoúhlý lichoběžník ABCD s pravým úhlem při vrcholu C, se základnami CD rovnou 10 cm a AB rovnou 6 cm a ramenem CB rovným 8 cm; narýsována je úhlopříčka DB.',
+     'cap': 'Pravoúhlý lichoběžník ABCD',
+     'sol': ['Rameno $CB$ je kolmé na obě rovnoběžné základny, je tedy výškou lichoběžníku: $v=8$ cm.',
+            '6.1 Trojúhelník $ABD$ má základnu $AB=6$ cm a výšku rovnou výšce lichoběžníku, tj. $8$ cm: $S=\\frac{1}{2}\\cdot 6\\cdot 8=24$ cm².',
+            '6.2 Obsah lichoběžníku: $S=\\frac{AB+CD}{2}\\cdot v=\\frac{6+10}{2}\\cdot 8=8\\cdot 8=64$ cm².'],
+     'ans': '6.1: $24$ cm²; 6.2: $64$ cm²', 'pts': 2, 'mins': 3, 'diff': '2',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 7', 'zad': [
+        'Pouze pro žáky 8. a 9. tříd byly otevřeny tři kroužky – hudební, šachový a robotický. Každý žák může být jen v jednom z těchto tří kroužků. Graf znázorňuje počty žáků v jednotlivých kroužcích; jeden údaj (9. třídy v robotickém kroužku) a čísla na svislé ose chybí. V hudebním kroužku je celkem o $6$ žáků méně než v šachovém. Ve všech třech kroužcích dohromady je poměr počtu žáků 8. tříd ku počtu žáků 9. tříd $2:3$.',
+        '7.1 Určete, o kolik procent více je v hudebním kroužku žáků 8. tříd než žáků 9. tříd.',
+        '7.2 Určete, kolik žáků 9. tříd je v šachovém kroužku.',
+        '7.3 Určete, jaký je v robotickém kroužku poměr počtu žáků 8. tříd ku počtu žáků 9. tříd.'],
+     'opts': None, 'ln': 3, 'svg': SVG7, 'fn': 'graf-krouzky.svg',
+     'alt': 'Skupinový sloupcový graf: pro hudební, šachový a robotický kroužek jsou dvojice sloupců pro 8. a 9. třídy; sloupec 9. tříd u robotického kroužku a čísla na svislé ose chybí.',
+     'cap': 'Počty žáků 8. a 9. tříd v kroužcích (schematický graf)',
+     'sol': ['Ze sloupců lze odečíst poměry výšek (v dílcích): hudební 8. tříd $5$, 9. tříd $4$; šachový 8. tříd $4$, 9. tříd $7$; robotický 8. tříd $3$. Hudební kroužek má $9$ dílců, šachový $11$ dílců; jelikož se liší o $6$ žáků, je $2$ dílce $=6$ žáků, tedy $1$ dílec $=3$ žáci. Počty: hudební 8. tříd $15$, 9. tříd $12$; šachový 8. tříd $12$, 9. tříd $21$; robotický 8. tříd $9$.',
+            '7.1 V hudebním kroužku je 8. tříd $15$ a 9. tříd $12$, tj. o $\\frac{15-12}{12}=25\\,\\%$ více.',
+            '7.2 V šachovém kroužku je $21$ žáků 9. tříd.',
+            '7.3 Celkem je žáků 8. tříd $15+12+9=36$; při poměru $2:3$ je žáků 9. tříd $54$, z toho v robotickém $54-(12+21)=21$. Poměr v robotickém kroužku je $9:21=3:7$.'],
+     'ans': '7.1: o $25\\,\\%$; 7.2: $21$ žáků; 7.3: $3:7$', 'pts': 3, 'mins': 5, 'diff': '3',
+     'codes': B + ['statistika', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 8', 'zad': [
+        'Čtvercový pozemek má stejný obvod jako obdélníkový pozemek. Obdélníkový pozemek má jednu stranu o $25\\,\\%$ kratší než čtvercový pozemek a druhou stranu o $10$ m delší než čtvercový pozemek. Délku strany čtvercového pozemku označíme $a$.',
+        '8.1 Vyjádřete výrazem s proměnnou $a$ délku kratší strany obdélníkového pozemku.',
+        '8.2 Vypočtěte v metrech délku $a$ strany čtvercového pozemku.',
+        '8.3 Vypočtěte, o kolik m² se liší obsahy obdélníkového a čtvercového pozemku.'],
+     'opts': None, 'ln': 4, 'svg': SVG8, 'fn': 'pozemky.svg',
+     'alt': 'Čtvercový pozemek a vedle něj obdélníkový pozemek; čárkovaně je naznačen čtverec pro porovnání, obdélník má jednu stranu kratší a druhou delší než čtverec.',
+     'cap': 'Schematický nákres čtvercového a obdélníkového pozemku',
+     'sol': ['Kratší strana obdélníku (o $25\\,\\%$ kratší) je $0{,}75a$, delší strana je $a+10$.',
+            '8.1 Kratší strana obdélníkového pozemku má délku $0{,}75a$.',
+            '8.2 Ze shody obvodů: $4a=2\\cdot(0{,}75a+a+10)=3{,}5a+20$, odtud $0{,}5a=20$, $a=40$ m.',
+            '8.3 Rozměry obdélníku: $0{,}75\\cdot 40=30$ m a $40+10=50$ m; jeho obsah $30\\cdot 50=1500$ m². Čtverec má obsah $40^2=1600$ m². Liší se o $1600-1500=100$ m².'],
+     'ans': '8.1: $0{,}75a$ (v klíči též $a-10$ m); 8.2: $a=40$ m; 8.3: o $100$ m²', 'pts': 4, 'mins': 5, 'diff': '3',
+     'codes': B + ['planimetrie', 'modelovani', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 9 (konstrukce)', 'zad': [
+        'V rovině leží body $A$, $C$, $M$ (viz obrázek). Body $A$, $C$ jsou vrcholy obdélníku $ABCD$. Bod $M$ leží na úhlopříčce $BD$ tohoto obdélníku.',
+        'Sestrojte vrcholy $B$, $D$ obdélníku $ABCD$, označte je písmeny a obdélník narýsujte.'],
+     'opts': None, 'ln': 0, 'svg': SVG9, 'fn': 'body-ACM.svg',
+     'alt': 'Tři body v rovině: bod A vlevo, bod M vpravo nahoře a bod C vpravo dole.',
+     'cap': 'Výchozí obrázek k úloze 9',
+     'sol': ['Úhlopříčky obdélníku se půlí ve společném středu $S$, který je středem úsečky $AC$; sestrojíme jej. Úhlopříčka $BD$ prochází bodem $S$ i bodem $M$, leží tedy na přímce $SM$. Protože úhlopříčky obdélníku jsou shodné, platí $|SB|=|SD|=|SA|=|SC|$. Vrcholy $B$, $D$ jsou proto průsečíky přímky $SM$ s kružnicí se středem $S$ a poloměrem $|SA|$. Doplníme obdélník $ABCD$.'],
+     'ans': 'Střed $S$ je střed úsečky $AC$; přímka $BD$ je přímka $SM$; vrcholy $B$, $D$ jsou průsečíky přímky $SM$ s kružnicí $k(S;|SA|)$ (viz náčrt konstrukce v klíči).',
+     'pts': 2, 'mins': 4, 'diff': '3',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 10 (konstrukce)', 'zad': [
+        'V rovině leží body $A$, $P$ a kružnice $k$ se středem $S$ (viz obrázek). Bod $A$ je vrchol rovnoramenného trojúhelníku $ABC$, jehož základna leží na přímce $AP$. Vrcholy $B$, $C$ tohoto trojúhelníku leží na kružnici $k$.',
+        'Sestrojte vrcholy $B$, $C$ trojúhelníku $ABC$, označte je písmeny a trojúhelník narýsujte. Najděte všechna řešení.'],
+     'opts': None, 'ln': 0, 'svg': SVG10, 'fn': 'kruznice-k-AP.svg',
+     'alt': 'Kružnice k se středem S, uvnitř bod P a vpravo u kružnice bod A.',
+     'cap': 'Výchozí obrázek k úloze 10',
+     'sol': ['Základna trojúhelníku leží na přímce $AP$; jeden vrchol základny, bod $B$, je proto průsečíkem přímky $AP$ s kružnicí $k$. Trojúhelník je rovnoramenný se základnou $AB$, vrchol $C$ tedy leží na ose úsečky $AB$ a zároveň na kružnici $k$. Osa úsečky $AB$ protíná kružnici $k$ ve dvou bodech $C_1$, $C_2$, úloha má proto dvě řešení – trojúhelníky $ABC_1$ a $ABC_2$.'],
+     'ans': 'Bod $B$ je průsečík přímky $AP$ s kružnicí $k$; vrchol $C$ leží na ose úsečky $AB$ a na kružnici $k$; úloha má dvě řešení $C_1$, $C_2$ (viz náčrt konstrukce v klíči).',
+     'pts': 3, 'mins': 5, 'diff': '4',
+     'codes': B + ['konstrukce', 'porozumeni', 'konstrukcni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 11', 'zad': [
+        'Každých $3{,}5$ cm na turistické mapě rovinaté oblasti je ve skutečnosti $700$ m. Délka vycházkové trasy je přesně $6$ km, což je trojnásobek délky přímé trasy. (Uvažované trasy nemají žádné převýšení.)',
+        'Rozhodněte o každém z následujících tvrzení (11.1–11.3), zda je pravdivé (A), či nikoli (N).',
+        '11.1 Trasa, která na mapě měří $49$ mm, je ve skutečnosti delší než $1$ km.',
+        '11.2 Na mapě je vycházková trasa o $20$ cm delší než přímá trasa.',
+        '11.3 Měřítko turistické mapy je $1:200\\,000$.'],
+     'opts': None, 'ln': 0,
+     'sol': ['Měřítko: $3{,}5$ cm na mapě odpovídá $700$ m $=70\\,000$ cm, tedy $1$ cm mapy $=20\\,000$ cm skutečnosti; měřítko je $1:20\\,000$.',
+            '11.1 $49$ mm $=4{,}9$ cm $\\to 4{,}9\\cdot 20\\,000=98\\,000$ cm $=980$ m, což není více než $1$ km → Ne.',
+            '11.2 Přímá trasa má $6:3=2$ km. Na mapě: vycházková $6$ km $=30$ cm, přímá $2$ km $=10$ cm; rozdíl $30-10=20$ cm → Ano.',
+            '11.3 Měřítko je $1:20\\,000$, nikoli $1:200\\,000$ → Ne.'],
+     'ans': '11.1: N; 11.2: A; 11.3: N', 'pts': 4, 'mins': 4, 'diff': '3',
+     'codes': B + ['planimetrie', 'argumentace', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 12', 'zad': [
+        'Vnitřní prostor haly má tvar kvádru $ABCDEFGH$, jehož výška je $6$ m a délka $15$ m. Uvnitř haly je na podlaze, stropě a dvou stěnách vyznačena uzavřená lomená čára $ACFHA$. Úhlopříčka vyznačená na podlaze haly měří $17$ m a tvoří úsek $AC$ této lomené čáry.',
+        'Jaká je délka lomené čáry $ACFHA$?'],
+     'opts': ['A) $46$ m', 'B) $50$ m', 'C) $54$ m', 'D) $68$ m', 'E) jiná délka'], 'ln': 0,
+     'svg': SVG12, 'fn': 'kvadr-ACFHA.svg',
+     'alt': 'Kvádr ABCDEFGH s vyznačenou uzavřenou lomenou čarou ACFHA přes podlahu, stěnu, strop a druhou stěnu.',
+     'cap': 'Kvádr s lomenou čarou ACFHA',
+     'sol': ['Podlaha $ABCD$ je obdélník s délkou $AB=15$ m a úhlopříčkou $AC=17$ m; šířka je $BC=\\sqrt{17^2-15^2}=\\sqrt{64}=8$ m. Úseky lomené čáry: $AC=17$ m (úhlopříčka podlahy). $CF$ je úhlopříčka stěny s rozměry $8$ m a $6$ m: $CF=\\sqrt{8^2+6^2}=10$ m. $FH$ je úhlopříčka stropu, shodná s $AC$: $FH=17$ m. $HA$ je úhlopříčka druhé stěny, shodná s $CF$: $HA=10$ m. Celkem $17+10+17+10=54$ m.'],
+     'ans': 'C) $54$ m', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['stereometrie', 'vypocet', 'slovni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 13', 'zad': [
+        'Obsah pláště rotačního válce je třikrát větší než obsah jedné podstavy tohoto válce. Poloměr podstavy válce je $10$ cm.',
+        'Jaký je povrch válce? Výsledek je zaokrouhlen na desítky cm².'],
+     'opts': ['A) menší než $930$ cm²', 'B) $940$ cm²', 'C) $1\\,260$ cm²', 'D) $1\\,570$ cm²', 'E) větší než $1\\,580$ cm²'], 'ln': 0,
+     'sol': ['Plášť $S_{pl}=2\\pi r v$, podstava $S_{p}=\\pi r^2$. Z podmínky $2\\pi r v=3\\pi r^2$ plyne $2v=3r$, tj. $v=1{,}5\\cdot 10=15$ cm. Povrch: $S=2S_{p}+S_{pl}=2\\pi r^2+3\\pi r^2=5\\pi r^2=5\\cdot 3{,}14\\cdot 100=1570$ cm².'],
+     'ans': 'D) $1\\,570$ cm²', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['stereometrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 14', 'zad': [
+        'V rovině leží čtyři přímky, z nichž dvě jsou rovnoběžné (viz obrázek). Vyznačené úhly jsou $2\\alpha$, $\\beta$ a dvakrát $4\\alpha$.',
+        'Jaká je velikost úhlu $\\beta$? Velikosti úhlů neměřte, ale vypočtěte.'],
+     'opts': ['A) $100^\\circ$', 'B) $108^\\circ$', 'C) $116^\\circ$', 'D) $120^\\circ$', 'E) jiná velikost'], 'ln': 0,
+     'svg': SVG14, 'fn': 'ctyri-primky.svg',
+     'alt': 'Dvě rovnoběžné přímky protnuté dvěma různoběžkami, které se protínají nad nimi pod úhlem 2 alfa; u horní rovnoběžky úhly beta a 4 alfa, u dolní rovnoběžky úhel 4 alfa.',
+     'cap': 'Schematický nákres čtyř přímek (obrázek je ilustrační)',
+     'sol': ['Obě různoběžky svírají s rovnoběžkami stejné úhly, proto vnitřní úhly trojúhelníku u obou rovnoběžek jsou $4\\alpha$ a vrcholový úhel je $2\\alpha$. Součet úhlů v trojúhelníku: $2\\alpha+4\\alpha+4\\alpha=180^\\circ$, tedy $10\\alpha=180^\\circ$ a $\\alpha=18^\\circ$. Úhel $\\beta$ je vedlejší k úhlu $4\\alpha$: $\\beta=180^\\circ-4\\alpha=180^\\circ-72^\\circ=108^\\circ$.'],
+     'ans': 'B) $108^\\circ$', 'pts': 2, 'mins': 3, 'diff': '3',
+     'codes': B + ['planimetrie', 'vypocet', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 15', 'zad': [
+        'Přiřaďte ke každé úloze (15.1–15.3) odpovídající výsledek (A–F).',
+        '15.1 V roce 2020 firma vyrobila $250$ výrobků. Jak v roce 2021, tak v roce 2022 vyrobila firma vždy o $20\\,\\%$ výrobků více než v předchozím roce. Kolik výrobků vyrobila firma v roce 2022?',
+        '15.2 Roman i Jana jezdili během dovolené na kole. Roman ujel $400$ km, což bylo o čtvrtinu více, než ujela Jana. Kolik km ujela na kole během dovolené Jana?',
+        '15.3 Firma během krize propouštěla zaměstnance, takže jich měla na konci krize o $40\\,\\%$ méně než před krizí. Když firma po odeznění krize přijala $42$ nových zaměstnanců, měla jich o $25\\,\\%$ více než na konci krize. Kolik zaměstnanců měla firma před krizí?'],
+     'opts': ['A) $280$', 'B) $300$', 'C) $320$', 'D) $350$', 'E) $360$', 'F) jiný počet'], 'ln': 0,
+     'sol': ['15.1 $250\\cdot 1{,}2\\cdot 1{,}2=250\\cdot 1{,}44=360$ výrobků → E.',
+            '15.2 Jana ujela $j$; $j\\cdot 1{,}25=400$, tedy $j=320$ km → C.',
+            '15.3 Před krizí $x$; na konci krize $0{,}6x$; po přijetí $42$: $0{,}6x+42=1{,}25\\cdot 0{,}6x=0{,}75x$, odtud $42=0{,}15x$, $x=280$ → A.'],
+     'ans': '15.1: E ($360$); 15.2: C ($320$); 15.3: A ($280$)', 'pts': 6, 'mins': 6, 'diff': '3',
+     'codes': B + ['procenta', 'vypocet', 'slovni', 'bez-kalkulacky', 'bezny-zivot']},
+
+    {'name': 'CERMAT M9A 2023 – úloha 16', 'zad': [
+        'Prvním obrazcem je bílý rovnostranný trojúhelník. Každý další obrazec vznikne z předchozího podle pravidel: 1. Nejprve každý bílý trojúhelník v obrazci rozdělíme na $4$ shodné rovnostranné trojúhelníky. 2. Poté v každé takto vzniklé čtveřici bílých trojúhelníků obarvíme vnitřní trojúhelník na šedo (viz obrázek).',
+        '16.1 Určete, kolik bílých trojúhelníků obsahuje pátý obrazec.',
+        '16.2 Šestý obrazec obsahuje $121$ šedých trojúhelníků. Určete, kolik šedých trojúhelníků obsahuje sedmý obrazec.',
+        '16.3 Počet šedých trojúhelníků v posledním a v předposledním obrazci se liší o $6\\,561$. Určete, kolik bílých trojúhelníků obsahuje poslední obrazec.'],
+     'opts': None, 'ln': 4, 'svg': SVG16, 'fn': 'obrazce-trojuhelniky.svg',
+     'alt': 'První, druhý a třetí obrazec: rovnostranný trojúhelník postupně dělený na čtyři menší, přičemž prostřední z každé čtveřice je šedý.',
+     'cap': '1., 2. a 3. obrazec',
+     'sol': ['Každý bílý trojúhelník se v dalším kroku rozdělí na $4$, z nichž $3$ zůstanou bílé; počet bílých trojúhelníků se tedy vždy ztrojnásobí. V $n$-tém obrazci je $3^{\\,n-1}$ bílých trojúhelníků. Šedé trojúhelníky přibývají a nedělí se dále: v každém kroku přibude tolik šedých, kolik bylo bílých v předchozím obrazci.',
+            '16.1 Pátý obrazec: $3^4=81$ bílých trojúhelníků.',
+            '16.2 Sedmý obrazec má o počet bílých v šestém více šedých než šestý: $121+3^5=121+243=364$ šedých trojúhelníků.',
+            '16.3 Rozdíl počtu šedých v posledním a předposledním obrazci je počet bílých v předposledním, tj. $3^{\\,n-2}=6\\,561=3^8$, odtud $n=10$. Poslední obrazec má $3^{\\,9}=19\\,683$ bílých trojúhelníků.'],
+     'ans': '16.1: $81$ bílých trojúhelníků; 16.2: $364$ šedých trojúhelníků; 16.3: $19\\,683$ bílých trojúhelníků', 'pts': 4, 'mins': 5, 'diff': '3',
+     'codes': B + ['posloupnosti', 'argumentace', 'pocetni', 'bez-kalkulacky', 'bez-kontextu']},
+]
+
+if __name__ == '__main__':
+    import os, sys, json
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import gen_cermat as gen
+    gen.CCODE = 'M9PAD23C0T01'
+    gen.YEAR = 2023
+
+    def dollars_ok(s): return s.count('$') % 2 == 0
+    errors = []; names = set()
+    for p in PROBLEMS:
+        if p['name'] in names: errors.append('DUP název: ' + p['name'])
+        names.add(p['name'])
+        for t in [p['name'], p['ans']] + list(p['zad']) + list(p['sol']) + (p.get('opts') or []):
+            if not dollars_ok(t): errors.append('Nepárový $: ' + t[:70])
+        if p.get('svg') and ("'" in p['svg'] or '\\' in p['svg']):
+            errors.append('SVG zakázaný znak: ' + p['name'])
+        if p.get('svg') and not p.get('alt'): errors.append('Obrázek bez alt: ' + p['name'])
+        for lbl, obj in (('content', gen.py_content_json(p)), ('solution', gen.py_solution_json(p)), ('answer', gen.py_answer_json(p))):
+            try: json.loads(json.dumps(obj, ensure_ascii=False))
+            except Exception as e: errors.append(f'JSON {lbl} {p["name"]}: {e}')
+    if errors:
+        print('CHYBY:'); [print('  -', e) for e in errors]; sys.exit(1)
+    print('Validace OK:', len(PROBLEMS), 'úloh')
+    outdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out')
+    os.makedirs(outdir, exist_ok=True)
+    tot = 0
+    for path, sz, k in gen.chunk_files(PROBLEMS, os.path.join(outdir, 'import-cermat-M9A-2023')):
+        tot += k; print(f'{os.path.basename(path)}: {sz} B, {k} úloh [{"OK" if sz<9000 else "PŘES 9KB"}]')
+    print('Celkem úloh:', tot)
