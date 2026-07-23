@@ -80,7 +80,7 @@ je odpověď spojena středníkem.
 ## Obsah — CERMAT (jednotná přijímací zkouška)
 
 Zdroj: `prijimacky.cermat.cz`. Soubory v `scripts/apex/cermat/`.
-Celkem **309 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137 + M9 nanečisto 42).
+Celkem **472 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137 + M9 čtyřleté 163 + M9 nanečisto 42).
 
 ### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 
@@ -110,6 +110,19 @@ Celkem **309 GoMath úloh** (M5 osmileté 130 + M7 šestileté 137 + M9 nanečis
 
 > Pozn. M7B 2025 úloha 16: v předloze nesrovnalost (rozměr 24 vs 25 cm) mezi zadáním
 > a klíčem — odpovědi z klíče, k ruční kontrole.
+
+### MATEMATIKA 9 (čtyřleté obory, 9. ročník) — ostré testy — 163 úloh, taxonomie `zs2` + `r9`
+
+| Test | kód (CERMAT_Code__c) | termín | úloh |
+|---|---|---|---|
+| M9A 2026 | M9PAD26C0T01 | 1. řádný | 20 |
+| M9B 2026 | M9PBD26C0T02 | 2. řádný | 21 |
+| M9C 2026 | M9PCD26C0T03 | 1. náhradní | 21 |
+| M9D 2026 | M9PDD26C0T04 | 2. náhradní | 21 |
+| M9A 2025 | M9PAD25C0T01 | 1. řádný | 20 |
+| M9B 2025 | M9PBD25C0T02 | 2. řádný | 20 |
+| M9C 2025 | M9PCD25C0T03 | 1. náhradní | 20 |
+| M9D 2025 | M9PDD25C0T04 | 2. náhradní | 20 |
 
 ### MATEMATIKA 9 – přijímačky nanečisto (čtyřleté obory, 9. ročník) — 42 úloh, taxonomie `zs2` + `r9`
 
