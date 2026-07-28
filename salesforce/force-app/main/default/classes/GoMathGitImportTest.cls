@@ -41,13 +41,22 @@ private class GoMathGitImportTest {
         }
     }
 
+    /** start() vrací Iterable — převod na List bez přetypování. */
+    private static List<String> toList(Iterable<String> it) {
+        List<String> out = new List<String>();
+        for (String s : it) {
+            out.add(s);
+        }
+        return out;
+    }
+
     @IsTest
     static void startVyfiltrujePouzeApexSoubory() {
         Test.setMock(HttpCalloutMock.class, new Mock());
         GoMathGitImport b = new GoMathGitImport();
 
         Test.startTest();
-        List<String> paths = (List<String>) b.start(null);
+        List<String> paths = toList(b.start(null));
         Test.stopTest();
 
         System.assertEquals(2, paths.size(), 'README.md ani uzly typu tree se nemají brát: ' + paths);
@@ -63,7 +72,7 @@ private class GoMathGitImportTest {
         GoMathGitImport b = new GoMathGitImport('cermat/');
 
         Test.startTest();
-        List<String> paths = (List<String>) b.start(null);
+        List<String> paths = toList(b.start(null));
         Test.stopTest();
 
         System.assertEquals(1, paths.size(), 'Filtr má propustit jediný soubor: ' + paths);

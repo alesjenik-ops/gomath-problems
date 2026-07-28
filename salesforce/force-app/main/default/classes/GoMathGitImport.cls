@@ -270,15 +270,15 @@ public with sharing class GoMathGitImport implements Database.Batchable<String>,
         if (String.isBlank(body)) {
             return fallback;
         }
-        Integer from = body.indexOf('<' + tagName + '>');
-        if (from < 0) {
+        Integer openIdx = body.indexOf('<' + tagName + '>');
+        if (openIdx < 0) {
             return fallback;
         }
-        Integer to = body.indexOf('</' + tagName + '>', from);
-        if (to < 0) {
+        Integer closeIdx = body.indexOf('</' + tagName + '>', openIdx);
+        if (closeIdx < 0) {
             return fallback;
         }
-        return body.substring(from + tagName.length() + 2, to);
+        return body.substring(openIdx + tagName.length() + 2, closeIdx);
     }
 
     private static String abbrev(String s, Integer max) {
