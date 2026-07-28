@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>GitHub raw CDN — stahování JSON dat úloh z veřejného repozitáře gomath-problems.
+Výchozí zdroj pro GoMathJsonImport (api.github.com nelze bez tokenu použít kvůli
+rate limitu 60 req/hod na sdílenou IP Salesforce).</description>
+    <disableProtocolSecurity>false</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>https://raw.githubusercontent.com</url>
+</RemoteSiteSetting>

@@ -15,8 +15,10 @@ GitHub API ──(1) index.json──► GoMathJsonImport (Batch, scope = 1)
                  (3) vloží záznamy přímo DML (žádný executeAnonymous)
 ```
 
-- Jediný callout jde na `api.github.com` — pokrývá ho Remote Site Setting
-  `GitHub_API`, který je součástí balíku. **Žádný Named Credential.**
+- Jediný callout jde na `raw.githubusercontent.com` (CDN pro veřejná repa) —
+  pokrývá ho Remote Site Setting `GitHub_Raw` z balíku. **Žádný Named Credential.**
+  (`api.github.com` bez tokenu použít nejde: limit 60 req/hod na IP se na sdílených
+  výstupních adresách Salesforce vyčerpá okamžitě.)
 - Jeden soubor = jeden test (max ~22 úloh) = jedna transakce: ~5 DML na úlohu,
   bezpečně pod limity.
 - **Idempotence**: existující úlohy (podle `Math_Problem__c.Name`) se přeskočí.
@@ -52,7 +54,7 @@ v debug logu z `finish()`, případně v e-mailu.
 
 | Pole | Výchozí | Význam |
 |---|---|---|
-| `githubBase` | `https://api.github.com` | pro privátní repo `callout:GoMath_GitHub` |
+| `githubBase` | `https://raw.githubusercontent.com` | pro privátní repo `callout:GoMath_GitHub` (contents API s tokenem) |
 | `repoOwner` / `repoName` | `alesjenik-ops` / `gomath-problems` | zdrojový repozitář |
 | `branch` | `claude/prepare-task-imports-sejoir` | větev |
 | `indexPath` | `scripts/json/index.json` | seznam souborů k importu |

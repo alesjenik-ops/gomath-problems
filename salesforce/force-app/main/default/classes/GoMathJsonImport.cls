@@ -26,8 +26,12 @@ public with sharing class GoMathJsonImport implements Database.Batchable<String>
     // Instanční pole (ne statická) — serializují se s jobem, takže nastavení
     // před Database.executeBatch platí i v asynchronním kontextu.
 
-    /** Základ GitHub API; pro privátní repo přepnout na 'callout:GoMath_GitHub'. */
-    public String githubBase = 'https://api.github.com';
+    /** Odkud se stahuje. Výchozí je raw.githubusercontent.com (CDN pro veřejná repa) —
+     *  api.github.com NELZE použít bez tokenu: neautentizovaný limit 60 req/hod platí
+     *  na IP adresu a sdílené výstupní IP Salesforce ho mají trvale vyčerpané.
+     *  Pro privátní repo přepnout na 'callout:GoMath_GitHub' (pak se volá GitHub
+     *  contents API s tokenem z Named Credentialu). */
+    public String githubBase = 'https://raw.githubusercontent.com';
 
     public String repoOwner = 'alesjenik-ops';
     public String repoName  = 'gomath-problems';
@@ -304,12 +308,19 @@ public with sharing class GoMathJsonImport implements Database.Batchable<String>
     @TestVisible
     private String fetchFile(String path) {
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(githubBase + '/repos/' + repoOwner + '/' + repoName
-            + '/contents/' + encodePath(path) + '?ref=' + EncodingUtil.urlEncode(branch, 'UTF-8'));
+        if (githubBase.startsWith('callout:')) {
+            // privátní repo: GitHub contents API s tokenem z Named Credentialu
+            req.setEndpoint(githubBase + '/repos/' + repoOwner + '/' + repoName
+                + '/contents/' + encodePath(path) + '?ref=' + EncodingUtil.urlEncode(branch, 'UTF-8'));
+            req.setHeader('Accept', 'application/vnd.github.raw');
+            req.setHeader('X-GitHub-Api-Version', '2022-11-28');
+        } else {
+            // veřejné repo: raw CDN (bez rate limitu vázaného na sdílenou IP Salesforce)
+            req.setEndpoint(githubBase + '/' + repoOwner + '/' + repoName
+                + '/' + encodePath(branch) + '/' + encodePath(path));
+        }
         req.setMethod('GET');
-        req.setHeader('Accept', 'application/vnd.github.raw');
         req.setHeader('User-Agent', 'GoMathJsonImport');
-        req.setHeader('X-GitHub-Api-Version', '2022-11-28');
         req.setTimeout(120000);
 
         HttpResponse res = new Http().send(req);

@@ -9,6 +9,7 @@
     </types>
     <types>
         <members>GitHub_API</members>
+        <members>GitHub_Raw</members>
         <name>RemoteSiteSetting</name>
     </types>
     <version>62.0</version>
