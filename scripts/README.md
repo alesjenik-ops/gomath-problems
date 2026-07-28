@@ -80,7 +80,7 @@ je odpověď spojena středníkem.
 ## Obsah — CERMAT (jednotná přijímací zkouška)
 
 Zdroj: `prijimacky.cermat.cz`. Soubory v `scripts/apex/cermat/`.
-Celkem **1760 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T01–T04):
+Celkem **1870 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T01–T04):
 - **2026** a **2025**: viz tabulky níže (M5 130, M7 137, M9 čtyřleté 163, M9 nanečisto 42)
 - **2024**: M5 72 + M7 74 + M9 80 = 226 (`import-cermat-M{5,7,9}{A..D}-2024-*`)
 - **2023**: M5 71 + M7 71 + M9 86 = 228 (`import-cermat-M{5,7,9}{A..D}-2023-*`)
@@ -90,6 +90,8 @@ Celkem **1760 GoMath úloh** — ostré testy M5/M7/M9, varianty A–D (kódy T0
 - **2019**: M5 34 + M7 34 + M9 42 = 110 (1.+2. řádný termín = varianty A/B; `import-cermat-M{5,7,9}{A,B}-2019-*`)
 - **2018**: M5 35 + M7 32 + M9 44 = 111 (1.+2. řádný termín = varianty A/B; `import-cermat-M{5,7,9}{A,B}-2018-*`)
 - **2017**: M5 30 + M7 37 + M9 42 = 109 (1.+2. řádný termín = varianty A/B; `import-cermat-M{5,7,9}{A,B}-2017-*`)
+- **2016**: M5 17 + M7 19 + M9 22 = 58 (pilotní ročník, 1 termín, kódy `M?PZD16C0T01`; `import-cermat-M{5,7,9}A-2016-*`)
+- **2015**: M5 16 + M7 16 + M9 20 = 52 (pilotní ročník, 1 termín, kódy `M?PZD15C0T01`; `import-cermat-M{5,7,9}A-2015-*`)
 
 ### MATEMATIKA 5 (osmileté obory, 5. ročník) — 130 úloh, taxonomie `zs1`
 
@@ -155,8 +157,12 @@ Regenerace: `python3 scripts/generator/data_cermat_M5A_2026.py` (analogicky B/C/
 do SVG — mají schematickou poznámku a odpověď z klíče; grafy/plánky/mřížky u některých úloh jsou
 schematické (přesné hodnoty z klíče). Konstrukce (7) mají odpověď jako slovní popis.
 
-**Zpracované ročníky:** 2017–2026 (2021–2026 varianty A–D; 2017–2019 řádné termíny A/B; 2020 jen „A") + M9 nanečisto 2025/2026.
+**Zpracovány jsou VŠECHNY ročníky CERMAT JPZ dostupné na webu: 2015–2026.**
+- 2021–2026: varianty A–D (řádné i náhradní termíny)
+- 2017–2019: řádné termíny A/B
+- 2020: jen termín „A" (covid), 2015–2016: pilotní ročníky, 1 termín
+- navíc M9 přijímačky nanečisto 2025/2026
+
 Ročníky 2018–2019 jsou na webu CERMATu skenované (bez textové vrstvy) — přepsány vizuálně z renderů PDF.
 U ročníku 2017 (testy M5A, M7B, M9B) nebyla dokončena závěrečná vizuální kontrola SVG — data i odpovědi
 jsou zvalidované, ale u obrázků se mohou vyskytnout drobné kosmetické vady (oříznuté popisky).
-**Starší ročníky (2015–2016)** jsou na webu CERMATu k dispozici (2016 pilotní, 1 termín) — zatím nezpracovány.
