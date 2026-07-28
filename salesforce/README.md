@@ -62,13 +62,9 @@ Potřeba proto, že v asynchronním Apexu nelze použít `UserInfo.getSessionId(
 
 ### 2. Přístup na GitHub
 
-**Veřejný repozitář** (současný stav) — stačí nasazený Remote Site Setting `GitHub_API`
-a v Execute Anonymous přepnout základ na přímou URL:
-
-```apex
-GoMathGitImport.GITHUB_BASE = 'https://api.github.com';
-GoMathGitImport.run();
-```
+**Veřejný repozitář** (současný stav) — nic se nenastavuje. Výchozí `githubBase`
+míří přímo na `https://api.github.com`; stačí nasazený Remote Site Setting `GitHub_API`
+(je součástí balíku).
 
 **Privátní repozitář** — Named Credential `GoMath_GitHub`:
 - URL: `https://api.github.com`
@@ -76,7 +72,17 @@ GoMathGitImport.run();
 - Username: GitHub login, Password: Personal Access Token (scope `repo`)
 - Custom header `Authorization` = `Bearer {!$Credential.Password}` (Generate Authorization Header vypnout)
 
-Pak není potřeba nic přepínat — třída míří na `callout:GoMath_GitHub` ve výchozím stavu.
+a před spuštěním přepnout základ na Named Credential:
+
+```apex
+GoMathGitImport b = new GoMathGitImport();
+b.githubBase = 'callout:GoMath_GitHub';
+Database.executeBatch(b, 1);
+```
+
+> Konfigurace jsou **instanční pole** (`githubBase`, `selfBase`, `apiVersion`) —
+> serializují se s jobem. Statická proměnná by se v asynchronním kontextu batche
+> znovu inicializovala a nastavení před `executeBatch` by se ztratilo.
 
 ## Spuštění
 
@@ -115,8 +121,9 @@ případně v e-mailu.
 | `fileFilter` | – | zpracují se jen cesty obsahující tento řetězec |
 | `dryRunOnly` | `false` | jen stáhnout, nespouštět |
 | `notifyEmail` | – | komu poslat souhrn |
-| `GITHUB_BASE` (static) | `callout:GoMath_GitHub` | lze přepnout na `https://api.github.com` |
-| `SELF_BASE` (static) | `callout:GoMath_Self` | Named Credential vlastního orgu |
+| `githubBase` | `https://api.github.com` | pro privátní repo přepnout na `callout:GoMath_GitHub` |
+| `selfBase` | `callout:GoMath_Self` | Named Credential vlastního orgu |
+| `apiVersion` | `62.0` | verze Apex SOAP API |
 
 ## Předpoklady v orgu
 

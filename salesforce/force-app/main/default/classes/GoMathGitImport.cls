@@ -20,15 +20,20 @@ public with sharing class GoMathGitImport implements Database.Batchable<String>,
     public class ImportException extends Exception {}
 
     // ---------------------------------------------------------------- konfigurace
+    //
+    // POZOR: konfigurace jsou INSTANČNÍ pole, ne statická. Batch běží asynchronně
+    // v nové transakci, kde by se statika znovu inicializovala na výchozí hodnotu —
+    // instanční pole se serializují s jobem, takže nastavení před executeBatch platí.
 
-    /** Základ GitHub API. Named Credential (privátní repo) nebo přímá URL (veřejný repo + Remote Site Setting). */
-    public static String GITHUB_BASE = 'callout:GoMath_GitHub';
+    /** Základ GitHub API. Výchozí je přímá URL (veřejný repozitář + Remote Site Setting
+     *  GitHub_API). Pro privátní repo nastav 'callout:GoMath_GitHub' (Named Credential s tokenem). */
+    public String githubBase = 'https://api.github.com';
 
     /** Named Credential mířící na vlastní org (My Domain URL), Named Principal + OAuth 2.0. */
-    public static String SELF_BASE = 'callout:GoMath_Self';
+    public String selfBase = 'callout:GoMath_Self';
 
     /** Verze API pro SOAP endpoint. */
-    public static String API_VERSION = '62.0';
+    public String apiVersion = '62.0';
 
     public String repoOwner  = 'alesjenik-ops';
     public String repoName   = 'gomath-problems';
@@ -182,7 +187,7 @@ public with sharing class GoMathGitImport implements Database.Batchable<String>,
 
     private String gitHubGet(String relativePath, String accept) {
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(GITHUB_BASE + '/repos/' + repoOwner + '/' + repoName + relativePath);
+        req.setEndpoint(githubBase + '/repos/' + repoOwner + '/' + repoName + relativePath);
         req.setMethod('GET');
         req.setHeader('Accept', accept);
         req.setHeader('User-Agent', 'GoMathGitImport');
@@ -220,7 +225,7 @@ public with sharing class GoMathGitImport implements Database.Batchable<String>,
     @TestVisible
     private void runAnonymous(String code) {
         HttpRequest req = new HttpRequest();
-        req.setEndpoint(SELF_BASE + '/services/Soap/s/' + API_VERSION);
+        req.setEndpoint(selfBase + '/services/Soap/s/' + apiVersion);
         req.setMethod('POST');
         req.setHeader('Content-Type', 'text/xml; charset=UTF-8');
         req.setHeader('SOAPAction', '""');
