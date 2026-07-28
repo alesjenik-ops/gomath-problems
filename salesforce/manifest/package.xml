@@ -3,6 +3,8 @@
     <types>
         <members>GoMathGitImport</members>
         <members>GoMathGitImportTest</members>
+        <members>GoMathJsonImport</members>
+        <members>GoMathJsonImportTest</members>
         <name>ApexClass</name>
     </types>
     <types>

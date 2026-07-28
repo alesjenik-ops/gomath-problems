@@ -1,147 +1,89 @@
 # GoMath — dávkový import úloh z GitHubu
 
-Deploy balík s třídou `GoMathGitImport`: batch, který stáhne vygenerované anonymní
-Apex skripty z tohoto repozitáře (`scripts/apex/**.apex`) a spustí je v orgu.
+Deploy balík se dvěma cestami importu. **Doporučená je `GoMathJsonImport`** —
+funguje bez Named Credentialů.
 
-Aktuálně je v repu **2 103 úloh** v **801 skriptech** (Zelený 233 / CERMAT 1 870, ročníky 2015–2026).
+Aktuálně je v repu **2 103 úloh** (Zelený 233 / CERMAT 1 870, ročníky 2015–2026):
+- `scripts/json/` — 112 JSON souborů (jeden test = jeden soubor) + `index.json`
+- `scripts/apex/` — 801 anonymních Apex skriptů (< 9 KB, pro ruční spouštění)
 
-## Jak to funguje
+## Doporučená cesta: GoMathJsonImport (bez Named Credentialů)
 
 ```
-GitHub API ──(1) výpis .apex souborů──┐
-                                      ▼
-                            GoMathGitImport (Batch, scope = 1)
-                                      │
-              (2) stáhne obsah souboru┤
-                                      │
-              (3) executeAnonymous ───┴──► Apex SOAP API vlastního orgu
+GitHub API ──(1) index.json──► GoMathJsonImport (Batch, scope = 1)
+                 (2) stáhne JSON jednoho testu
+                 (3) vloží záznamy přímo DML (žádný executeAnonymous)
 ```
 
-- **scope = 1** je záměr: každý soubor jde přes `executeAnonymous`, tedy do **vlastní
-  transakce** s vlastními governor limity. Limity se tak nesčítají napříč 801 skripty.
-- **SOAP, ne Tooling REST**: skripty mají až ~9 KB a v REST variantě se kód předává
-  v URL — po enkódování by překročil limit délky URI.
-- **Idempotence**: skripty samy přeskakují úlohy, které už v orgu jsou (podle
-  `Math_Problem__c.Name`). Opakované spuštění nic nezduplikuje, takže batch lze bez
-  obav pustit znovu po opravě chyb.
-- Chyba jednoho souboru **nezhavaruje** celý job — zaznamená se do `failures`
-  a vypíše v `finish()`.
+- Jediný callout jde na `api.github.com` — pokrývá ho Remote Site Setting
+  `GitHub_API`, který je součástí balíku. **Žádný Named Credential.**
+- Jeden soubor = jeden test (max ~22 úloh) = jedna transakce: ~5 DML na úlohu,
+  bezpečně pod limity.
+- **Idempotence**: existující úlohy (podle `Math_Problem__c.Name`) se přeskočí.
+- Chyba souboru job nezhavaruje — soubor se odroluje (savepoint) a chyba se
+  vypíše ve `finish()`.
 
-## Nasazení
+### Nasazení
 
 ```bash
 sf project deploy start -d salesforce/force-app -o <alias-orgu>
-# nebo přes manifest:
-sf project deploy start -x salesforce/manifest/package.xml -o <alias-orgu>
 ```
 
-## Nastavení před prvním spuštěním
+(nebo Workbench → migration → Deploy s hotovým zipem)
 
-### 1. Named Credential `GoMath_Self` (volání vlastního orgu)
-
-Potřeba proto, že v asynchronním Apexu nelze použít `UserInfo.getSessionId()` pro API volání.
-
-1. Setup → **App Manager** → New Connected App
-   - Enable OAuth Settings, Callback URL `https://login.salesforce.com/services/oauth2/callback`
-   - Scopes: `Manage user data via APIs (api)`, `Perform requests at any time (refresh_token, offline_access)`
-   - Po uložení si poznač **Consumer Key** a **Consumer Secret**
-2. Setup → **Auth. Providers** → New → typ **Salesforce**
-   - Consumer Key/Secret z kroku 1, Default Scopes: `api refresh_token offline_access`
-   - Ulož a poznač si vygenerovanou **Callback URL** → vrať ji do Connected App
-3. Setup → **Named Credentials** → New Legacy
-   - Label/Name: `GoMath_Self`
-   - URL: My Domain URL orgu, např. `https://mojefirma.my.salesforce.com`
-   - Identity Type: **Named Principal**, Authentication Protocol: **OAuth 2.0**
-   - Authentication Provider: z kroku 2, **Start Authentication Flow on Save** ✔
-   - **Allow Merge Fields in HTTP Body** ✔ ← nutné, třída vkládá `{!$Credential.OAuthToken}`
-     do SOAP hlavičky
-   - Generate Authorization Header: může zůstat vypnuté
-
-> Uživatel, kterým se flow autorizuje, musí mít práva na vytváření
-> `Math_Problem__c` / `Problem_Version__c` / `Problem_Taxon__c` a na ContentVersion.
-
-### 2. Přístup na GitHub
-
-**Veřejný repozitář** (současný stav) — nic se nenastavuje. Výchozí `githubBase`
-míří přímo na `https://api.github.com`; stačí nasazený Remote Site Setting `GitHub_API`
-(je součástí balíku).
-
-**Privátní repozitář** — Named Credential `GoMath_GitHub`:
-- URL: `https://api.github.com`
-- Identity Type: Named Principal, Authentication Protocol: **Password Authentication**
-- Username: GitHub login, Password: Personal Access Token (scope `repo`)
-- Custom header `Authorization` = `Bearer {!$Credential.Password}` (Generate Authorization Header vypnout)
-
-a před spuštěním přepnout základ na Named Credential:
+### Spuštění (Developer Console → Execute Anonymous)
 
 ```apex
-GoMathGitImport b = new GoMathGitImport();
-b.githubBase = 'callout:GoMath_GitHub';
-Database.executeBatch(b, 1);
-```
+GoMathJsonImport.dryRun();               // ověří GitHub, nic nevloží
+GoMathJsonImport.run('cermat-M5A_2026'); // jeden test na zkoušku
+GoMathJsonImport.run('cermat-');         // celý CERMAT
+GoMathJsonImport.run();                  // všech 2 103 úloh
 
-> Konfigurace jsou **instanční pole** (`githubBase`, `selfBase`, `apiVersion`) —
-> serializují se s jobem. Statická proměnná by se v asynchronním kontextu batche
-> znovu inicializovala a nastavení před `executeBatch` by se ztratilo.
-
-## Spuštění
-
-Developer Console → Debug → **Open Execute Anonymous Window**:
-
-```apex
-// 1) nanečisto — ověří přístup a stáhne soubory, ale nic nevytvoří
-GoMathGitImport.dryRun();
-
-// 2) jeden test na zkoušku
-GoMathGitImport.run('cermat/import-cermat-M5A-2026');
-
-// 3) celý CERMAT
-GoMathGitImport.run('scripts/apex/cermat/');
-
-// 4) úplně všechno (Zelený + CERMAT, 801 souborů)
-GoMathGitImport.run();
-
-// varianta s e-mailovým souhrnem a jinou větví
-GoMathGitImport b = new GoMathGitImport();
-b.branch = 'main';
+// s e-mailovým souhrnem:
+GoMathJsonImport b = new GoMathJsonImport();
 b.notifyEmail = 'ales.jenik@gmail.com';
 Database.executeBatch(b, 1);
 ```
 
-Průběh: Setup → **Apex Jobs**. Souhrn (`X OK, Y chyb`) je v debug logu z `finish()`,
-případně v e-mailu.
+Průběh: Setup → Apex Jobs. Souhrn (`X souborů OK, vytvořeno N úloh, …`) je
+v debug logu z `finish()`, případně v e-mailu.
 
-## Parametry
+### Parametry (instanční pole — serializují se s jobem)
 
 | Pole | Výchozí | Význam |
 |---|---|---|
+| `githubBase` | `https://api.github.com` | pro privátní repo `callout:GoMath_GitHub` |
 | `repoOwner` / `repoName` | `alesjenik-ops` / `gomath-problems` | zdrojový repozitář |
 | `branch` | `claude/prepare-task-imports-sejoir` | větev |
-| `pathPrefix` | `scripts/apex/` | prohledávaná složka |
-| `fileFilter` | – | zpracují se jen cesty obsahující tento řetězec |
-| `dryRunOnly` | `false` | jen stáhnout, nespouštět |
+| `indexPath` | `scripts/json/index.json` | seznam souborů k importu |
+| `fileFilter` | – | jen cesty obsahující tento řetězec |
+| `dryRunOnly` | `false` | jen stáhnout a rozparsovat |
 | `notifyEmail` | – | komu poslat souhrn |
-| `githubBase` | `https://api.github.com` | pro privátní repo přepnout na `callout:GoMath_GitHub` |
-| `selfBase` | `callout:GoMath_Self` | Named Credential vlastního orgu |
-| `apiVersion` | `62.0` | verze Apex SOAP API |
+
+### Regenerace JSON dat
+
+```bash
+python3 scripts/generator/export_json.py   # z data_*.py vyrobí scripts/json/*
+```
+
+## Alternativní cesta: GoMathGitImport (executeAnonymous)
+
+Starší varianta: stahuje hotové `.apex` skripty a spouští je přes Apex SOAP API.
+Vyžaduje Named Credential `GoMath_Self` (batch si musí volat vlastní org, protože
+v asynchronním Apexu nelze použít session pro API volání). Postup nastavení:
+Connected App → Auth Provider (typ Salesforce) → Named Credential `GoMath_Self`
+(Named Principal, OAuth 2.0, **Allow Merge Fields in HTTP Body zapnuto**).
+Detaily v historii tohoto souboru — pro běžné použití preferuj GoMathJsonImport.
 
 ## Předpoklady v orgu
 
 Objekty `Math_Problem__c`, `Problem_Version__c`, `Problem_Taxon__c`, `Taxon__c`,
 třída `GoMathContent` (metoda `buildSearchText`) a na `Problem_Version__c` pole
-`CERMAT_Code__c` (Text) a `Source_Year__c` (Number) — viz `scripts/README.md`.
+`CERMAT_Code__c` (Text) a `Source_Year__c` (Číslo) — viz `scripts/README.md`.
 
-## Odhad doby běhu
-
-801 souborů × (stažení + executeAnonymous) ≈ jednotky hodin. Batch běží na pozadí,
-lze ho kdykoli zastavit (Apex Jobs → Abort) a spustit znovu — už naimportované
-úlohy se přeskočí.
-
-## Alternativa bez callloutů
-
-Pokud by nastavení Named Credentialu bylo na obtíž, skripty jdou pořád spouštět ručně
-přes Workbench (Apex Execute) nebo z příkazové řádky:
+## Nouzová cesta bez čehokoli
 
 ```bash
-for f in scripts/apex/cermat/*.apex; do sf apex run -f "$f" -o <alias>; done
+git clone -b claude/prepare-task-imports-sejoir https://github.com/alesjenik-ops/gomath-problems
+for f in gomath-problems/scripts/apex/**/*.apex; do sf apex run -f "$f" -o <alias>; done
 ```
