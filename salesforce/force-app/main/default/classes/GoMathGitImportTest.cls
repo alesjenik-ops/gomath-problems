@@ -199,8 +199,11 @@ private class GoMathGitImportTest {
     static void celyBatchDobehne() {
         Test.setMock(HttpCalloutMock.class, new Mock());
 
+        // Filtr omezí vstup na JEDINÝ soubor. Ostrý běh používá scope = 1, takže
+        // dva soubory by znamenaly dvě executeBatch invokace — a v testovacím
+        // kontextu je povolena jen jedna.
         Test.startTest();
-        Id jobId = GoMathGitImport.run();
+        Id jobId = GoMathGitImport.run('cermat/');
         Test.stopTest();
 
         AsyncApexJob job = [SELECT Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :jobId];
